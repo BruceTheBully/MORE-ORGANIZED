@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>DSP Feedback Spectrum Demo</title>
+<style>
+  body { background: #111; color: #0ff; font-family: monospace; padding: 20px; }
+  canvas { border: 1px solid #0ff; display: block; margin-top: 20px; }
+</style>
+</head>
+<body>
+<h2>Recursive Delay Feedback Spectral Visualization</h2>
+<p>This demo shows how feedback delay creates sidebands in the spectrum.</p>
+<canvas id="spectra" width="800" height="300"></canvas>
+
+<script>
+const ctx = document.getElementById('spectra').getContext('2d');
+
+const sampleRate = 44100;
+const duration = 1; // seconds
+const bufferSize = sampleRate * duration;
+
+// Base frequency
+const freq = 440; // A4
+// Feedback parameters
+const feedbackAmount = 0.9;
+const delaySamples = 2000; // delay in samples (~45ms)
+
+let buffer = new Float32Array(bufferSize).fill(0);
+let output = new Float32Array(bufferSize);
+
+// Generate recursive feedback signal
+for (let i=0; i<bufferSize; i++) {
+  const delayedIndex = i - delaySamples;
+  const delayedSample = delayedIndex >= 0 ? buffer[delayedIndex] : 0;
+  // Feedback: current sample + feedback of delayed sample
+  buffer[i] = Math.sin(2*Math.PI * freq * i / sampleRate) + feedbackAmount * delayedSample;
+  output[i] = buffer[i];
+}
+
+// Function to draw spectrum
+function drawSpectrum() {
+  // FFT (using simple DFT for demo)
+  const N = bufferSize;
+  const spectrum = new Float32Array(N/2);
+  for (let k=0; k<N/2; k++) {
+    let real=0, imag=0;
+    for (let n=0; n<N; n++) {
+      const angle = 2*Math.PI * k * n / N;
+      real += output[n] * Math.cos(angle);
+      imag -= output[n] * Math.sin(angle);
+    }
+    spectrum[k] = Math.sqrt(real*real + imag*imag);
+  }
+  // Normalize
+  const maxVal = Math.max(...spectrum);
+  
+  // Draw
+  ctx.fillStyle = '#111';
+  ctx.fillRect(0,0,800,300);
+  
+  ctx.strokeStyle = '#0ff';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let i=0; i<spectrum.length; i++) {
+    const x = i * 800 / spectrum.length;
+    const y = 300 - (spectrum[i] / maxVal) * 300;
+    if(i===0) ctx.moveTo(x,y);
+    else ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+}
+
+// Animate
+drawSpectrum();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>🧬 Horizon Reentry Loader</title>
+</head>
+<body style="background:black; color:#0ff; font-family:monospace; padding:30px;">
+  <h2>🧠 Horizon Loader: Rehydrate .zon</h2>
+  <p>📂 Drop or select your <b>.zon</b> to restore terminal state:</p>
+  <input type="file" id="zon" />
+
+  <script>
+    document.getElementById("zon").onchange = async (e) => {
+      const file = e.target.files[0];
+      const text = await file.text();
+      try {
+        localStorage.setItem("horizon_state", text);
+        alert("✅ ZON State injected. Relaunch Horizon.");
+      } catch (err) {
+        alert("❌ Error loading: " + err.message);
+      }
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Random Paint Chaos</title>
+<style>
+  body { background: #111; color: white; font-family: monospace; text-align: center; }
+  #paintGrid {
+    display: grid;
+    grid-template-columns: repeat(30, 20px);
+    grid-template-rows: repeat(20, 20px);
+    gap: 1px;
+    margin: 20px auto;
+    width: max-content;
+  }
+  .pixel {
+    width: 20px;
+    height: 20px;
+    background: black;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    background: #222;
+    color: white;
+    border: 2px solid #555;
+    margin-bottom: 10px;
+  }
+  button:hover {
+    border-color: #fff;
+  }
+</style>
+</head>
+<body>
+
+<h1>Random Paint Chaos</h1>
+<button id="paintBtn">Unleash Chaos</button>
+<div id="paintGrid"></div>
+
+<script>
+  const grid = document.getElementById('paintGrid');
+  const btn = document.getElementById('paintBtn');
+  const rows = 20;
+  const cols = 30;
+  const totalPixels = rows * cols;
+
+  // Optional: Predefined vibrant palette or generate random colors
+  const palette = [
+    '#ff3f3f', '#ffaf3f', '#fff73f', '#3fff4f', '#3ffff1',
+    '#3f3fff', '#af3fff', '#ff3fff', '#ff3faf', '#a0a0a0',
+  ];
+
+  // Create the grid pixels once
+  for(let i=0; i<totalPixels; i++) {
+    const pixel = document.createElement('div');
+    pixel.classList.add('pixel');
+    grid.appendChild(pixel);
+  }
+
+  function paintChaos() {
+    const pixels = document.querySelectorAll('.pixel');
+    pixels.forEach(pixel => {
+      // Randomly pick a color from palette or generate a random RGB color
+      if (Math.random() < 0.8) {
+        const color = palette[Math.floor(Math.random() * palette.length)];
+        pixel.style.backgroundColor = color;
+      } else {
+        // 20% chance for pure random color
+        pixel.style.backgroundColor = `hsl(${Math.floor(Math.random()*360)}, 100%, 50%)`;
+      }
+    });
+  }
+
+  btn.addEventListener('click', paintChaos);
+
+  // Initial chaos on load
+  paintChaos();
+</script>
+
+</body>
+</html>

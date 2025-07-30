@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HORIZON OS: Genesis</title>
+  <style>
+    body { background: #000; color: #0ff; font-family: monospace; padding: 20px; }
+    h2 { text-shadow: 0 0 5px #0ff; }
+    #terminal {
+      width: 100%; height: 220px; background: #111;
+      border: 1px solid #333; padding: 10px;
+      overflow-y: auto; box-shadow: 0 0 15px #0ff33a;
+    }
+    #input {
+      width: 100%; background: #000; color: #0f0;
+      border: none; outline: none; font-size: 16px;
+      padding: 8px; text-shadow: 0 0 3px #0f0;
+    }
+    #view {
+      margin-top: 20px; padding: 10px; background: #101010;
+      border: 1px solid #333; color: white;
+      min-height: 100px; font-size: 14px;
+      box-shadow: 0 0 8px #666 inset;
+    }
+    .log { color: #0f0; text-shadow: 0 0 2px #0f0; }
+    button {
+      margin: 5px 5px 0 0; background: #222;
+      color: #fff; border: 1px solid #555;
+      padding: 6px 10px; font-family: monospace;
+      cursor: pointer; box-shadow: 0 0 8px #0ff;
+    }
+  </style>
+</head>
+<body>
+
+<h2>🌌 Horizon OS — Reflexive Terminal Layer</h2>
+<div id="terminal"></div>
+<input id="input" autocomplete="off" placeholder="Type a command..." />
+<div id="view">[UI Field]</div>
+<div>
+  <button onclick="saveState()">💾 Save</button>
+  <button onclick="loadState()">📂 Load</button>
+  <button onclick="godMutate()">🧠 Edit</button>
+  <button onclick="exportHTML()">📤 Export</button>
+</div>
+
+<script>
+const terminal = document.getElementById('terminal');
+const input = document.getElementById('input');
+const state = { apis: {} };
+
+// 🔧 !write
+function cmd_write(args) {
+  const [name, ...body] = args;
+  const fn = new Function('args', body.join(' '));
+  state.apis[name] = fn;
+  return `✅ defined !${name}`;
+}
+
+// 🌐 !html
+function cmd_html(args) {
+  const html = args.join(' ');
+  document.getElementById("view").innerHTML = html;
+  return "🎨 UI updated";
+}
+
+// 🧩 !ops
+function cmd_ops() {
+  const keys = Object.keys(state.apis);
+  document.getElementById("view").innerHTML =
+    "<b>🧩 Registered Ops:</b><br>" + keys.map(k => `!${k}`).join('<br>');
+  return `🧠 ${keys.length} active morphs`;
+}
+
+state.apis.write = cmd_write;
+state.apis.html = cmd_html;
+state.apis.ops = cmd_ops;
+
+// 🧠 Processor
+function process(inputStr) {
+  const [cmdRaw, ...args] = inputStr.trim().split(' ');
+  const cmd = cmdRaw.startsWith('!') ? cmdRaw.slice(1) : null;
+  const fn = cmd && state.apis[cmd];
+  if (fn) return fn(args);
+  return `⚠️ Unknown command: ${cmdRaw}`;
+}
+
+// ⌨️ Listener
+input.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const val = input.value;
+    terminal.innerHTML += `<div class="log">> ${val}</div>`;
+    const out = process(val);
+    terminal.innerHTML += `<div class="log">${out}</div>`;
+    input.value = '';
+    terminal.scrollTop = terminal.scrollHeight;
+  }
+});
+
+// 💾 Save/Load
+function saveState() {
+  localStorage.setItem("horizon_state", JSON.stringify(state.apis, (k,v) =>
+    typeof v === "function" ? v.toString() : v));
+  alert("💾 State saved!");
+}
+
+function loadState() {
+  const raw = localStorage.getItem("horizon_state");
+  if (raw) {
+    const apis = JSON.parse(raw);
+    for (const key in apis) {
+      try {
+        state.apis[key] = new Function("args", apis[key].match(/\{([\s\S]*)\}/)[1]);
+      } catch (e) {
+        console.error("Error restoring:", key, e);
+      }
+    }
+    alert("📂 State loaded!");
+  } else {
+    alert("⚠️ No saved state");
+  }
+}
+
+// 🧠 God Parser
+function godMutate() {
+  const name = prompt("Function name to redefine:");
+  const newCode = prompt(`Define new logic for "!${name}":\n(e.g. return 'Hello!')`);
+  if (name && newCode) {
+    try {
+      state.apis[name] = new Function('args', newCode);
+      alert(`✅ !${name} redefined`);
+    } catch (e) {
+      alert(`❌ Failed: ${e.message}`);
+    }
+  }
+}
+
+// 📤 Exporter
+function exportHTML() {
+  const body = Object.entries(state.apis).map(
+    ([k, fn]) => `"${k}":${fn.toString()}`
+  ).join(',');
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>HorizonOS Snapshot</title></head>
+<body style="background:#000;color:#0f0;font-family:monospace;padding:20px;">
+<h2>🧠 HorizonOS Snapshot Loaded</h2>
+<pre>Restored morphs:
+<script>
+const state = { apis: {${body}} };
+
+window.onload = () => {
+  console.log("🌐 HorizonOS Snapshot Restored");
+  console.log("Available morphs:", Object.keys(state.apis));
+  document.body.innerHTML += Object.keys(state.apis).map(k => '\\n→ !' + k).join('');
+};
+<\/script>
+</pre>
+</body>
+</html>`;
+  
+  const blob = new Blob([html], { type: 'text/html' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'HorizonOS_Snapshot.html';
+  link.click();
+}
+</script>
+
+</body>
+</html>

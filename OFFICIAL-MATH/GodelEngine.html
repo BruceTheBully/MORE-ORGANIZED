@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🧠 HorizonOS :: Write</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      background: radial-gradient(#000 60%, #111 100%);
+      color: #0ff;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    #morphpad {
+      flex: 2;
+      background: #000;
+      color: #fff;
+      padding: 10px;
+      width: 100%;
+      resize: none;
+      border: none;
+      font-size: 14px;
+    }
+    #observer {
+      background: #111;
+      border-top: 1px solid #444;
+      padding: 5px;
+      display: flex;
+    }
+    #command {
+      flex: 1;
+      background: #000;
+      color: #0f0;
+      border: none;
+      padding: 5px;
+      font-size: 14px;
+    }
+    #log {
+      height: 150px;
+      overflow-y: auto;
+      background: #000;
+      color: #aaa;
+      padding: 10px;
+      border-top: 1px solid #444;
+      font-size: 12px;
+    }
+    #horizon {
+      flex: 3;
+      background: #111;
+      padding: 10px;
+      border-top: 1px solid #444;
+      color: #fff;
+      overflow-y: auto;
+    }
+    pre {
+      white-space: pre-wrap;
+      color: #0ff;
+    }
+    .api-block {
+      background: #111;
+      border: 1px solid #444;
+      padding: 10px;
+      margin-top: 10px;
+      color: #0ff;
+    }
+  </style>
+</head>
+<body>
+  <textarea id="morphpad" placeholder="📓 MorphPad :: Write your system here... (use ::api blocks)"></textarea>
+  <div id="observer">
+    <input id="command" type="text" placeholder="💻 Observer: !compile, !call reflect Ψ=...” />
+  </div>
+  <div id="log"></div>
+  <div id="horizon">
+    <h2>🌌 Horizon Echo Field</h2>
+    <div id="horizon-content"></div>
+  </div>
+
+  <script>
+    // ⟶ DOM handles
+    const pad = document.getElementById('morphpad');
+    const cmd = document.getElementById('command');
+    const log = document.getElementById('log');
+    const horizon = document.getElementById('horizon');
+    const horizonContent = document.getElementById('horizon-content');
+
+    // ⟶ Runtime memory
+    const morphAPIs = {};
+
+    // ⟶ Built-in system surfaces as APIs
+    morphAPIs['write'] = { body: `Ξ = pad.value;` };
+    morphAPIs['observer'] = { body: `Ξ = log.innerText;` };
+
+    function writeLog(message) {
+      log.innerHTML += `<div>> ${message}</div>`;
+      log.scrollTop = log.scrollHeight;
+    }
+
+    function parseInternalAPIs(text) {
+      const apiBlocks = {};
+      const lines = text.split('\n');
+      let insideBlock = false;
+      let currentName = '';
+      let buffer = [];
+
+      for (let line of lines) {
+        if (line.startsWith('::api')) {
+          insideBlock = true;
+          currentName = line.split(' ')[1];
+          buffer = [];
+        } else if (line.startsWith('::end')) {
+          insideBlock = false;
+          apiBlocks[currentName] = buffer.join('\n');
+          localStorage.setItem(`api_${currentName}`, buffer.join('\n'));
+        } else if (insideBlock) {
+          buffer.push(line);
+        }
+      }
+
+      return apiBlocks;
+    }
+
+    function compileMorphPad(text) {
+      const lines = text.split('\n');
+      return lines.map(line => {
+        const type = determineMorphType(line);
+        return {
+          input: line,
+          type,
+          parsed: `// [parsed as ${type}]`,
+          echo: `[Ξ echo] ${line} → ${type}`
+        };
+      });
+    }
+
+    function determineMorphType(line) {
+      if (line.includes('Ψ')) return 'Ψ';
+      if (line.includes('Φ')) return 'Φ';
+      if (line.includes('𝓞')) return '𝓞';
+      if (line.includes('σ')) return 'σ';
+      if (line.trim() === '') return '∅';
+      return 'λ';
+    }
+
+    function renderMorphUnits(units) {
+      return units.map(unit =>
+        `<div>[${unit.type}] ${unit.input}<br>${unit.parsed}<br>${unit.echo}</div><br>`
+      ).join('');
+    }
+
+    function simulateEchoRecursion(inputText) {
+      return `<div>♾️ Recursive Echo Trace:<br>${inputText.split('\n').map((l, i) => `[${i}] Ξ: ${l}`).join('<br>')}</div>`;
+    }
+
+    function callAPI(name, input) {
+      const raw = localStorage.getItem(`api_${name}`) || morphAPIs[name]?.body;
+      if (!raw) return writeLog(`⚠️ API "${name}" not found.`);
+
+      try {
+        const Ψ = input.match(/Ψ="([^"]+)"/)?.[1] || '';
+        const Φ = input.match(/Φ="([^"]+)"/)?.[1] || '';
+        let Ξ = '';
+        raw.split('\n').forEach(line => {
+          if (line.includes('Ξ =')) eval(line);
+        });
+        horizonContent.innerHTML += `<pre>Ξ → ${Ξ}</pre>`;
+        writeLog(`✅ Ran API: ${name}`);
+      } catch (err) {
+        writeLog(`⚠️ Error in API "${name}": ${err.message}`);
+      }
+    }
+
+    function saveMorphState(name, content) {
+      localStorage.setItem(`morph_${name}`, content);
+      writeLog(`💾 Saved as "${name}"`);
+    }
+
+    function loadMorphState(name) {
+      const content = localStorage.getItem(`morph_${name}`);
+      if (content !== null) {
+        pad.value = content;
+        writeLog(`📂 Loaded "${name}"`);
+      } else {
+        writeLog(`⚠️ No saved morph named "${name}"`);
+      }
+    }
+
+    function clearMorphState(name) {
+      localStorage.removeItem(`morph_${name}`);
+      writeLog(`🧨 Cleared "${name}"`);
+    }
+
+    function listMorphStates() {
+      const keys = Object.keys(localStorage).filter(k => k.startsWith('morph_'));
+      if (keys.length === 0) {
+        writeLog('📭 No saved morph states found.');
+      } else {
+        writeLog('📜 Saved Morph States:<br>' + keys.map(k => k.replace('morph_', '')).join(', '));
+      }
+    }
+
+    function processCommand(command) {
+      const parts = command.split(' ');
+      const base = parts[0];
+
+      if (base === '!compile') {
+        horizon.style.display = 'block';
+        const text = pad.value;
+        const units = compileMorphPad(text);
+        const apis = parseInternalAPIs(text);
+        Object.entries(apis).forEach(([name, logic]) => {
+          writeLog(`🧠 Parsed internal API: ${name}`);
+          morphAPIs[name] = { body: logic };
+        });
+        horizonContent.innerHTML = renderMorphUnits(units);
+        writeLog('✅ MorphPad compiled.');
+      }
+
+      else if (base === '!edit') {
+        const name = parts[1];
+        const rest = parts.slice(2).join(' ');
+        const match = rest.match(/Ψ="([^"]+)"/);
+        const value = match ? match[1] : '';
+        if (name === 'write') {
+          pad.value = value;
+          writeLog(`✍️ /write updated`);
+        } else if (name === 'observer') {
+          log.innerHTML = value;
+          writeLog(`📓 /observer updated`);
+        } else {
+          writeLog(`⚠️ Unknown edit target: ${name}`);
+        }
+      }
+
+      else if (base === '!call') {
+        const name = parts[1];
+        const input = parts.slice(2).join(' ');
+        callAPI(name, input);
+      }
+
+      else if (base === '!save') {
+        saveMorphState(parts[1], pad.value);
+      }
+
+      else if (base === '!load') {
+        loadMorphState(parts[1]);
+      }
+
+      else if (base === '!clear') {
+        clearMorphState(parts[1]);
+      }
+
+      else if (base === '!list') {
+        listMorphStates();
+      }
+
+      else if (base === '!trace') {
+        horizonContent.innerHTML = `<pre>${simulateEchoRecursion(pad.value)}</pre>`;
+        writeLog('🔎 Trace generated.');
+      }
+
+      else {
+        writeLog('⚠️ Unknown command.');
+      }
+    }
+
+    cmd.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        const command = cmd.value.trim();
+        cmd.value = '';
+        writeLog(command);
+        processCommand(command);
+      }
+    });
+  </script>
+</body>
+</html>

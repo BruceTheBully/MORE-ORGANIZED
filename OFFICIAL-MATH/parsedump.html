@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Codex CLI Dump Parser</title>
+<style>
+  body { font-family: monospace, monospace; background: #111; color: #eee; margin: 0; padding: 0; }
+  header { background: #222; padding: 0.8em; font-weight: bold; }
+  textarea { width: 100%; height: 150px; background: #222; color: #eee; border: none; padding: 0.5em; font-family: monospace; }
+  #parseBtn { margin: 0.5em 0; padding: 0.5em 1em; background: #444; border: none; color: #eee; cursor: pointer; }
+  #output { display: flex; height: 60vh; border-top: 1px solid #444; }
+  #sidebar { width: 220px; background: #222; border-right: 1px solid #444; overflow-y: auto; }
+  #sidebar button { width: 100%; padding: 0.6em 1em; border: none; background: #222; color: #ccc; text-align: left; cursor: pointer; border-bottom: 1px solid #444; }
+  #sidebar button.active { background: #444; color: #fff; font-weight: bold; }
+  #content { flex-grow: 1; overflow-y: auto; padding: 1em; background: #121212; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #333; padding: 0.3em 0.6em; }
+  th { background: #222; }
+  tr:nth-child(even) { background: #1a1a1a; }
+  .section-header { margin: 1em 0 0.5em; font-size: 1.1em; font-weight: bold; border-bottom: 1px solid #444; padding-bottom: 0.2em; }
+</style>
+</head>
+<body>
+
+<header>Codex CLI Dump Parser — Paste your dump below and hit Parse</header>
+<textarea id="inputArea" placeholder="Paste your codex CLI dump here..."></textarea>
+<button id="parseBtn">Parse Dump</button>
+
+<div id="output" style="display:none;">
+  <div id="sidebar"></div>
+  <div id="content"><em>Select an entry and section to view data.</em></div>
+</div>
+
+<script>
+(() => {
+  const inputArea = document.getElementById('inputArea');
+  const parseBtn = document.getElementById('parseBtn');
+  const sidebar = document.getElementById('sidebar');
+  const content = document.getElementById('content');
+  const outputDiv = document.getElementById('output');
+
+  let codexData = {}; // { entryId: { sectionName: [ [row], ... ] } }
+
+  function parseDump(text) {
+    codexData = {};
+    // Split on Entry lines e.g. "Entry [16]"
+    const entries = text.split(/(?=Entry \[\d+\])/g).filter(Boolean);
+    for (const entryText of entries) {
+      // Extract entry id
+      const idMatch = entryText.match(/Entry \[(\d+)\]/);
+      if (!idMatch) continue;
+      const entryId = idMatch[1];
+
+      // Find all section blocks e.g. [Morphtag.csv], [Syntax.csv] etc.
+      // Each block is header line then ```csv ... ```
+      const sectionRegex = /\[([A-Za-z0-9_.]+)]\s*(?:Functions, Classes, Structures|Symbol Reference|View Code & Layout Structure|State Holders, Buffers, Static Fields|Calculations, Filters, Algorithms|Signal Flow, Patches, Graphs|LFOs, Controllers, Bindings|Event Chain \/ Callback Binding|File Structure, Object Hierarchy|Template\/Config Bindings|Logs, Tests, Assertions|Threading, Queues, Pools|Launch Args, Console Hooks|Toolchains, Flags)?\s*```csv([\s\S]*?)```/g;
+
+      let match;
+      codexData[entryId] = {};
+      while ((match = sectionRegex.exec(entryText)) !== null) {
+        const sectionName = match[1].trim();
+        const csvContent = match[2].trim();
+        const rows = parseCSV(csvContent);
+        codexData[entryId][sectionName] = rows;
+      }
+    }
+  }
+
+  // Basic CSV parser for your simple comma-separated data, no quoted commas support for now
+  function parseCSV(csvText) {
+    const lines = csvText.split('\n').filter(l => l.trim() !== '');
+    const rows = lines.map(line => line.split(',').map(cell => cell.trim()));
+    return rows;
+  }
+
+  function buildSidebar() {
+    sidebar.innerHTML = '';
+    // Create buttons for each entry and each section
+    for (const entryId of Object.keys(codexData).sort((a,b) => a - b)) {
+      const entryDiv = document.createElement('div');
+      entryDiv.style.borderBottom = '1px solid #444';
+      const entryTitle = document.createElement('div');
+      entryTitle.textContent = `Entry [${entryId}]`;
+      entryTitle.style.fontWeight = 'bold';
+      entryTitle.style.padding = '0.5em 1em 0.2em';
+      entryDiv.appendChild(entryTitle);
+
+      const sections = Object.keys(codexData[entryId]);
+      for (const sec of sections) {
+        const btn = document.createElement('button');
+        btn.textContent = sec;
+        btn.dataset.entry = entryId;
+        btn.dataset.section = sec;
+        btn.onclick = () => {
+          document.querySelectorAll('#sidebar button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          showSection(entryId, sec);
+        };
+        entryDiv.appendChild(btn);
+      }
+      sidebar.appendChild(entryDiv);
+    }
+  }
+
+  function showSection(entryId, sectionName) {
+    const data = codexData[entryId][sectionName];
+    if (!data) {
+      content.innerHTML = '<em>No data found.</em>';
+      return;
+    }
+    // Build HTML table
+    let html = `<div class="section-header">Entry [${entryId}] — ${sectionName}</div><table><thead><tr>`;
+    for (const header of data[0]) {
+      html += `<th>${escapeHtml(header)}</th>`;
+    }
+    html += '</tr></thead><tbody>';
+    for (let i=1; i < data.length; i++) {
+      html += '<tr>';
+      for (const cell of data[i]) {
+        html += `<td>${escapeHtml(cell)}</td>`;
+      }
+      html += '</tr>';
+    }
+    html += '</tbody></table>';
+    content.innerHTML = html;
+  }
+
+  function escapeHtml(text) {
+    return text.replace(/[&<>"']/g, (m) => {
+      switch(m) {
+        case '&': return '&amp;';
+        case '<': return '&lt;';
+        case '>': return '&gt;';
+        case '"': return '&quot;';
+        case "'": return '&#39;';
+        default: return m;
+      }
+    });
+  }
+
+  parseBtn.onclick = () => {
+    const text = inputArea.value;
+    if (!text.trim()) {
+      alert('Paste your codex dump first.');
+      return;
+    }
+    parseDump(text);
+    buildSidebar();
+    outputDiv.style.display = 'flex';
+    content.innerHTML = '<em>Select an entry and section to view data.</em>';
+  };
+})();
+</script>
+
+</body>
+</html>
