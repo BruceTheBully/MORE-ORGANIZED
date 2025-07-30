@@ -7,7 +7,7 @@
 
 ~ENTRY BEGIN~
 
-🆔 [ID] YYYY-MM-DDTHH:MM<timezone>  
+🆔 [ID] 7 - 28 - 2025  
 🔹 Unique identifier for session log — timestamp or optional hash.
 
 🜂 [A] ANCHOR  
