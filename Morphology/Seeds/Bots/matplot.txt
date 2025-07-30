@@ -1,0 +1,12 @@
+Example Log Entry
+Here is an example log entry, documenting our last analysis to demonstrate the structure in practice:
+[ID] 20250721-1905-PDT
+[A] Protocol Portability: Investigating if the GMAP-01 protocol is instrument-independent by applying it with a different programming language (C++).
+[H] The core logic of the protocol can be implemented in C++, though the implementation will be more verbose and require explicit library management for tasks like file I/O and plotting.
+[M] The GMAP-01 protocol will be conceptually applied using C++. We will outline the necessary steps to read a .wav file, reshape its data into a 2D matrix, and hand it off to a hypothetical plotting function, noting the required external libraries.
+[I]
+// Conceptual C++ Implementation
+#include <vector>
+#include <string>
+#include "libsndfile/sndfile.h" 
+#include "matplotlibcpp/matplotlibcpp.h"

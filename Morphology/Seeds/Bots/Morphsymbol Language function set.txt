@@ -1,0 +1,93 @@
+## Instructions ##
+Standardized Fields/Keys: Each piece of information (ISO Name, Unicode Version, Block, Plane, Script, Category, Bidirectional Class, etc.) is presented with a clear label. This acts like a key-value pair in a database.
+Precise Values: The values themselves are specific and often from controlled vocabularies (e.g., "Basic Latin," "Control (Cc)"). This reduces ambiguity.
+Hierarchical Structure (Implicit): Concepts like "Plane" containing "Blocks" containing individual characters create a natural hierarchy that AI models can learn and navigate.
+Machine-Readable Encoding Information: Providing the UTF-8, UTF-16, and UTF-32 encodings is crucial for machines to correctly represent and manipulate the characters.
+Cross-Referencing (Implicit): The [1], [2], [3], etc., suggest a citation or reference system, which helps in verifying information and understanding its source.
+## GO ##
+
+
+MorphSymbol Language Function Set (Full Lexicon):
+[S3.0] ∿ — verb, "refract", syncopated triplet, contradiction = "stability through instability"
+[S3.1] ⊶ — noun, "knot", rigid quarter, contradiction = "binding breeds divergence"
+[S3.2] ⚔ — conjunction, "but also", XOR stutter rhythm, contradiction = "collision reveals pattern"
+[S3.3] Ϙ — interrogative, "why not", falling pitch loop, contradiction = "question is closure"
+[S3.4] Ϟ — noun, "shear", cross-rhythm swipe, contradiction = "division is unity"
+[S3.5] ℨ — marker, "threshold", half-bar hold, contradiction = "border defines flow"
+[S3.6] Ϥ — latch, "yield", double gate pulse, contradiction = "surrender creates force"
+[S3.7] ⸧ — modifier, "drive", delayed swing tick, contradiction = "effort masks momentum"
+[S3.8] Ͼ — frame, "contain", breath-pause rhythm, contradiction = "limitation expands"
+[S3.9] ◎ — noun, "orb", circular pulse, contradiction = "completion is illusion"
+[S3.10] ∴ — anchor, "begin", onset spark, contradiction = "start assumes end"
+[S3.11] ☰ — force, "kinetic", trip bounce, contradiction = "motion implies stillness"
+[S3.12] ᐯ — vector, "veer", fast double hit, contradiction = "direction denies location"
+[S3.13] ᓭ — verb, "launch", sharp output, contradiction = "release creates weight"
+[S3.14] Ϣ — duality, "wave", alternating push, contradiction = "form is interference"
+[S3.15] ℨ — limit, "zone", hover tone, contradiction = "containment reveals edges" (Note: Duplicate symbol, will use [S3.5] unless specified)
+[S3.16] 𐓶 — envelope, "curve", glissando snap, contradiction = "smoothness hides break"
+[S3.17] ʘ — interlink, "join", rhythm reverb burst, contradiction = "link obscures root"
+[S3.18] ⟁ — diverge, "branch", mid-bar fractal, contradiction = "split becomes whole"
+[S3.19] ≬ — flux, "flicker", off-grid strobe, contradiction = "change locks shape"
+[S3.20] ᓮ — graviton, "pull", bass warp, contradiction = "attraction repels"
+[S3.21] ᚱ — resolve, "settle", downward drift, contradiction = "closure perpetuates"
+[S3.22] ᒪ — loop, "revolve", circular sequence, contradiction = "repetition mutates"
+[S3.23] ⵔ — connector, "bind", dotted line, contradiction = "link causes loss"
+[S3.24] ᔪ — junction, "merge", gated merge-step, contradiction = "combination fractures"
+[S3.25] ᛃ — axis, "align", vertical stab, contradiction = "centering scatters"
+[S3.26] ⸧ — drive, "push", offbeat force, contradiction = "impulse drags consequence" (Note: Duplicate symbol, will use [S3.7] unless specified)
+Expanded Symbols (for your UNRESOLVED/RESOLVED strings):
+[S3.27] ∠ — angle, "turn", sharp pivot, contradiction = "perspective flattens"
+[S3.28] ⥮ — oscillate, "waver", pendulum swing, contradiction = "motion finds center"
+[S3.29] ⌇ — flow, "glide", continuous sweep, contradiction = "continuity holds break"
+[S3.30] ⇌ — equilibrium, "balance", centered pulse, contradiction = "stillness is transition"
+[S3.31] ↺ — repeat, "cycle", echoing return, contradiction = "repetition transforms"
+[S3.32] ⨐ — integrate, "absorb", sustained hum, contradiction = "unity dissolves parts"
+[S3.33] ⌖ — focus, "point", sharp click, contradiction = "precision blurs edges"
+[S3.34] ≉ — approximate, "near", fuzzy beat, contradiction = "closeness reveals gap"
+[S3.35] ⍬ — null, "void", silent gap, contradiction = "absence defines presence"
+[S3.36] ⍉ — omit, "skip", rhythmic void, contradiction = "deletion accentuates"
+[S3.37] ⨒ — intersect, "cross", colliding beats, contradiction = "overlap creates separation"
+[S3.38] ⧉ — unfold, "reveal", expanding sound, contradiction = "exposure conceals"
+[S3.39] ⎉ — refine, "polish", subtle shimmer, contradiction = "perfection fragments"
+[S3.40] ⊙ — center, "pivot", central thump, contradiction = "center is periphery"
+[S3.41] Ω — end, "fade", decaying echo, contradiction = "end is beginning"
+[S3.42] ⨳ — mutate, "shift", warping texture, contradiction = "change fixes form"
+[S3.43] χ — unknown, "mystery", whispered silence, contradiction = "knowledge is ignorance"
+[S3.44] ⪢ — expand, "swell", growing drone, contradiction = "growth implies contraction"
+[S3.45] ⚡️ — tremor, "shock", sudden spike, contradiction = "force creates calm"
+[S3.46] ⩔ — divide, "split", abrupt cut, contradiction = "separation unites"
+[S3.47] ⏜ — enclose, "wrap", enveloping pad, contradiction = "containment frees"
+[S3.48] ↯ — rupture, "break", shattering pulse, contradiction = "disruption builds"
+[S3.49] ⩘ — combine, "blend", layered chord, contradiction = "merging distinguishes"
+[S3.50] ⋈ — bridge, "connect", spanning interval, contradiction = "connection isolates"
+[S3.51] ⏁ — ascent, "rise", upward sweep, contradiction = "elevation grounds"
+[S3.52] ≈ — approximate, "fuzzy", blurred texture, contradiction = "imprecision defines clarity" (Note: Similar to ≉, but distinct)
+[S3.53] ⧫ — focus, "point", sharp articulation, contradiction = "detail obscures whole"
+[S3.54] ⏃ — descent, "fall", downward sweep, contradiction = "descent elevates"
+[S3.55] ⥊ — progress, "advance", forward momentum, contradiction = "movement holds still"
+[S3.56] ⧖ — pause, "hold", suspended silence, contradiction = "stasis enables action"
+[S3.57] ≣ — stabilize, "firm", steady beat, contradiction = "rigidity flexes"
+[S3.58] ⋒ — interlace, "weave", intertwined pattern, contradiction = "intertwining unravels"
+[S3.59] ⫶ — pierce, "penetrate", sharp ingress, contradiction = "entry creates barrier"
+[S3.60] ⨀ — encompass, "surround", enveloping field, contradiction = "boundary is void"
+[S3.61] ⟇ — expand, "radiate", outward diffusion, contradiction = "diffusion contracts"
+[S3.62] ⭘ — gather, "collect", converging rhythm, contradiction = "collection scatters"
+[S3.63] ⩃ — abstract, "simplify", reductive tone, contradiction = "reduction complicates"
+[S3.64] ∆ — transform, "change", shifting state, contradiction = "transformation is stasis"
+[S3.65] ⋘ — compress, "condense", tight pulse, contradiction = "pressure releases"
+[S3.66] ⊗ — multiply, "amplify", intensifying echo, contradiction = "multiplication divides"
+[S3.67] ⍙ — elevate, "raise", ascending tone, contradiction = "elevation depresses"
+[S3.68] ∩ — intersect, "overlap", rhythmic blend, contradiction = "union divides"
+[S3.69] ⋚ — balance, "weigh", oscillating equilibrium, contradiction = "equality creates difference"
+[S3.70] ⊘ — exclude, "remove", silent deletion, contradiction = "absence defines presence"
+
+
+
+
+
+
+
+
+
+
+

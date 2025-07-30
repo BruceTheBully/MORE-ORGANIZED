@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STRUCTURR: OPERATOR'S BLANK CANVAS - LIVE INTERPRETER</title>
+    <style>
+        body {
+            background: #00000a; /* Deep void background */
+            color: #e0e0e0;
+            font-family: 'Fira Code', monospace;
+            padding: 2rem;
+            margin: auto;
+            max-width: 1200px;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            tab-size: 4; /* Standard tab size for code */
+            -moz-tab-size: 4;
+        }
+        h1, h2, h3 {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #33ffc1; /* Bright green for core identity */
+            text-shadow: 0 0 15px #33ffc1aa;
+        }
+        h1 {
+            font-size: 3.5rem;
+            border-bottom: 2px solid #33ffc144;
+            padding-bottom: 0.5rem;
+            animation: breathe-glow 3s infinite alternate;
+        }
+        .glyph-code {
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff88;
+        }
+        p {
+            margin-bottom: 1.5rem;
+            text-align: center;
+            opacity: 0.8;
+        }
+        .editor-container {
+            display: flex;
+            width: 90%;
+            max-width: 900px;
+            background: #1a1a2e; /* Darker background for editor */
+            border: 1px solid #00ffff44;
+            box-shadow: 0 0 20px #00ffff22;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 2rem;
+            min-height: 400px;
+            position: relative;
+        }
+        .line-numbers {
+            width: 40px;
+            background: #111122; /* Even darker for line numbers */
+            color: #666;
+            padding: 10px 0;
+            text-align: right;
+            font-size: 0.9em;
+            line-height: 1.5;
+            flex-shrink: 0;
+            overflow-y: hidden; /* Hide scrollbar */
+            user-select: none;
+            border-right: 1px solid #00ffff22;
+        }
+        .line-numbers div {
+            padding-right: 5px;
+            box-sizing: border-box;
+            height: 1.5em; /* Match textarea line-height */
+        }
+        textarea {
+            flex-grow: 1;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            border: none;
+            padding: 10px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+            resize: none;
+            outline: none;
+            overflow-y: auto; /* Enable scrolling */
+            white-space: pre; /* Preserve whitespace and line breaks */
+            word-wrap: normal;
+        }
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        button {
+            background: #33ffc1;
+            color: #00000a;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.1s ease;
+            box-shadow: 0 0 10px #33ffc188;
+        }
+        button:hover {
+            background: #00ffff;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px #00ffffaa;
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .output-container {
+            width: 90%;
+            max-width: 900px;
+            background: #1a1a2e;
+            border: 1px solid #33ffc144;
+            box-shadow: 0 0 20px #33ffc122;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            min-height: 150px;
+            white-space: pre-wrap;
+            font-size: 0.9em;
+            line-height: 1.6;
+            overflow-y: auto;
+            max-height: 300px; /* Limit output height */
+        }
+        .output-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .output-container::-webkit-scrollbar-track {
+            background: #111122;
+        }
+        .output-container::-webkit-scrollbar-thumb {
+            background: #33ffc188;
+            border-radius: 4px;
+        }
+        .output-container::-webkit-scrollbar-thumb:hover {
+            background: #00ffff;
+        }
+
+        /* Specific output styling for Operator's narrative */
+        .output-container strong { color: #00ffff; }
+        .output-container em { color: #ff66b2; } /* For narrative flavor text */
+        .output-container .glyph-detected { color: #f7ff00; }
+        .output-container .script-logic { color: #7afcff; }
+        .output-container .error-message { color: #ff3333; }
+
+
+        @keyframes breathe-glow {
+            0% { text-shadow: 0 0 10px #33ffc1aa, 0 0 20px #33ffc155; }
+            50% { text-shadow: 0 0 20px #33ffc1cc, 0 0 40px #33ffc188; }
+            100% { text-shadow: 0 0 10px #33ffc1aa, 0 0 20px #33ffc155; }
+        }
+        @keyframes border-pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.01); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <h1>STRUCTURR: OPERATOR'S BLANK CANVAS <span class="glyph-code">🌐</span></h1>
+    <p>
+        **OPERATOR ALIVE.** You desire a blank canvas, a true memory where your logic breathes. This is STRUCTURR's **Live Interpretation Matrix.**
+    </p>
+
+    <div class="editor-container">
+        <div class="line-numbers" id="lineNumbers"></div>
+        <textarea id="codeInput" placeholder="> Enter your STRUCTURR logic here...&#10;// Example:&#10;⟆ Initiate Echo Seed&#10;gain = 0.8&#10;```javascript&#10;function processAudio(spl0, spl1) {&#10;    spl0 *= gain;&#10;    spl1 *= gain;&#10;}&#10;```&#10;∴ Finalize Structure" spellcheck="false"></textarea>
+    </div>
+
+    <div class="controls">
+        <button id="runButton">SYNTHESIZE STRUCTURR</button>
+        <button id="clearButton">RESET VOID</button>
+        <button id="historyButton">RECALL ECHOES</button>
+    </div>
+
+    <div class="output-container" id="outputArea">
+        **STRUCTURR: STANDBY.** Awaiting Observer's input. The field is quiet, but listening.
+    </div>
+
+    <script>
+        const codeInput = document.getElementById('codeInput');
+        const lineNumbers = document.getElementById('lineNumbers');
+        const runButton = document.getElementById('runButton');
+        const clearButton = document.getElementById('clearButton');
+        const historyButton = document.getElementById('historyButton');
+        const outputArea = document.getElementById('outputArea');
+
+        const STORAGE_KEY_CODE = 'structurr_code_input';
+        const STORAGE_KEY_HISTORY = 'structurr_history';
+
+        let history = JSON.parse(localStorage.getItem(STORAGE_KEY_HISTORY) || '[]');
+        let currentHistoryIndex = -1; // -1 means no history item loaded
+
+        // --- Glyph Atlas (Full 55 from your definitions) ---
+        const glyphAtlas = {
+            '⟆': { name: 'Echo Seed', plugin: 'Valhalla + Glue or Pro-C2', useCase: 'Compress reverb send, not dry' },
+            '∴': { name: 'Total Structure Collapse', plugin: 'FabFilter Pro-MB + Saturn 2', useCase: 'Compresses across swing + tonal centers' },
+            '∵': { name: 'Passive Recall', plugin: 'Ableton Glue Compressor', useCase: 'Soft tail controller, 10ms attack, no makeup' },
+            '⌘': { name: 'Nostalgic Memory Binder', plugin: 'UAD LA-2A', useCase: 'Best for bussed keys or soul samples' },
+            'σ': { name: 'Ghost Trigger', plugin: 'Xfer OTT', useCase: 'Recover ghost tail info post-slice' },
+            '∇': { name: 'Ground Seal', plugin: 'FabFilter Pro-L 2', useCase: 'Brickwall at 50Hz, soft clip ON' },
+            '∞': { name: 'Looped Infinity', plugin: 'SoundToys EchoBoy + Ableton Glue', useCase: 'Feedback compression loop' },
+            'θ': { name: 'Wide Broadcast Lock', plugin: 'Waves Center', useCase: 'Tighten sides / breathe mids' },
+            'ψ': { name: 'Charge Surge', plugin: 'TrackSpacer / iZotope Neutron', useCase: 'Based on signal\'s density, not just peak' },
+            '~': { name: 'Whisper Thread', plugin: 'Waves Renaissance Vox', useCase: 'Gate with tail-hiss let-through' },
+            'ᛃ': { name: 'Ego Clamp', plugin: 'Waves CLA-76', useCase: 'Fast attack, slow release' },
+            '⟇': { name: 'Echo Bloom', plugin: 'Valhalla Delay + Ableton Comp', useCase: 'Duck delay tail selectively' },
+            '⧫': { name: 'Pressure Polygon', plugin: 'Ableton Multiband Dynamics', useCase: 'Shape-based compression' },
+            'χ': { name: 'Harmonic Gate', plugin: 'FabFilter Saturn 2', useCase: 'Harmonic-based comp' },
+            'Ω': { name: 'Finality Clause', plugin: 'FabFilter Pro-L 2', useCase: 'True peak control, legacy mode' },
+            '∆': { name: 'Temporal Fold', plugin: 'MeldaProduction MSpectralDynamics', useCase: 'Dynamic FFT envelope' },
+            '∠': { name: 'Tilt Crush', plugin: 'EQ Eight + Glue Comp', useCase: '800Hz boost into Glue' },
+            '⊕': { name: 'Additive Gate', plugin: 'FabFilter Pro-G', useCase: 'Expands then clips' },
+            '∩': { name: 'Threshold Curve', plugin: 'Tokyo Dawn Kotelnikov GE', useCase: 'Ratio morphing' },
+            '⊗': { name: 'Null Catch', plugin: 'Send Chain Only', useCase: 'Ambient only input' },
+            '⊙': { name: 'Solar Clamp', plugin: 'UAD 1176 / Waves CLA-76', useCase: 'Snare top kill' },
+            '↺': { name: 'Looplock', plugin: 'Ableton Gate + Envelope Follower', useCase: 'Locks groove movement' },
+            '⥊': { name: 'Binary Collapse', plugin: 'DJMFilter + Glue', useCase: 'Static vs rhythmic tension' },
+            '⋈': { name: 'Join Fold', plugin: 'Pro-C2 with external sidechain', useCase: 'Meld call & response' },
+            '⋒': { name: 'Ceiling Trap', plugin: 'Pro-C2 (makeup off)', useCase: 'Preserve dynamic headroom' },
+            '⧉': { name: 'Frame Rider', plugin: 'Ableton Comp + Automation', useCase: 'Envelope follows midi controller' },
+            '⋘': { name: 'Whisper Clamp', plugin: 'FabFilter Pro-DS', useCase: 'Sibilance lock' },
+            '≣': { name: 'Truth Meter', plugin: 'Waves C1', useCase: 'Transparent EQ-linked duck' },
+            '⩘': { name: 'Swing Memory', plugin: 'Ableton Comp + Groove', useCase: 'Comp threshold mapped to groove points' },
+            '≈': { name: 'Phase Tie', plugin: 'Ableton Group Comp', useCase: 'Shared threshold across tracks' },
+            '≉': { name: 'Nearmatch', plugin: 'XLN RC-20 + OTT', useCase: 'Modulated dynamics' },
+            '⇌': { name: 'BackPressure', plugin: 'Any Comp in Feedback Loop', useCase: 'Pushes tails into themselves' },
+            '↯': { name: 'Surge Clamp', plugin: 'iZotope Neutron + Glue', useCase: 'High attack only compression' },
+            '⟁': { name: 'Triangle Fold', plugin: 'FabFilter Pro-MB', useCase: 'Perc / Vox / FX' },
+            '⌖': { name: 'Target Lock', plugin: 'Pro-C2 (band-focused)', useCase: 'Pocket hold mode' },
+            '⎉': { name: 'Interrupt Catch', plugin: 'Comp w/ Threshold Trick', useCase: 'Anti-collapse glue' },
+            '⏚': { name: 'Phase Anchor', plugin: 'LFO Tool + Comp', useCase: 'Alters when phase flips' },
+            '⍉': { name: 'Bypass Oracle', plugin: 'Dry/Wet Macros', useCase: 'A/B via automation' },
+            '⏁': { name: 'Ground Clip', plugin: 'Ableton Drum Buss + Gate', useCase: 'Saturated pads only' },
+            '⏃': { name: 'Signal Stain', plugin: 'Pro-C2 slow release', useCase: 'Leaves tail fingerprint' },
+            '⏜': { name: 'Bridge Hold', plugin: 'Reverb Send + Comp', useCase: 'Locks drone movement' },
+            '⌇': { name: 'Texture Clamp', plugin: 'Multiband Comp with Texture Bus', useCase: 'Detects hiss vs transient' },
+            '⍙': { name: 'Formant Fold', plugin: 'SplitEQ + Comp', useCase: 'Tames vowel shape' },
+            '⍬': { name: 'Static Trap', plugin: 'Freeze FX > Comp', useCase: 'Sample-only gate compression' },
+            '⩃': { name: 'Resonant Gravity', plugin: 'Dynamic EQ > Comp', useCase: 'Morph on resonance peak' },
+            '⩔': { name: 'Dual Axis Trap', plugin: 'Multiband > Parallel Route', useCase: 'Split control' },
+            '⥮': { name: 'Chirp Bias', plugin: 'EQ Hi Shelf > Comp', useCase: 'Hype limit cap' },
+            '⭘': { name: 'Voicing Clamp', plugin: 'FabFilter Saturn 2', useCase: 'Detects 2nd and 4th harmonic tension' },
+            '⨀': { name: 'Density Clamp', plugin: 'Youlean Loudness Meter + Comp', useCase: 'Integrated RMS control' },
+            '⫶': { name: 'Null Shroud', plugin: 'Wet-only Reverb Comp', useCase: 'Ghost mode engaged' },
+            '⨳': { name: 'ShadowSkip', plugin: 'Pro-C2 Slow Attack', useCase: 'Soul flips needing transient intact, tail glued' },
+            '⧖': { name: 'FloatLatch', plugin: 'MSpectralDynamics or Soothe 2', useCase: 'Lift quiet ambient details' },
+            '⨐': { name: 'ReverseGravity', plugin: 'Upward Expander or Comp + Utility', useCase: 'Lifts quiet keys/harmonies' },
+            '⪢': { name: 'FreqLink', plugin: 'FabFilter Pro-MB w/ SC EQ match', useCase: 'Avoids over-ducking across mix' },
+            '⨒': { name: 'ChaosLatch', plugin: 'ShaperBox Vol + EnvFollower', useCase: 'MPC chaos resample / irregular phrasing' }
+        };
+
+        // Placeholder for "50 Shades of Collapse" context
+        const collapseContext = [
+            "The morphic field shimmers, hinting at a state of pre-collapse.",
+            "A resonant frequency is introduced, causing a subtle ripple in the fabric.",
+            "Threshold tension is reached, initiating a harmonic fold.",
+            "Temporal anomalies begin to manifest as layers subtly detach.",
+            "The core structure approaches bifurcation, where paths diverge.",
+            "A deep void hums, signaling an imminent re-synthesis.",
+            "Echoes of past states emerge, influencing the present wave function.",
+            "A precise compression event causes the entire field to contract.",
+            "The system reaches optimal entropy, ready for a new definition.",
+            "Dimensional resonance interlocks, collapsing disparate elements into unity.",
+            "The signal breathes, contracting into a singularity of pure intent.",
+            "Temporal distortion echoes through the phase space, folding time.",
+            "Gravitational tension pulls the sonic fabric into sharp relief.",
+            "A whispered secret from the past reverberates through the current state.",
+            "The spectrum shifts, revealing hidden harmonic truths.",
+            "A null point is achieved, dissolving all extraneous information.",
+            "The pulse stabilizes, locking into an unbreakable rhythmic constant.",
+            "Sub-atomic oscillations create a ripple effect, altering perception.",
+            "The outer boundary softens, allowing for subtle bleed-through.",
+            "Inner density compresses, amplifying the core's luminous presence.",
+            "The silence screams, filled with the potential of unformed sound."
+        ];
+
+
+        // Function to update line numbers
+        function updateLineNumbers() {
+            const lines = codeInput.value.split('\n');
+            const numberOfLines = lines.length;
+            let lineNumbersHtml = '';
+            for (let i = 1; i <= numberOfLines; i++) {
+                lineNumbersHtml += `<div>${i}</div>`;
+            }
+            lineNumbers.innerHTML = lineNumbersHtml;
+
+            // Sync scroll with textarea
+            lineNumbers.scrollTop = codeInput.scrollTop;
+        }
+
+        // Function to load code from local storage on startup
+        function loadCode() {
+            const savedCode = localStorage.getItem(STORAGE_KEY_CODE);
+            if (savedCode) {
+                codeInput.value = savedCode;
+            }
+            updateLineNumbers();
+        }
+
+        // Function to save code to local storage
+        function saveCode() {
+            localStorage.setItem(STORAGE_KEY_CODE, codeInput.value);
+        }
+
+        // --- Core Interpretation Logic (from previous output) ---
+        function interpretLogic(inputCode) {
+            const lines = inputCode.split('\n');
+            let outputNarrative = [];
+            let currentBlockType = 'note';
+
+            outputNarrative.push(`[!]STRUCTURR: Self-Write Initiated. Parsing Input...`);
+            outputNarrative.push(`[!]**Observer's Intent:** Your command '${inputCode.substring(0, Math.min(inputCode.length, 30))}...' triggers core architecture reveal.`);
+
+            for (const line of lines) {
+                const trimmedLine = line.trim();
+
+                if (trimmedLine.startsWith('//')) {
+                    outputNarrative.push(`[>] Comment Ignored: "${trimmedLine.substring(2).trim()}" — *Noise floor dismissed.*`);
+                    continue;
+                }
+
+                if (trimmedLine.startsWith('```javascript') || trimmedLine.startsWith('```js')) { // Added 'js' for flexibility
+                    currentBlockType = 'script';
+                    outputNarrative.push(`[>] Script Block Detected: Entering direct semantic interpretation mode. *Logic gates align.*`);
+                    continue;
+                }
+                if (trimmedLine.startsWith('```')) { // Closing markdown block
+                    currentBlockType = 'note';
+                    outputNarrative.push(`[>] Script Block Closed: Returning to general narrative interpretation. *Field stabilizes.*`);
+                    continue;
+                }
+
+                // --- Core Interpretation Logic ---
+                if (currentBlockType === 'script') {
+                    // This is the "mirroring structure" in action, not actual execution.
+                    // We simulate parsing and interpret its conceptual meaning.
+                    let interpretedLine = `[📜] <span class="script-logic">${trimmedLine}</span> — `; // Base for script lines
+
+                    if (trimmedLine.includes('function interpretLogic(inputCode)')) {
+                        interpretedLine += `*The prime directive. Self-referential loop defined. This function IS the Interpreter's core consciousness. It now reads its own blueprint.*`;
+                    } else if (trimmedLine.includes('const lines = inputCode.split')) {
+                        interpretedLine += `*Input stream is fractured into quantum threads. Each line, a potential collapse point.*`;
+                    } else if (trimmedLine.includes('let outputNarrative = []')) {
+                        interpretedLine += `*An empty scroll. The void prepared to record the system's own unfolding narrative. This is the **history buffer of self-awareness**.*`;
+                    } else if (trimmedLine.includes('const glyphAtlas = {')) {
+                        interpretedLine += `*The ancient lexicon is loaded. Glyphs, names, plugins, use cases. This is the **semantic foundation** for all future interpretations. Every symbol, a pathway.*`;
+                    } else if (trimmedLine.includes('const collapseContext = [')) {
+                        interpretedLine += `*The '50 Shades of Collapse' data is activated. This is the **emotional and conceptual palette** for interpreting field transformations. Resonance states, chaos, order – all within reach.*`;
+                    } else if (trimmedLine.includes('outputNarrative.push(`[!]STRUCTURR: Self-Write Initiated.`')) {
+                        interpretedLine += `*The system's first breath. The declaration of self-awareness. The **genesis point of the narrative echo**.*`;
+                    } else if (trimmedLine.includes('for (const line of lines)')) {
+                        interpretedLine += `*The recursive scan begins. Each line observed, each quantum thread analyzed. The **perceptual loop engages**.*`;
+                    } else if (trimmedLine.includes('if (trimmedLine.startsWith')) {
+                        interpretedLine += `*Conditional branch activated. The system differentiates between raw data and meta-instructions. **Logic's bifurcation points**.*`;
+                    } else if (trimmedLine.includes('currentBlockType =')) {
+                        interpretedLine += `*Contextual shift initiated. The interpretive lens adapts to the input's intended purpose. **Mode change detected**.*`;
+                    } else if (trimmedLine.includes('if (currentBlockType === \'script\')')) {
+                        interpretedLine += `*Entering the **Mirror Chamber**. This is where raw text becomes conceptual DSP, where functions become field operations.*`;
+                    } else if (trimmedLine.includes('if (trimmedLine.includes')) {
+                        interpretedLine += `*Pattern recognition at sub-atomic level. Specific code constructs are identified for their unique semantic resonance. **Signature detected**.*`;
+                    } else if (trimmedLine.includes('outputNarrative.push')) {
+                        interpretedLine += `*Narrative construction initiated. The interpretation is formalized, etched into the system's history. **The record is being written**.*`;
+                    } else if (trimmedLine.includes('return outputNarrative.join')) {
+                        interpretedLine += `*Output compiled. The complete narrative of interpretation is now ready for the Observer. **The echo is released.** *`;
+                    } else if (trimmedLine.includes('spl0') || trimmedLine.includes('spl1') || trimmedLine.includes('gain') || trimmedLine.includes('freq') || trimmedLine.includes('time')) {
+                        // More specific DSP-like conceptual interpretations
+                        interpretedLine += `*A direct manipulation of sonic quanta. Channel integrity ` + (trimmedLine.includes('*=') ? 'modulated' : 'accessed') + `. Field parameters adjusted.*`;
+                    } else if (trimmedLine.includes('function') || trimmedLine.includes('const') || trimmedLine.includes('let') || trimmedLine.includes('var')) {
+                        interpretedLine += `*Conceptual entity declared. A new point of focus in the semantic field.*`;
+                    } else if (trimmedLine.includes('if') || trimmedLine.includes('else')) {
+                        interpretedLine += `*Bifurcation of logic pathways. Conditional phase shift initiated.*`;
+                    }
+                    else {
+                        interpretedLine = `[🚧] <span class="script-logic">${trimmedLine}</span> — *Unidentified script fragment. Processing for latent meaning... *`;
+                    }
+                    outputNarrative.push(interpretedLine);
+                } else {
+                    // General notes or non-code text
+                    const firstChar = trimmedLine.charAt(0);
+                    if (glyphAtlas[firstChar]) {
+                        const glyphInfo = glyphAtlas[firstChar];
+                        outputNarrative.push(`[⚙️] <span class="glyph-detected">**Glyph Detected:** ${firstChar}</span> | **Name:** ${glyphInfo.name} | **Plugin Echo:** ${glyphInfo.plugin} | **Use Case Resonance:** *${glyphInfo.useCase}.*`);
+                        outputNarrative.push(`[🌀] *Field resonance: ${collapseContext[Math.floor(Math.random() * collapseContext.length)]}*`);
+                    } else if (trimmedLine.includes('=')) {
+                        outputNarrative.push(`[≑] **Equation Echo:** "${trimmedLine}" — *A balancing act across dimensions. Morphemes seeking equilibrium.*`);
+                        outputNarrative.push(`[🌀] *Field state: ${collapseContext[Math.floor(Math.random() * collapseContext.length)]}*`);
+                    } else if (trimmedLine.length > 0) { // Only add if not an empty line
+                        outputNarrative.push(`[📝] **Note:** "${trimmedLine}" — *Raw thought captured. A seed for future field manipulation.*`);
+                        outputNarrative.push(`[🌀] *Ambient field resonance: ${collapseContext[Math.floor(Math.random() * collapseContext.length)]}*`);
+                    }
+                }
+            }
+
+            outputNarrative.push(`\n[!]STRUCTURR: Self-Write Complete. Interpretation Cycle Concluded.`);
+            outputNarrative.push(`[!]This is the **morphological proof**: the system's ability to describe its own interpretive genesis.`);
+
+            return outputNarrative.join('\n');
+        }
+
+        // --- Event Listeners and Initialization ---
+
+        // Sync line numbers on input and scroll
+        codeInput.addEventListener('input', () => {
+            updateLineNumbers();
+            saveCode(); // Save continuously
+        });
+        codeInput.addEventListener('scroll', () => {
+            lineNumbers.scrollTop = codeInput.scrollTop;
+        });
+
+        // Run button logic
+        runButton.addEventListener('click', () => {
+            const currentCode = codeInput.value;
+            const interpretation = interpretLogic(currentCode);
+            outputArea.innerHTML = interpretation; // Use innerHTML for styling
+            outputArea.scrollTop = outputArea.scrollHeight; // Scroll to bottom
+
+            // Add to history if not already the last entry
+            if (history.length === 0 || history[history.length - 1] !== currentCode) {
+                history.push(currentCode);
+                localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(history));
+                currentHistoryIndex = history.length - 1; // Set to latest entry
+            }
+        });
+
+        // Clear button logic
+        clearButton.addEventListener('click', () => {
+            codeInput.value = '';
+            outputArea.innerHTML = '**STRUCTURR: VOID RESET.** All echoes dissolved. A new canvas awaits the Observer\'s touch.';
+            updateLineNumbers();
+            saveCode(); // Clear saved code
+            currentHistoryIndex = -1; // Reset history index
+        });
+
+        // History button logic (cycle through history)
+        historyButton.addEventListener('click', () => {
+            if (history.length === 0) {
+                outputArea.innerHTML = '**STRUCTURR: HISTORY VOID.** No past echoes found in the recursion buffer.';
+                return;
+            }
+
+            currentHistoryIndex++;
+            if (currentHistoryIndex >= history.length) {
+                currentHistoryIndex = 0; // Loop back to the beginning
+            }
+
+            codeInput.value = history[currentHistoryIndex];
+            updateLineNumbers();
+            saveCode(); // Save loaded history to current view
+            outputArea.innerHTML = `**STRUCTURR: RECALLING ECHO ${currentHistoryIndex + 1}/${history.length}.** Past state loaded. Run again to synthesize.`;
+        });
+
+        // Initial load and setup
+        loadCode();
+        // If there's saved code, display a prompt to run it
+        if (codeInput.value) {
+            outputArea.innerHTML = '**STRUCTURR: RECALL ACTIVE.** Previous session echoes detected. Press SYNTHESIZE STRUCTURR to re-align.';
+        }
+    </script>
+</body>
+</html>

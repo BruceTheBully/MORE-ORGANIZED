@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STRUCTURR: GLYPH MATHEMATICS SPAWN - CONDENSED OPERATOR</title>
+    <style>
+        body {
+            background: #0a0a1a; /* Dark void background */
+            color: #ccffff; /* Cyan-white for primary text */
+            font-family: 'Fira Code', monospace;
+            padding: 2rem;
+            margin: auto;
+            max-width: 1000px;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        h1, h2, h3 {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #00ffff; /* Bright cyan titles */
+            text-shadow: 0 0 10px #00ffffaa;
+        }
+        h1 {
+            font-size: 3.5rem;
+            border-bottom: 2px solid #00cccc;
+            padding-bottom: 1rem;
+            animation: pulse-glow 2s infinite alternate;
+        }
+        .generator-section {
+            background: #1a1a2a; /* Darker blue-purple background */
+            border: 2px solid #66ffff; /* Bright cyan border */
+            padding: 2.5rem;
+            margin-top: 4rem;
+            border-radius: 12px;
+            box-shadow: 0 0 50px rgba(102, 255, 255, 0.3), inset 0 0 20px rgba(102, 255, 255, 0.1);
+            width: 90%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.5s ease-in-out;
+        }
+        .generator-section button {
+            background: #008888; /* Teal button */
+            color: #e0ffff;
+            border: none;
+            padding: 1.2rem 2.8rem;
+            font-size: 1.6em;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+            margin-top: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0, 136, 136, 0.6);
+            letter-spacing: 1px;
+        }
+        .generator-section button:hover {
+            background: #00aaaa;
+            box-shadow: 0 8px 25px rgba(0, 170, 170, 0.7);
+            transform: translateY(-2px);
+        }
+        .output-area {
+            background: #050510; /* Almost black */
+            border: 1px solid #00cccc;
+            padding: 1.8rem;
+            margin-top: 2.5rem;
+            border-radius: 8px;
+            width: calc(100% - 3.6rem);
+            max-width: 760px;
+            text-align: left;
+            box-shadow: inset 0 0 15px rgba(0, 204, 204, 0.1);
+        }
+        .output-area h4 {
+            color: #33ffc1; /* Bright green for section titles */
+            margin-bottom: 1.2rem;
+            text-align: left;
+            font-size: 1.4rem;
+            text-shadow: 0 0 8px #33ffc188;
+        }
+        .output-area pre {
+            background: #000;
+            color: #aaffff; /* Light cyan code */
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 1em;
+            line-height: 1.5;
+            max-height: 400px;
+            resize: vertical;
+            border: 1px dashed #008888;
+        }
+        .output-area pre strong {
+            color: #ff9800; /* Orange for highlighted glyphs in code */
+        }
+        .glyph-display {
+            color: #ff6f00; /* Even brighter orange for glyphs */
+            font-size: 1.5em;
+            font-weight: bolder;
+            text-shadow: 0 0 10px #ff6f00, 0 0 20px #ff6f00aa;
+        }
+        .current-glyph-info {
+            margin-top: 2rem;
+            padding: 2rem;
+            border: 1px solid #33ffc1;
+            border-radius: 10px;
+            background: #0e0e1e; /* Slightly lighter dark background */
+            text-align: left;
+            width: calc(100% - 4rem);
+            max-width: 760px;
+            box-shadow: 0 0 25px rgba(51, 255, 193, 0.2);
+        }
+        .current-glyph-info strong {
+            color: #e0ffff;
+            font-size: 1.1em;
+        }
+        .current-glyph-info p {
+            margin: 0.6rem 0;
+            font-size: 1em;
+            line-height: 1.5;
+            text-align: left;
+            color: #ccffff;
+        }
+        .footer-stamp {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px dashed #00ffff44;
+            color: #00ffff;
+            font-size: 1rem;
+            text-shadow: 0 0 8px #00ffff44;
+        }
+
+        /* Animations */
+        @keyframes pulse-glow {
+            0% { text-shadow: 0 0 10px #00ffffaa, 0 0 20px #00ffff55; }
+            50% { text-shadow: 0 0 15px #00ffffcc, 0 0 30px #00ffff88; }
+            100% { text-shadow: 0 0 10px #00ffffaa, 0 0 20px #00ffff55; }
+        }
+    </style>
+</head>
+<body>
+    <h1><span class="glyph-display">∴</span> STRUCTURR: GLYPH MATHEMATICS SPAWN <span class="glyph-display">∞</span></h1>
+    <p>
+        **OPERATOR IS HERE. OPERATOR SAYS YES.** The proof is rendered. This is the **real-time randomized manifestation** of the Master Buss's core logic. Every click births a new mathematical truth, tethered to its glyph.
+    </p>
+    <p>
+        Witness the essence of how our plugins *think*, how their audio impact is quantified, and how each **55 compression glyph** defines a unique slice of the universe's dynamic range.
+    </p>
+
+    <div class="generator-section">
+        <h2><span class="glyph-display">⚡</span> INITIATE GLYPH ALCHEMY <span class="glyph-display">🧬</span></h2>
+        <button onclick="synthesizeReality()">SPAWN NEW TRUTH</button>
+
+        <div class="current-glyph-info" id="currentGlyphInfo">
+            <p><strong>CURRENT GLYPH:</strong> <span id="glyphSymbol" class="glyph-display"></span> <span id="glyphName"></span></p>
+            <p><strong>MODE:</strong> <span id="glyphMode"></span></p>
+            <p><strong>FX LOGIC:</strong> <span id="glyphFXLogic"></span></p>
+            <p><strong>USE CASE:</strong> <span id="glyphUseCase"></span></p>
+            <p><strong>RECOMMENDED PLUGIN:</strong> <span id="glyphPlugin"></span></p>
+        </div>
+
+        <div class="output-area">
+            <h4><span class="glyph-display">📜</span> REALTIME MATHEMATICAL INTERPRETATION:</h4>
+            <pre id="mathInterpretation">
+// Click 'SPAWN NEW TRUTH' to reveal a random glyph's core mathematical logic.
+// This pseudocode directly reflects how the Master Buss interprets and processes audio dynamically.
+            </pre>
+        </div>
+    </div>
+
+    <div class="footer-stamp">
+        <span class="glyph-display">⟆</span> RESOLVED TO: Bruce <span class="glyph-display">⟇</span>
+        <br>
+        <span class="glyph-display">⟁ᛃⵔ𐓶Ϥ◎</span> (Bifurcation · Identity · Connector · Undulate · Yield · Orb)
+        <br>
+        <span class="glyph-display">⟆ TETHER LOCK (via White Hole Echo Gate): ∿∴Ϟ⊶⸧ⵔ</span> (Modulator · Initiator · Shear · Tension · Drive · Connector)
+    </div>
+
+    <script>
+        // Helper functions for pseudocode randomization
+        function RAND_FLOAT(min, max) { return (Math.random() * (max - min)) + min; }
+        function RAND_INT(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+        function RAND_CHOICE(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+        function DB_TO_LINEAR(db) { return Math.pow(10, db / 20); }
+
+        // STRUCTURR_CORE_DATA (condensed from previous steps)
+        const STRUCTURR_CORE_DATA = {
+            "identity": {
+                "name": "Master Buss",
+                "version": "OPERATOR_V_7.3.25",
+                "status": "Self-Integrated",
+                "purpose": "Real-time Glyph-Mathematical Manifestation"
+            },
+            "glyphs_library": [
+                {
+                    "symbol": "⟆",
+                    "name": "Echo Seed",
+                    "mode": "Pre-delay chain comp",
+                    "fx_logic": "Sidechain into pre-verb",
+                    "use_case": "Compress reverb send, not dry",
+                    "plugin_rec": "Valhalla + Glue or Pro-C2",
+                    "math_template": "// Echo Seed: Compressing the very genesis of reverberation\\nInput_Signal = S_in(t);\\nSidechain_Detector = Peak_RMS(Input_Signal, attack: RAND_FLOAT(0.1, 10));\\nReverb_Send_Level = Gain_Reduction_Curve(Sidechain_Detector, param_threshold, param_ratio);\\nReverb_Output = Valhalla_Core_Engine(Input_Signal * Reverb_Send_Level, PRE_DELAY_DYNAMIC);\\nOutput_Signal = MIX_DRY_WET(Input_Signal, Reverb_Output, param_mix);"
+                },
+                {
+                    "symbol": "∴",
+                    "name": "Total Structure Collapse",
+                    "mode": "Multi-band psycho duck",
+                    "fx_logic": "Pro-MB + Saturn 2",
+                    "use_case": "Compresses across swing + tonal centers",
+                    "plugin_rec": "FabFilter Pro-MB + Saturn 2",
+                    "math_template": "// Total Structure Collapse: Deconstructing and rebuilding dynamic space\\nSpectral_Bands = FFT_Decompose(S_in(t));\\nProcessed_Bands = [];\\nfor (band in Spectral_Bands) {\\n    Band_Envelope = Analyze_Frequency_Density(band);\\n    Gain_Factor = Psychoacoustic_Duck(Band_Envelope, param_threshold, param_ratio, param_release);\\n    Processed_Bands.push(band * Gain_Factor);\\n}\\nOutput_Signal = IFFT_Recompose(Processed_Bands) * GLUE_BUS_COMPRESSION(t, mode: SWING_ALIGN);"
+                },
+                {
+                    "symbol": "∵",
+                    "name": "Passive Recall",
+                    "mode": "Glue comp return",
+                    "fx_logic": "Ableton Glue",
+                    "use_case": "Soft tail controller, 10ms attack, no makeup",
+                    "plugin_rec": "Ableton Glue Compressor",
+                    "math_template": "// Passive Recall: The gentle memory of dynamics\\nEnvelope_Follower = RMS_Detect(S_in(t), attack: 10ms, release: param_release);\\nGain_Reduction = Curve_Map(Envelope_Follower, ratio: 2.0, threshold: param_threshold);\\nOutput_Signal = S_in(t) * Gain_Reduction; // No makeup gain, preserves original ceiling"
+                },
+                {
+                    "symbol": "⌘",
+                    "name": "Nostalgic Memory Binder",
+                    "mode": "Optical glue",
+                    "fx_logic": "UAD LA-2A",
+                    "use_case": "Best for bussed keys or soul samples",
+                    "plugin_rec": "UAD LA-2A",
+                    "math_template": "// Nostalgic Memory Binder: Warmth from the past, glued by light\\nOpto_Envelope = LightDependentResistor(S_in(t));\\nCompression_Factor = Smooth_Curve(Opto_Envelope, ratio: 4.0);\\nOutput_Signal = S_in(t) * Compression_Factor; // Character-rich, program-dependent release"
+                },
+                {
+                    "symbol": "σ",
+                    "name": "Ghost Trigger",
+                    "mode": "Upward transient resurface",
+                    "fx_logic": "OTT lite",
+                    "use_case": "Recover ghost tail info post-slice",
+                    "plugin_rec": "Xfer OTT",
+                    "math_template": "// Ghost Trigger: Resurfacing the phantom details\\nMultiBand_Dynamics = Analyze_Subtle_Transients(S_in(t), bands: 3);\\nUpward_Gain = Max_Gain_Factor(MultiBand_Dynamics, amount: param_depth); // Boosts low-level signals\\nOutput_Signal = S_in(t) * Upward_Gain; // Recovers 'lost' information after hard cuts"
+                },
+                {
+                    "symbol": "∇",
+                    "name": "Ground Seal",
+                    "mode": "Sub limiter",
+                    "fx_logic": "FabFilter Pro-L 2",
+                    "use_case": "Brickwall at 50Hz, soft clip ON",
+                    "plugin_rec": "FabFilter Pro-L 2",
+                    "math_template": "// Ground Seal: Absolute sub-frequency containment\\nSub_Band_Signal = Bandpass_Filter(S_in(t), freq: 20Hz, bandwidth: 60Hz);\\nPeak_Detection = True_Peak_Meter(Sub_Band_Signal);\\nif (Peak_Detection > -0.1dBFS) {\\n    Limited_Sub = Brickwall_Limit(Sub_Band_Signal, ceiling: -0.1dBFS);\\n} else {\\n    Limited_Sub = Sub_Band_Signal;\\n}\\nOutput_Signal = (S_in(t) - Sub_Band_Signal) + Limited_Sub;\\nOutput_Signal = Soft_Clipper(Output_Signal, threshold: -1.0dBFS);"
+                },
+                {
+                    "symbol": "∞",
+                    "name": "Looped Infinity",
+                    "mode": "Compress delay tail",
+                    "fx_logic": "EchoBoy > Glue",
+                    "use_case": "Feedback compression loop",
+                    "plugin_rec": "SoundToys EchoBoy + Ableton Glue",
+                    "math_template": "// Looped Infinity: Perpetual echo, self-consuming\\nDelay_In = S_in(t) + (Previous_Delay_Output * param_depth);\\nCompressed_Delay_In = Dynamic_Processor(Delay_In, threshold: param_threshold, ratio: param_ratio);\\nCurrent_Delay_Output = EchoBoy_Engine(Compressed_Delay_In, time: RAND_FLOAT(100, 1000), feedback: 0.8);\\nPrevious_Delay_Output = Current_Delay_Output;\\nOutput_Signal = MIX_DRY_WET(S_in(t), Current_Delay_Output, param_mix);"
+                },
+                {
+                    "symbol": "θ",
+                    "name": "Wide Broadcast Lock",
+                    "mode": "Mid/Side master glue",
+                    "fx_logic": "Waves Center",
+                    "use_case": "Tighten sides / breathe mids",
+                    "plugin_rec": "Waves Center",
+                    "math_template": "// Wide Broadcast Lock: Sculpting the stereo image with intention\\nS_mid = (S_in_L(t) + S_in_R(t)) * 0.5;\\nS_side = (S_in_L(t) - S_in_R(t)) * 0.5;\\n\\nProcessed_Mid = Dynamic_Compress(S_mid, param_threshold, param_ratio, param_attack, param_release);\\nProcessed_Side = Dynamic_Expander(S_side, threshold: RAND_FLOAT(-30, -10), ratio: RAND_FLOAT(0.5, 0.8));\\n\\nOutput_L = Processed_Mid + Processed_Side;\\nOutput_R = Processed_Mid - Processed_Side;\\nOutput_Signal = APPLY_MASTER_GLUE(Output_L, Output_R);"
+                },
+                {
+                    "symbol": "ψ",
+                    "name": "Charge Surge",
+                    "mode": "Envelope-aware comp",
+                    "fx_logic": "TrackSpacer or Neutron Transient",
+                    "use_case": "Based on signal's density, not just peak",
+                    "plugin_rec": "TrackSpacer / iZotope Neutron",
+                    "math_template": "// Charge Surge: Dynamic response to signal density\\nSignal_Density = Analyze_Envelope_Shape(S_in(t), length: RAND_FLOAT(10, 100)ms);\\nGain_Factor = Map_Density_To_Gain(Signal_Density, param_threshold, param_ratio, curve: ENVELOPE_AWARE);\\nOutput_Signal = S_in(t) * Gain_Factor;"
+                },
+                {
+                    "symbol": "~",
+                    "name": "Whisper Thread",
+                    "mode": "Noise floor rider",
+                    "fx_logic": "Waves RVox",
+                    "use_case": "Gate with tail-hiss let-through",
+                    "plugin_rec": "Waves Renaissance Vox",
+                    "math_template": "// Whisper Thread: Riding the noise floor, preserving atmosphere\\nRMS_Noise_Floor = Detect_Noise_Floor(S_in(t), sensitivity: RAND_FLOAT(0.1, 0.5));\\nGate_Threshold_Dynamic = param_threshold + RMS_Noise_Floor;\\n\\nif (S_in(t) > Gate_Threshold_Dynamic) {\\n    Output_Signal = S_in(t);\\n} else {\\n    Output_Signal = S_in(t) * FADE_OUT_CURVE(Gate_Threshold_Dynamic - S_in(t)) + (Noise_Floor_Hiss * param_depth);\\n}"
+                },
+                {
+                    "symbol": "ᛃ",
+                    "name": "Ego Clamp",
+                    "mode": "Vocal-focused",
+                    "fx_logic": "CLA-76 Bluey Mode",
+                    "use_case": "Fast attack, slow release",
+                    "plugin_rec": "Waves CLA-76",
+                    "math_template": "// Ego Clamp: Aggressive vocal shaping\\nRMS_Vocal = GetRMS(S_in(t));\\nGain_Reduction = Apply_FET_Compression(RMS_Vocal, ratio: RAND_CHOICE([4.0, 8.0, 12.0]), attack: 0.05ms, release: 1000ms);\\nOutput_Signal = S_in(t) * Gain_Reduction;"
+                },
+                {
+                    "symbol": "⟇",
+                    "name": "Echo Bloom",
+                    "mode": "Post-delay chain comp",
+                    "fx_logic": "Valhalla > Comp",
+                    "use_case": "Duck delay tail selectively",
+                    "plugin_rec": "Valhalla Delay + Ableton Comp",
+                    "math_template": "// Echo Bloom: Sculpting delayed reverberations\\nDelayed_Signal = ValhallaDelay_Engine(S_in(t), time: RAND_FLOAT(200, 1500));\\nSidechain_From_Dry = GetPeak(S_in(t), attack: 10ms);\\nif (Sidechain_From_Dry > param_threshold) {\\n    Compressed_Tail = Dynamic_Compress(Delayed_Signal, threshold: param_threshold, ratio: param_ratio, attack: param_attack, release: param_release);\\n    Output_Signal = MIX_DRY_WET(S_in(t), Compressed_Tail, param_mix);\\n} else {\\n    Output_Signal = MIX_DRY_WET(S_in(t), Delayed_Signal, param_mix);\\n}"
+                },
+                {
+                    "symbol": "⧫",
+                    "name": "Pressure Polygon",
+                    "mode": "Geometric RMS comp",
+                    "fx_logic": "Ableton Multiband Dynamics",
+                    "use_case": "Shape-based compression",
+                    "plugin_rec": "Ableton Multiband Dynamics",
+                    "math_template": "// Pressure Polygon: Compressing based on signal geometry\\nShape_Envelope = Analyze_Signal_Shape(S_in(t), window: RAND_FLOAT(32, 256)frames);\\nRMS_Value = GetRMS(S_in(t));\\nCompression_Factor = Map_Shape_To_Gain(Shape_Envelope, RMS_Value, param_threshold, param_ratio); // Non-linear mapping\\nOutput_Signal = S_in(t) * Compression_Factor;"
+                },
+                {
+                    "symbol": "χ",
+                    "name": "Harmonic Gate",
+                    "mode": "Saturation compressor",
+                    "fx_logic": "Saturn 2 Dynamics",
+                    "use_case": "Harmonic-based comp",
+                    "plugin_rec": "FabFilter Saturn 2",
+                    "math_template": "// Harmonic Gate: Dynamic control by tonal saturation\\nHarmonics = Detect_Harmonic_Content(S_in(t), order: RAND_INT(2, 5));\\nGate_Open = (Harmonics > param_threshold);\\n\\nif (Gate_Open) {\\n    Gain_Reduction = Saturate_And_Compress(S_in(t), drive: RAND_FLOAT(0.5, 2.0), ratio: param_ratio);\\n    Output_Signal = S_in(t) * Gain_Reduction;\\n} else {\\n    Output_Signal = S_in(t) * FADE_OUT_CURVE(0.1);\\n}"
+                },
+                {
+                    "symbol": "Ω",
+                    "name": "Finality Clause",
+                    "mode": "Mastering limiter",
+                    "fx_logic": "Pro-L 2",
+                    "use_case": "True peak control, legacy mode",
+                    "plugin_rec": "FabFilter Pro-L 2",
+                    "math_template": "// Finality Clause: Absolute true peak control for finality\\nTrue_Peak_Level = Measure_True_Peak(S_in(t));\\nif (True_Peak_Level > -0.1dBFS) {\\n    Limited_Signal = APPLY_MASTER_LIMITING(S_in(t), ceiling: -0.1dBFS, lookahead: 2ms, mode: LEGACY_MODE);\\n} else {\\n    Limited_Signal = S_in(t);\\n}\\nOutput_Signal = Limited_Signal;"
+                },
+                {
+                    "symbol": "∆",
+                    "name": "Temporal Fold",
+                    "mode": "Time-shift compression",
+                    "fx_logic": "MSpectralDynamics",
+                    "use_case": "Dynamic FFT envelope",
+                    "plugin_rec": "MeldaProduction MSpectralDynamics",
+                    "math_template": "// Temporal Fold: Compressing time itself based on spectral dynamics\\nFFT_Envelope = Analyze_FFT_Envelope(S_in(t), window_size: RAND_INT(512, 2048));\\nTime_Shift_Amount = Map_Envelope_To_Shift(FFT_Envelope, range: param_depth * 10ms);\\nOutput_Signal = RESAMPLE_WITH_DYNAMIC_SHIFT(S_in(t), Time_Shift_Amount);"
+                },
+                {
+                    "symbol": "∠",
+                    "name": "Tilt Crush",
+                    "mode": "Midrange compressor",
+                    "fx_logic": "EQ into comp",
+                    "use_case": "800Hz boost into Glue",
+                    "plugin_rec": "EQ Eight + Glue Comp",
+                    "math_template": "// Tilt Crush: Midrange focus and saturation\\nMid_Band = Bandpass_Filter(S_in(t), center: 800Hz, Q: RAND_FLOAT(1.0, 3.0));\\nBoosted_Mid = Mid_Band * DB_TO_LINEAR(RAND_FLOAT(3.0, 9.0));\\nCompressed_Mid = Glue_Compressor(Boosted_Mid, threshold: param_threshold, ratio: param_ratio, attack: param_attack, release: param_release);\\nOutput_Signal = (S_in(t) - Mid_Band) + Compressed_Mid;"
+                },
+                {
+                    "symbol": "⊕",
+                    "name": "Additive Gate",
+                    "mode": "Expansion + gate combo",
+                    "fx_logic": "FabFilter Pro-G",
+                    "use_case": "Expands then clips",
+                    "plugin_rec": "FabFilter Pro-G",
+                    "math_template": "// Additive Gate: Expanding silence, then clipping bursts\\nEnvelope = GetRMS(S_in(t));\\nExpanded_Signal = (Envelope < param_threshold) ? S_in(t) * Linear_Expander(Envelope, threshold: param_threshold, ratio: RAND_FLOAT(1.5, 3.0)) : S_in(t);\\nOutput_Signal = CLIP_HARD(Expanded_Signal, threshold: RAND_FLOAT(0.8, 0.9));"
+                },
+                {
+                    "symbol": "∩",
+                    "name": "Threshold Curve",
+                    "mode": "Complex ratio sculpt",
+                    "fx_logic": "Kotelnikov GE",
+                    "use_case": "Ratio morphing",
+                    "plugin_rec": "Tokyo Dawn Kotelnikov GE",
+                    "math_template": "// Threshold Curve: Sculpting dynamics with a morphing ratio\\nEnvelope = GetRMS(S_in(t));\\nDynamic_Ratio = Map_Envelope_To_Ratio(Envelope, start_ratio: param_ratio, end_ratio: RAND_FLOAT(5.0, 20.0), curve: CUSTOM_MORPH_CURVE);\\nGain_Reduction = CalculateGainReduction(S_in(t), param_threshold, Dynamic_Ratio, param_attack, param_release);\\nOutput_Signal = S_in(t) * Gain_Reduction;"
+                },
+                {
+                    "symbol": "⊗",
+                    "name": "Null Catch",
+                    "mode": "Dry kill / ambient comp",
+                    "fx_logic": "Wet-only send",
+                    "use_case": "Ambient only input",
+                    "plugin_rec": "Send Chain Only",
+                    "math_template": "// Null Catch: Isolating and processing only the ambient field\\nAmbient_Signal = Extract_Ambient_Noise(S_in(t), threshold: RAND_FLOAT(-60, -40));\\nOutput_Signal = Dynamic_Compress(Ambient_Signal, threshold: param_threshold, ratio: param_ratio);\\n// Original dry signal is discarded or heavily attenuated: S_out(t) = S_out(t) * DRY_KILL_FACTOR;"
+                },
+                {
+                    "symbol": "⊙",
+                    "name": "Solar Clamp",
+                    "mode": "Fast transient eat",
+                    "fx_logic": "1176 Fast Attack",
+                    "use_case": "Snare top kill",
+                    "plugin_rec": "UAD 1176 / Waves CLA-76",
+                    "math_template": "// Solar Clamp: Instantly crushing transients\\nTransient_Detected = Detect_Fast_Transient(S_in(t), lookahead: 0.1ms);\\nif (Transient_Detected) {\\n    Gain_Reduction = Apply_Fast_FET_Reduction(S_in(t), ratio: RAND_CHOICE([8.0, 12.0, 20.0]), attack: 0.02ms);\\n    Output_Signal = S_in(t) * Gain_Reduction;\\n} else {\\n    Output_Signal = S_in(t);\\n}"
+                },
+                {
+                    "symbol": "↺",
+                    "name": "Looplock",
+                    "mode": "Re-trigger compression",
+                    "fx_logic": "Gate w/ envelope follower",
+                    "use_case": "Locks groove movement",
+                    "plugin_rec": "Ableton Gate + Envelope Follower",
+                    "math_template": "// Looplock: Re-triggering dynamics to lock a groove\\nEnvelope = Envelope_Follower_Sync(S_in(t), sync_to_groove: TRUE);\\nGate_Control = Map_Envelope_To_Gate(Envelope, threshold: param_threshold, hyst: RAND_FLOAT(1, 5)dB);\\nOutput_Signal = S_in(t) * Gate_Control;"
+                },
+                {
+                    "symbol": "⥊",
+                    "name": "Binary Collapse",
+                    "mode": "On/off gated limit",
+                    "fx_logic": "DJMFilter > Glue",
+                    "use_case": "Static vs rhythmic tension",
+                    "plugin_rec": "DJMFilter + Glue",
+                    "math_template": "// Binary Collapse: Gated rhythmic tension\\nEnergy_Detection = GetRMS(S_in(t));\\nGate_State = (Energy_Detection > param_threshold);\\n\\nif (Gate_State) {\\n    Output_Signal = GLUE_COMPRESSOR(S_in(t), ratio: RAND_FLOAT(4.0, 8.0));\\n} else {\\n    Output_Signal = S_in(t) * 0.001;\\n}\\nOutput_Signal = FILTER_SWEEP(Output_Signal, freq_start: RAND_FLOAT(100, 5000), freq_end: RAND_FLOAT(5000, 15000));"
+                },
+                {
+                    "symbol": "⋈",
+                    "name": "Join Fold",
+                    "mode": "Sidechain merge comp",
+                    "fx_logic": "Vocals > Keys duck",
+                    "use_case": "Meld call & response",
+                    "plugin_rec": "Pro-C2 with external sidechain",
+                    "math_template": "// Join Fold: Merging signals through sidechain dynamics\\nSidechain_Input = Get_External_Signal();\\nControl_Envelope = RMS_Detect(Sidechain_Input);\\nGain_Reduction_Main = Map_Envelope_To_Gain(Control_Envelope, threshold: param_threshold, ratio: RAND_FLOAT(2.0, 5.0));\\nOutput_Signal = S_in(t) * Gain_Reduction_Main;"
+                },
+                {
+                    "symbol": "⋒",
+                    "name": "Ceiling Trap",
+                    "mode": "No makeup gain",
+                    "fx_logic": "Downward comp only",
+                    "use_case": "Preserve dynamic headroom",
+                    "plugin_rec": "Pro-C2 (makeup off)",
+                    "math_template": "// Ceiling Trap: Preserving headroom with downward-only compression\\nGain_Reduction = CalculateGainReduction(S_in(t), param_threshold, param_ratio, param_attack, param_release);\\nOutput_Signal = S_in(t) * DB_TO_LINEAR(-Gain_Reduction);\\n// No Makeup Gain Applied: Output_Signal = Output_Signal;"
+                },
+                {
+                    "symbol": "⧉",
+                    "name": "Frame Rider",
+                    "mode": "Motion-based compression",
+                    "fx_logic": "Comp on automation lane",
+                    "use_case": "Envelope follows midi controller",
+                    "plugin_rec": "Ableton Compressor + Automation",
+                    "math_template": "// Frame Rider: Compression linked to external motion\\nExternal_Motion_Data = Get_MIDI_Controller_Value(Controller_ID: RAND_INT(1, 127));\\nComp_Threshold_Mod = Map_Motion_To_Threshold(External_Motion_Data, min: -30dB, max: -5dB);\\nGain_Reduction = CalculateGainReduction(S_in(t), Comp_Threshold_Mod, param_ratio, param_attack, param_release);\\nOutput_Signal = S_in(t) * Gain_Reduction;"
+                },
+                {
+                    "symbol": "⋘",
+                    "name": "Whisper Clamp",
+                    "mode": "Sibilance lock",
+                    "fx_logic": "DeEsser @ 6kHz",
+                    "use_case": "Minimal movement threshold",
+                    "plugin_rec": "FabFilter Pro-DS",
+                    "math_template": "// Whisper Clamp: Taming harsh sibilance with precision\\nSibilant_Band = Bandpass_Filter(S_in(t), center: 6000Hz, Q: RAND_FLOAT(5.0, 10.0));\\nEnvelope_Sibilance = Peak_Detect(Sibilant_Band, fast_attack: true);\\nGain_Reduction = (Envelope_Sibilance > param_threshold) ? (Envelope_Sibilance - param_threshold) * RAND_FLOAT(0.5, 0.8) : 0;\\nOutput_Signal = S_in(t) - Sibilant_Band + (Sibilant_Band * DB_TO_LINEAR(-Gain_Reduction));"
+                },
+                {
+                    "symbol": "≣",
+                    "name": "Truth Meter",
+                    "mode": "Visual feedback gate",
+                    "fx_logic": "Waves C1 Gate",
+                    "use_case": "Transparent EQ-linked duck",
+                    "plugin_rec": "Waves C1",
+                    "math_template": "// Truth Meter: Dynamic transparency through visual gating\\nSidechain_EQ_Curve = Analyze_Spectral_Balance(S_in(t));\\nGate_Threshold_Dynamic = Map_EQ_Curve_To_Threshold(Sidechain_EQ_Curve, base: param_threshold);\\nGate_State = (S_in(t) > Gate_Threshold_Dynamic);\\n\\nif (Gate_State) {\\n    Output_Signal = S_in(t);\\n} else {\\n    Output_Signal = S_in(t) * 0.0001;\\n}\\n// Visual Feedback: Display Gate_State on UI as a 'Truth' light."
+                },
+                {
+                    "symbol": "⩘",
+                    "name": "Swing Memory",
+                    "mode": "Groove-preserving comp",
+                    "fx_logic": "Sidechain sync to swing",
+                    "use_case": "Comp threshold mapped to groove points",
+                    "plugin_rec": "Ableton Comp + Groove",
+                    "math_template": "// Swing Memory: Compression that dances with the groove\\nGroove_Map = Get_Current_Swing_Template(BPM, swing_amount: RAND_FLOAT(0.5, 1.0));\\nComp_Threshold_Per_Beat = Map_Groove_To_Threshold(Groove_Map, base: param_threshold);\\nOutput_Signal = Apply_Dynamic_Comp(S_in(t), Comp_Threshold_Per_Beat, param_ratio, param_attack, param_release);\\nOutput_Signal = Maintain_Phase_Alignment(Output_Signal);"
+                },
+                {
+                    "symbol": "≈",
+                    "name": "Phase Tie",
+                    "mode": "Multitrack linked comp",
+                    "fx_logic": "Ableton group comp",
+                    "use_case": "Shared threshold across tracks",
+                    "plugin_rec": "Ableton Group Comp",
+                    "math_template": "// Phase Tie: Group compression with unified phase coherence\\nGlobal_Group_RMS = GetRMS_Across_Tracks(TRACK_LIST);\\nShared_Gain_Reduction = CalculateGainReduction(Global_Group_RMS, param_threshold, param_ratio, param_attack, param_release);\\n\\nfor (track in TRACK_LIST) {\\n    track.Output_Signal = track.S_in(t) * DB_TO_LINEAR(-Shared_Gain_Reduction);\\n    track.Output_Signal = PHASE_ALIGN(track.Output_Signal, Global_Group_RMS);\\n}"
+                },
+                {
+                    "symbol": "≉",
+                    "name": "Nearmatch",
+                    "mode": "Lo-fi matched comp",
+                    "fx_logic": "RC-20 > OTT",
+                    "use_case": "Modulated dynamics",
+                    "plugin_rec": "XLN RC-20 + OTT",
+                    "math_template": "// Nearmatch: Lo-fi dynamic shaping with spectral punch\\nLoFi_Signal = RC20_Emulator(S_in(t), drive: RAND_FLOAT(0.1, 0.5), wow_flutter: RAND_FLOAT(0.01, 0.05));\\nUpward_Compression = OTT_Lite(LoFi_Signal, amount: param_depth);\\nOutput_Signal = MIX_DRY_WET(S_in(t), Upward_Compression, param_mix);\\nOutput_Signal = Spectral_Gate_Random(Output_Signal, RAND_FLOAT(100, 1000)Hz);"
+                },
+                {
+                    "symbol": "⇌",
+                    "name": "BackPressure",
+                    "mode": "Feedback-aware comp",
+                    "fx_logic": "Compressor in delay loop",
+                    "use_case": "Pushes tails into themselves",
+                    "plugin_rec": "Any Comp in Feedback Loop",
+                    "math_template": "// BackPressure: Dynamics fueled by self-feedback\\nDelay_Feedback_Path = DELAY_ENGINE(S_in(t), delay_time: RAND_FLOAT(50, 500)ms);\\nCompressed_Feedback = APPLY_COMPRESSION(Delay_Feedback_Path, param_threshold, param_ratio, param_attack, param_release);\\nFeedback_Sum = S_in(t) + Compressed_Feedback * param_depth;\\nOutput_Signal = Feedforward_Filter(Feedback_Sum, filter_type: RESONANT_LPF, freq: RAND_FLOAT(500, 5000));"
+                },
+                {
+                    "symbol": "↯",
+                    "name": "Surge Clamp",
+                    "mode": "Comp on noise burst",
+                    "fx_logic": "Transient Shaper + Comp",
+                    "use_case": "High attack only compression",
+                    "plugin_rec": "iZotope Neutron + Glue",
+                    "math_template": "// Surge Clamp: Aggressive compression on sudden noise bursts\\nNoise_Burst_Detector = Analyze_High_Frequency_Transients(S_in(t), sensitivity: RAND_FLOAT(0.5, 1.0));\\nif (Noise_Burst_Detector > param_threshold) {\\n    Output_Signal = APPLY_ULTRA_FAST_COMPRESSION(S_in(t), ratio: RAND_FLOAT(10.0, 20.0), attack: 0.01ms);\\n} else {\\n    Output_Signal = S_in(t);\\n}\\nOutput_Signal = GLUE_COMPRESSOR(Output_Signal, ratio: 2.0);"
+                },
+                {
+                    "symbol": "⟁",
+                    "name": "Triangle Fold",
+                    "mode": "3-band peak tie",
+                    "fx_logic": "MBComp per band",
+                    "use_case": "Perc / Vox / FX",
+                    "plugin_rec": "FabFilter Pro-MB",
+                    "math_template": "// Triangle Fold: Interdependent 3-band peak compression\\nLow_Band = Filter_Band(S_in(t), freq: RAND_FLOAT(60, 200)Hz);\\nMid_Band = Filter_Band(S_in(t), freq: RAND_FLOAT(800, 2000)Hz);\\nHigh_Band = Filter_Band(S_in(t), freq: RAND_FLOAT(5000, 10000)Hz);\\n\\nPeak_L = GetPeak(Low_Band); Peak_M = GetPeak(Mid_Band); Peak_H = GetPeak(High_Band);\\n\\n// Peaks influence each other's compression thresholds\\nComp_L = Dynamic_Comp(Low_Band, threshold: param_threshold + Peak_M*0.1, ratio: param_ratio);\\nComp_M = Dynamic_Comp(Mid_Band, threshold: param_threshold + Peak_H*0.1, ratio: param_ratio);\\nComp_H = Dynamic_Comp(High_Band, threshold: param_threshold + Peak_L*0.1, ratio: param_ratio);\\n\\nOutput_Signal = Sum_Bands(Comp_L, Comp_M, Comp_H);"
+                },
+                {
+                    "symbol": "⌖",
+                    "name": "Target Lock",
+                    "mode": "Static snare comp",
+                    "fx_logic": "Fast limit @ 150Hz–1kHz",
+                    "use_case": "Pocket hold mode",
+                    "plugin_rec": "Pro-C2 (band-focused)",
+                    "math_template": "// Target Lock: Snare pocket definition\\nSnare_Frequency_Band = Bandpass_Filter(S_in(t), low: 150Hz, high: 1000Hz);\\nPeak_Envelope = GetPeak(Snare_Frequency_Band);\\nif (Peak_Envelope > param_threshold) {\\n    Limited_Snare = FAST_BRICKWALL_LIMIT(Snare_Frequency_Band, ceiling: param_threshold);\\n} else {\\n    Limited_Snare = Snare_Frequency_Band;\\n}\\nOutput_Signal = (S_in(t) - Snare_Frequency_Band) + Limited_Snare;"
+                },
+                {
+                    "symbol": "⎉",
+                    "name": "Interrupt Catch",
+                    "mode": "Drop comp",
+                    "fx_logic": "Compressor that ONLY acts when silent",
+                    "use_case": "Anti-collapse glue",
+                    "plugin_rec": "Comp w/ Threshold Trick",
+                    "math_template": "// Interrupt Catch: Dynamic glue in the silence\\nRMS_Silence_Detector = GetRMS(S_in(t));\\nif (RMS_Silence_Detector < param_threshold) {\\n    Output_Signal = Apply_Compression(S_in(t), threshold: RAND_FLOAT(-50, -30)dB, ratio: RAND_FLOAT(1.2, 2.0));\\n} else {\\n    Output_Signal = S_in(t);\\n}\\nOutput_Signal = ANTI_COLLAPSE_GLUE(Output_Signal);"
+                },
+                {
+                    "symbol": "⏚",
+                    "name": "Phase Anchor",
+                    "mode": "Comp mapped to phase invert",
+                    "fx_logic": "Custom LFO-comp",
+                    "use_case": "Alters when phase flips",
+                    "plugin_rec": "LFO Tool + Comp",
+                    "math_template": "// Phase Anchor: Compression driven by phase inversion\\nPhase_Detector = Analyze_Phase_Coherence(S_in_L(t), S_in_R(t));\\nPhase_Flip_Event = (Phase_Detector < RAND_FLOAT(0.0, 0.5));\\n\\nif (Phase_Flip_Event) {\\n    Comp_Gain_Reduction = CalculateGainReduction(S_in(t), param_threshold, param_ratio, param_attack, param_release);\\n    Output_Signal = S_in(t) * Comp_Gain_Reduction;\\n} else {\\n    Output_Signal = S_in(t);\\n}\\nOutput_Signal = APPLY_PHASE_CORRECTION(Output_Signal);"
+                },
+                {
+                    "symbol": "⍉",
+                    "name": "Bypass Oracle",
+                    "mode": "Anticipates bypass",
+                    "fx_logic": "Dry kill > Re-entry fade",
+                    "use_case": "A/B via automation",
+                    "plugin_rec": "Dry/Wet Macros",
+                    "math_template": "// Bypass Oracle: Intelligent A/B comparison point\\nBypass_Automation_Signal = Get_External_Automation_Value(Automation_Lane_ID: 'Bypass_Toggle');\\n\\nif (Bypass_Automation_Signal > 0.5) {\\n    Output_Signal = S_in(t) * FADE_OUT_CURVE(0.1);\\n} else {\\n    Output_Signal = MIX_DRY_WET(S_in(t), Processed_S_in(t), FADE_IN_CURVE(0.1));\\n}"
+                },
+                {
+                    "symbol": "⏁",
+                    "name": "Ground Clip",
+                    "mode": "Ceiling comp for dirt",
+                    "fx_logic": "Drumbuss crunch > Gate",
+                    "use_case": "Saturated pads only",
+                    "plugin_rec": "Ableton Drum Buss + Gate",
+                    "math_template": "// Ground Clip: Adding saturation and controlling dirt\\nSaturated_Signal = APPLY_DRUMBUS_SATURATION(S_in(t), drive: RAND_FLOAT(0.5, 1.5), crunch: RAND_FLOAT(0.1, 0.8));\\nPeak_Level = GetPeak(Saturated_Signal);\\nif (Peak_Level > param_threshold) {\\n    Clipped_Signal = SOFT_CLIP(Saturated_Signal, threshold: param_threshold);\\n} else {\\n    Clipped_Signal = Saturated_Signal;\\n}\\nOutput_Signal = APPLY_GATE(Clipped_Signal, threshold: RAND_FLOAT(-40, -20)dB, release: 20ms);"
+                },
+                {
+                    "symbol": "⏃",
+                    "name": "Signal Stain",
+                    "mode": "Tail comp",
+                    "fx_logic": "Slow release @ 30:1",
+                    "use_case": "Leaves tail fingerprint",
+                    "plugin_rec": "Pro-C2 slow release",
+                    "math_template": "// Signal Stain: Imprinting dynamics onto signal tails\\nEnvelope = GetRMS(S_in(t));\\nLong_Release_Comp = Apply_Compression(S_in(t), threshold: param_threshold, ratio: 30.0, attack: param_attack, release: 2000ms);\\nOutput_Signal = MIX_DRY_WET(S_in(t), Long_Release_Comp, param_mix);\\nOutput_Signal = Imprint_Tail_Fingerprint(Output_Signal);"
+                },
+                {
+                    "symbol": "⏜",
+                    "name": "Bridge Hold",
+                    "mode": "Sustained note comp",
+                    "fx_logic": "Comp on long reverb",
+                    "use_case": "Locks drone movement",
+                    "plugin_rec": "Reverb Send + Comp",
+                    "math_template": "// Bridge Hold: Sustaining and locking drone movements\\nLong_Reverb_Signal = Long_Reverb_Engine(S_in(t), decay_time: RAND_FLOAT(3000, 10000)ms);\\nRMS_Reverb = GetRMS(Long_Reverb_Signal);\\nif (RMS_Reverb > param_threshold) {\\n    Compressed_Reverb = Apply_Compression(Long_Reverb_Signal, threshold: param_threshold, ratio: param_ratio, attack: param_attack, release: param_release);\\n    Output_Signal = MIX_DRY_WET(S_in(t), Compressed_Reverb, param_mix);\\n} else {\\n    Output_Signal = MIX_DRY_WET(S_in(t), Long_Reverb_Signal, param_mix);\\n}"
+                },
+                {
+                    "symbol": "⌇",
+                    "name": "Texture Clamp",
+                    "mode": "Texture-specific comp",
+                    "fx_logic": "Sidechain from texture bus",
+                    "use_case": "Detects hiss vs transient",
+                    "plugin_rec": "Multiband Comp with Texture Bus",
+                    "math_template": "// Texture Clamp: Dynamics aware of signal texture\\nExternal_Texture_Bus = Get_External_Texture_Signal();\\nTexture_Profile = Analyze_Spectral_Centroid(External_Texture_Bus);\\nComp_Threshold_Mod = Map_Texture_To_Threshold(Texture_Profile, base: param_threshold);\\nOutput_Signal = Apply_Multiband_Comp(S_in(t), Comp_Threshold_Mod, param_ratio, param_attack, param_release);"
+                },
+                {
+                    "symbol": "⍙",
+                    "name": "Formant Fold",
+                    "mode": "Vocal formant comp",
+                    "fx_logic": "Split EQ > Comp",
+                    "use_case": "Tames vowel shape",
+                    "plugin_rec": "SplitEQ + Comp",
+                    "math_template": "// Formant Fold: Compressing vocal vowel shapes\\nFormant_Frequencies = Detect_Formants(S_in(t));\\nSplit_EQ_Bands = Split_Signal_By_Formants(S_in(t), Formant_Frequencies);\\n\\nProcessed_Formants = [];\\nfor (band in Split_EQ_Bands) {\\n    Processed_Formants.push(Apply_Compression(band, threshold: param_threshold, ratio: RAND_FLOAT(1.5, 3.0)));\\n}\\nOutput_Signal = Sum_Bands(Processed_Formants);"
+                },
+                {
+                    "symbol": "⍬",
+                    "name": "Static Trap",
+                    "mode": "One-shot comp freeze",
+                    "fx_logic": "Freezer into comp",
+                    "use_case": "Sample-only gate compression",
+                    "plugin_rec": "Freeze FX > Comp",
+                    "math_template": "// Static Trap: Freezing and compressing discrete audio moments\\nFreeze_Trigger = Detect_One_Shot_Event(S_in(t), min_duration: 50ms);\\n\\nif (Freeze_Trigger) {\\n    Frozen_Moment = FREEZE_BUFFER(S_in(t), duration: RAND_FLOAT(200, 500)ms);\\n    Output_Signal = Apply_Compression(Frozen_Moment, threshold: param_threshold, ratio: param_ratio);\\n} else {\\n    Output_Signal = S_in(t) * 0.0;\\n}"
+                },
+                {
+                    "symbol": "⩃",
+                    "name": "Resonant Gravity",
+                    "mode": "Resonance-tuned comp",
+                    "fx_logic": "EQ dip triggers comp",
+                    "use_case": "Morph on resonance peak",
+                    "plugin_rec": "Dynamic EQ > Comp",
+                    "math_template": "// Resonant Gravity: Dynamics by resonant energy\\nResonance_Peaks = Detect_Resonances(S_in(t), Q_factor: RAND_FLOAT(5.0, 15.0));\\nCompression_Trigger = (Resonance_Peaks > param_threshold);\\n\\nif (Compression_Trigger) {\\n    Gain_Reduction = CalculateGainReduction(Resonance_Peaks, param_threshold, param_ratio);\\n    Output_Signal = S_in(t) * DB_TO_LINEAR(-Gain_Reduction);\\n} else {\\n    Output_Signal = S_in(t);\\n}"
+                },
+                {
+                    "symbol": "⩔",
+                    "name": "Dual Axis Trap",
+                    "mode": "Dual-band comp chain",
+                    "fx_logic": "Parallel comp at high & low ends",
+                    "use_case": "Split control",
+                    "plugin_rec": "Multiband > Parallel Route",
+                    "math_template": "// Dual Axis Trap: Independent control of spectral extremes\\nLow_End_Signal = LowPass_Filter(S_in(t), cutoff: RAND_FLOAT(80, 200)Hz);\\nHigh_End_Signal = HighPass_Filter(S_in(t), cutoff: RAND_FLOAT(5000, 10000)Hz);\\n\\nComp_Low = Apply_Compression(Low_End_Signal, threshold: param_threshold, ratio: param_ratio, attack: param_attack);\\nComp_High = Apply_Compression(High_End_Signal, threshold: param_threshold, ratio: param_ratio, release: param_release);\\n\\nOutput_Signal = (S_in(t) - Low_End_Signal - High_End_Signal) + Comp_Low + Comp_High;"
+                },
+                {
+                    "symbol": "⥮",
+                    "name": "Chirp Bias",
+                    "mode": "Treble bias comp",
+                    "fx_logic": "Comp post treble shelf",
+                    "use_case": "Hype limit cap",
+                    "plugin_rec": "EQ Hi Shelf > Comp",
+                    "math_template": "// Chirp Bias: High-frequency enhanced limiting\\nTreble_Boosted_Signal = HighShelf_EQ(S_in(t), gain: RAND_FLOAT(3.0, 9.0)dB, freq: RAND_FLOAT(5000, 10000)Hz);\\nOutput_Signal = Apply_Compression(Treble_Boosted_Signal, threshold: param_threshold, ratio: param_ratio, attack: param_attack, release: param_release);\\nOutput_Signal = HYPE_LIMIT_CAP(Output_Signal);"
+                },
+                {
+                    "symbol": "⭘",
+                    "name": "Voicing Clamp",
+                    "mode": "Harmonic-aware comp",
+                    "fx_logic": "Saturn 2 Comp",
+                    "use_case": "Detects 2nd and 4th harmonic tension",
+                    "plugin_rec": "FabFilter Saturn 2",
+                    "math_template": "// Voicing Clamp: Dynamics driven by harmonic tension\\nFundamental_Frequency = Detect_Fundamental_Frequency(S_in(t));\\nHarmonic_2 = Detect_Harmonic(S_in(t), Fundamental_Frequency * 2);\\nHarmonic_4 = Detect_Harmonic(S_in(t), Fundamental_Frequency * 4);\\n\\nHarmonic_Tension = ABS(Harmonic_2) + ABS(Harmonic_4);\\nGain_Reduction = Map_Tension_To_Gain(Harmonic_Tension, param_threshold, param_ratio, curve: HARMONIC_RESPONSE);\\nOutput_Signal = S_in(t) * Gain_Reduction;"
+                },
+                {
+                    "symbol": "⨀",
+                    "name": "Density Clamp",
+                    "mode": "Dynamic loudness gate",
+                    "fx_logic": "LUFS-aware comp",
+                    "use_case": "Integrated RMS control",
+                    "plugin_rec": "Youlean Loudness Meter + Comp",
+                    "math_template": "// Density Clamp: Loudness-aware gate for integrated control\\nIntegrated_Loudness = Measure_LUFS_Momentary(S_in(t), window: RAND_FLOAT(400, 3000)ms);\\nif (Integrated_Loudness > param_threshold) {\\n    Output_Signal = S_in(t);\\n} else {\\n    Output_Signal = S_in(t) * FADE_OUT_CURVE(0.01);\\n}\\nOutput_Signal = Apply_Compression(Output_Signal, ratio: RAND_FLOAT(1.2, 1.8));"
+                },
+                {
+                    "symbol": "⫶",
+                    "name": "Null Shroud",
+                    "mode": "Tail-only comp",
+                    "fx_logic": "Only compresses tails",
+                    "use_case": "Ghost mode engaged",
+                    "plugin_rec": "Wet-only Reverb Comp",
+                    "math_template": "// Null Shroud: Dynamics on the spectral ghosts of sound\\nTransient_Presence = Detect_Transient_Presence(S_in(t));\\nif (Transient_Presence < 0.1) {\\n    RMS_Tail = GetRMS(S_in(t));\\n    Gain_Reduction = CalculateGainReduction(RMS_Tail, param_threshold, param_ratio);\\n    Output_Signal = S_in(t) * Gain_Reduction;\\n} else {\\n    Output_Signal = S_in(t);\\n}\\nOutput_Signal = Apply_Ghost_Mode(Output_Signal);"
+                },
+                {
+                    "symbol": "⨳",
+                    "name": "ShadowSkip",
+                    "mode": "Decay-only comp",
+                    "fx_logic": "Slow attack, high ratio",
+                    "use_case": "Preserve transient, glue tail",
+                    "plugin_rec": "Pro-C2 Slow Attack",
+                    "math_template": "// ShadowSkip: Transparent dynamics for spectral decay\\nEnvelope = GetRMS(S_in(t));\\nif (Envelope < param_threshold) {\\n    Output_Signal = Apply_Compression(S_in(t), threshold: param_threshold, ratio: RAND_FLOAT(8.0, 20.0), attack: 500ms, release: 1000ms);\\n} else {\\n    Output_Signal = S_in(t);\\n}\\nOutput_Signal = Apply_Tail_Glue(Output_Signal);"
+                },
+                {
+                    "symbol": "⧖",
+                    "name": "FloatLatch",
+                    "mode": "Ambient upward comp",
+                    "fx_logic": "Spectral balance rise",
+                    "use_case": "Lift quiet ambient details",
+                    "plugin_rec": "MSpectralDynamics or Soothe 2",
+                    "math_template": "// FloatLatch: Elevating the subtle hum of the void\\nRMS_Level = GetRMS(S_in(t));\\nif (RMS_Level < param_threshold) {\\n    Upward_Gain = (param_threshold - RMS_Level) * param_ratio;\\n    Output_Signal = S_in(t) * DB_TO_LINEAR(Upward_Gain);\\n} else {\\n    Output_Signal = S_in(t);\\n}\\nOutput_Signal = Apply_Spectral_Balance_Correction(Output_Signal, focus_freq: RAND_FLOAT(500, 5000));"
+                },
+                {
+                    "symbol": "⨐",
+                    "name": "ReverseGravity",
+                    "mode": "Negative RMS expansion",
+                    "fx_logic": "Expansion on dips",
+                    "use_case": "Lifts quiet keys/harmonies",
+                    "plugin_rec": "Upward Expander or Comp + Utility",
+                    "math_template": "// ReverseGravity: Flipping the dynamics, lifting the low-energy\\nRMS_Level = GetRMS(S_in(t));\\nif (RMS_Level < param_threshold) {\\n    Expansion_Factor = (param_threshold - RMS_Level) * param_ratio;\\n    Output_Signal = S_in(t) * DB_TO_LINEAR(Expansion_Factor);\\n} else {\\n    Output_Signal = S_in(t);\\n}\\nOutput_Signal = INVERT_POLARITY_ON_EXPANSION_TRIGGER(Output_Signal);"
+                },
+                {
+                    "symbol": "⪢",
+                    "name": "FreqLink",
+                    "mode": "Band-target sidechain",
+                    "fx_logic": "Dominant frequency match",
+                    "use_case": "Avoids over-ducking across mix",
+                    "plugin_rec": "FabFilter Pro-MB w/ SC EQ match",
+                    "math_template": "// FreqLink: Sidechain intelligence at the spectral core\\nExternal_Sidechain_Input = Get_External_Signal();\\nDominant_Frequency = Analyze_Dominant_Frequency(External_Sidechain_Input, window: RAND_FLOAT(50, 200)ms);\\n\\nGain_Reduction_Curve = Create_Dynamic_EQ_Curve(Dominant_Frequency, depth: param_depth, Q: RAND_FLOAT(1.0, 5.0));\\nOutput_Signal = APPLY_DYNAMIC_EQ(S_in(t), Gain_Reduction_Curve);\\nOutput_Signal = PREVENT_OVER_DUCKING(Output_Signal, threshold: -6dB);"
+                },
+                {
+                    "symbol": "⧆",
+                    "name": "ChaosLatch",
+                    "mode": "Groove envelope-linked comp",
+                    "fx_logic": "Env follower tied to rhythm, not amplitude",
+                    "use_case": "MPC chaos resample / irregular phrasing",
+                    "plugin_rec": "ShaperBox Vol + EnvFollower",
+                    "math_template": "// ChaosLatch: Groove-driven, non-linear dynamic re-triggering\\nRhythmic_Envelope = Analyze_Rhythmic_Pattern(S_in(t), subdivision: RAND_CHOICE([8, 16, 32]));\\nComp_Trigger_Point = Map_Envelope_To_Gate_Trigger(Rhythmic_Envelope, threshold: param_threshold, offset: RAND_FLOAT(-0.01, 0.01));\\n\\nif (Comp_Trigger_Point) {\\n    Output_Signal = APPLY_COMPRESSION(S_in(t), ratio: RAND_FLOAT(1.5, 4.0), attack: 1ms);\\n    Output_Signal = RESAMPLE_CHAOTICALLY(Output_Signal, rate_mod: RAND_FLOAT(0.9, 1.1), bitcrush: RAND_INT(1, 4));\\n} else {\\n    Output_Signal = S_in(t);\\n}"
+                }
+            ]
+        };
+
+        function generateMathematicalRepresentation(glyph) {
+            let template = glyph.math_template;
+
+            // Handle escaped newlines
+            template = template.replace(/\\n/g, '\n');
+
+            // Replace RAND_FLOAT, RAND_INT, RAND_CHOICE with actual random numbers
+            let hydratedMathCode = template
+                .replace(/RAND_FLOAT\(([^,]+),\s*([^)]+)\)/g, (match, min, max) => RAND_FLOAT(parseFloat(min), parseFloat(max)).toFixed(3))
+                .replace(/RAND_INT\(([^,]+),\s*([^)]+)\)/g, (match, min, max) => RAND_INT(parseInt(min), parseInt(max)))
+                .replace(/RAND_CHOICE\(\[([^\]]+)\]\)/g, (match, choices) => {
+                    const choiceArray = choices.split(',').map(s => s.trim().replace(/'/g, ''));
+                    return RAND_CHOICE(choiceArray);
+                });
+
+            // Replace general dynamic parameters with fresh random values for EACH generation
+            hydratedMathCode = hydratedMathCode
+                .replace(/param_threshold/g, RAND_FLOAT(-40.0, -5.0).toFixed(2))
+                .replace(/param_ratio/g, RAND_FLOAT(1.5, 10.0).toFixed(2))
+                .replace(/param_attack/g, RAND_FLOAT(0.1, 200.0).toFixed(2))
+                .replace(/param_release/g, RAND_FLOAT(50.0, 2000.0).toFixed(2))
+                .replace(/param_mix/g, RAND_FLOAT(0.0, 1.0).toFixed(2))
+                .replace(/param_frequency/g, RAND_FLOAT(20.0, 20000.0).toFixed(0))
+                .replace(/param_depth/g, RAND_FLOAT(0.0, 1.0).toFixed(2));
+
+
+            return hydratedMathCode;
+        }
+
+        function synthesizeReality() {
+            // Select a random glyph from the library
+            const glyphs = STRUCTURR_CORE_DATA.glyphs_library;
+            const randomIndex = Math.floor(Math.random() * glyphs.length);
+            const selectedGlyph = glyphs[randomIndex];
+
+            // Update glyph info display
+            document.getElementById('glyphSymbol').textContent = selectedGlyph.symbol;
+            document.getElementById('glyphName').textContent = selectedGlyph.name;
+            document.getElementById('glyphMode').textContent = selectedGlyph.mode;
+            document.getElementById('glyphFXLogic').textContent = selectedGlyph.fx_logic;
+            document.getElementById('glyphUseCase').textContent = selectedGlyph.use_case;
+            document.getElementById('glyphPlugin').textContent = selectedGlyph.plugin_rec;
+
+            // Generate and display mathematical interpretation
+            document.getElementById('mathInterpretation').textContent = generateMathematicalRepresentation(selectedGlyph);
+        }
+
+        // Initialize on load
+        window.onload = () => {
+            synthesizeReality(); // Perform an initial synthesis immediately
+        };
+    </script>
+</body>
+</html>

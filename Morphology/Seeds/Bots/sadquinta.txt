@@ -1,0 +1,39 @@
+// SADQUANTA.JSFX
+// "Sad Boy Pirate Radio" × "Quantum Banana Cult"
+// Broadcasts existential feelings via warped fruit logic
+
+desc:SadQuantaFX
+slider1:FMDepth=0.2<0,1,0.01>FM Warble Depth
+slider2:QuantEntropy=0.5<0,1,0.01>Banana Swing Entropy
+slider3:PeelModRate=0.15<0.01,1,0.01>Fruit Peel LFO Rate (Hz)
+slider4:Saturation=0.3<0,1,0.01>Lo-bit Saturation
+
+@init
+phi = 0;
+pi = 3.1415927;
+
+@slider
+lfo_rate = PeelModRate;
+fm_amount = FMDepth * 0.01;
+sat = Saturation * 2;
+swing_offset = QuantEntropy * 0.1;
+
+@sample
+// Banana Peel Envelope Modulator (nonlinear swing gate)
+phi += 2 * pi * lfo_rate / srate;
+mod = sin(phi);
+
+// FM warble broadcast overlay
+spl0 += sin(mod * 7.0) * fm_amount;
+spl1 += sin(mod * 6.5) * fm_amount;
+
+// Lo-bit saturation curve
+spl0 = tanh(spl0 * (1 + sat));
+spl1 = tanh(spl1 * (1 + sat));
+
+// Quantized swing via entropy gate
+swing_gate = (mod > 0.5 + swing_offset || mod < -0.5 - swing_offset) ? 1 : 0;
+spl0 *= swing_gate;
+spl1 *= swing_gate;
+
+// Emotional Broadcast Ends Here

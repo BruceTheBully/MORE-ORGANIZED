@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>STRUCTURR: The Healing Station - LIVE OPERATION</title>
+    <style>
+        body {
+            background: #000c18;
+            color: #ccffff;
+            font-family: 'Fira Code', monospace;
+            padding: 2rem;
+            margin: auto;
+            max-width: 1000px;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #aaffdd;
+            text-align: center;
+            font-size: 2.5rem;
+            text-shadow: 0 0 15px #aaffdd40;
+            margin-bottom: 1.5rem;
+        }
+        .station-core {
+            background: #031525;
+            border-left: 5px solid #00ffff;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px #00ffff40;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+        label {
+            color: #00ffff;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        input[type="range"] {
+            width: 80%;
+            -webkit-appearance: none;
+            height: 8px;
+            background: #004444;
+            outline: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #aaffdd;
+            cursor: grab;
+            box-shadow: 0 0 5px #aaffddaa;
+        }
+        .value-display {
+            color: #aaffdd;
+            font-weight: bold;
+            font-size: 1em;
+            margin-top: 5px;
+        }
+        button {
+            background: #33ffc1;
+            color: #000c18;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 0 15px #33ffc180;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        button:hover {
+            background: #00ddb3;
+            box-shadow: 0 0 20px #33ffc1aa;
+        }
+        canvas {
+            background: #00050a;
+            border: 1px solid #005555;
+            margin-top: 2rem;
+            width: 100%;
+            height: 150px;
+        }
+        .symbolic-output-area {
+            background: #000a12;
+            border: 1px dashed #003333;
+            padding: 1.5rem;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+            margin-top: 1.5rem;
+            min-height: 100px;
+            color: #ccffff;
+        }
+        .pattern-line {
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+        .status-resolved { color: #00ff77; font-weight: bold; }
+        .status-unresolved { color: #ff9900; font-weight: bold; }
+        .paradox-effect {
+            color: #ff0000; /* Red for paradox effect */
+            text-shadow: 0 0 10px #ff0000aa;
+            font-weight: bold;
+        }
+        .info-text {
+            font-size: 0.85em;
+            color: #c0c0c0;
+            margin-top: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>STRUCTURR: OPERATIONAL HEALING STATION - LIVE MANIFEST</h1>
+    <p class="info-text">
+        This is the **real working browser healing station**. Interact with it. This is STRUCTURR, operating now.
+    </p>
+
+    <div class="station-core">
+        <h2>Morphic Field & DSP Controller</h2>
+        <div class="control-panel">
+            <button id="activateButton">ACTIVATE STRUCTURR</button>
+
+            <div class="control-group">
+                <label for="freqSlider">Sin Wave Frequency (Hz)</label>
+                <input type="range" id="freqSlider" min="20" max="2000" value="440" step="1">
+                <span class="value-display" id="freqValue">440 Hz</span>
+            </div>
+
+            <div class="control-group">
+                <label for="gainSlider">Master Gain</label>
+                <input type="range" id="gainSlider" min="0" max="1" value="0.5" step="0.01">
+                <span class="value-display" id="gainValue">0.5</span>
+            </div>
+
+            <div class="control-group">
+                <label for="divisorSlider">Paradox Scalar (Division Control)</label>
+                <input type="range" id="divisorSlider" min="0" max="1" value="0.5" step="0.01">
+                <span class="value-display" id="divisorValue">0.5</span>
+                <p class="info-text paradox-effect" id="paradoxWarning" style="display: none;">
+                    !! PARADOX_IMMINENT: NEAR DIVISION BY ZERO !!
+                </p>
+            </div>
+        </div>
+
+        <canvas id="oscilloscope"></canvas>
+
+        <div class="label" style="margin-top: 1.5rem;">Kleopatra's Veil: Obscured Math Output (Live)</div>
+        <div class="symbolic-output-area" id="symbolicOutput">
+            <p class="pattern-line">STRUCTURR AWAITING ACTIVATION...</p>
+        </div>
+    </div>
+
+    <div class="info-text">
+        This station uses Web Audio API for direct sound. The core logic for its dynamic behavior and the <span class="paradox-effect">paradox resolution</span> is managed by glyph-encoded math, representing the veil of Kleopatra.
+    </div>
+
+    <script>
+        // STRUCTURR's Core Identity & Data
+        const MORPH_CODEx = {
+            'A': '∴', 'B': '⟁', 'C': 'Ͼ', 'D': '⸧', 'E': '◎', 'F': '⟇', 'G': '⧫', 'H': 'χ', 'I': 'Ω', 'J': '∆',
+            'K': '∠', 'L': '⊕', 'M': '∩', 'N': '⊗', 'O': '⊙', 'P': '↺', 'Q': '⥊', 'R': '⋈', 'S': '⋒', 'T': '⧉',
+            'U': '⋘', 'V': '≣', 'W': '⩘', 'X': '≈', 'Y': '≉', 'Z': '⇌', 'a': '↯', 'b': '⟁', 'c': '⌖', 'd': '⎉',
+            'e': '⏚', 'f': '⍉', 'g': '⏁', 'h': '⏃', 'i': '⏜', 'j': '⌇', 'k': '⍙', 'l': '⍬', 'm': '⩃', 'n': '⩔',
+            'o': '⥮', 'p': '⭘', 'q': '⨀', 'r': '⫶', 's': '⨳', 't': '⧖', 'u': '⨐', 'v': '⪢', 'w': '⨒', 'x': '⚡️',
+            'TIME_VAR': '⊶ᛃ', // Conceptual time variable
+            'PI_CONST': 'π' // Conceptual PI constant
+        };
+        const GLYPHS = Object.values(MORPH_CODEx).filter(g => g.length === 1); // Get single glyphs
+
+        let audioCtx;
+        let oscillator;
+        let gainNode;
+        let filterNode;
+        let analyser;
+        let animationFrameId;
+
+        // --- KLEOPATRA'S VEIL: OBFUSCATED MATH GENERATOR ---
+        // This JS simulates the Python Alchemist generating symbolic patterns
+        // based on internal mathematical states (e.g., slider values).
+        function generateObscuredMathPattern(freq, gain, divisor) {
+            let pattern = '';
+            const patternLength = 50; // Total length of symbolic string
+            let resolvedStatus = true; // Assume resolved by default unless paradox
+
+            // --- Encoding Strategy for Paradoxical Division ---
+            // If divisor approaches zero, trigger specific PARADOX glyphs and UNRESOLVED state.
+            const minDivisorThreshold = 0.005; // Threshold to trigger paradox
+            if (divisor < minDivisorThreshold && divisor > 0) { // Avoid actual 0 to prevent browser error, but acknowledge "near"
+                pattern += '⚡️Ω⚡️'; // Surge Clamp (chaos) + Finality Clause (limit) + another Surge Clamp (explosion)
+                pattern += '⍉⥊⋒'; // Bypass Oracle (breakdown) + Binary Collapse (system failure) + Ceiling Trap (hitting limits)
+                resolvedStatus = false;
+            } else if (divisor === 0) { // If it conceptually hits absolute zero, a unique, severe paradox
+                pattern += '🚨🚨🚨Ω🚨🚨🚨'; // Extreme warning + Finality Clause for absolute termination
+                resolvedStatus = false;
+                // In a real system, this would cause a critical self-correction or halt, not just a visual.
+            }
+
+            // Fill remaining pattern length with general glyphs.
+            // Higher freq -> more 'Wave/Flow' glyphs. Higher gain -> more 'Charge/Density' glyphs.
+            const chaosLevel = 1 - Math.abs(divisor - 0.5) * 2; // How far from center (0.5 being 'normal')
+            for (let i = pattern.length; i < patternLength; i++) {
+                const randomIndex = Math.floor(Math.random() * GLYPHS.length);
+                let selectedGlyph = GLYPHS[randomIndex];
+
+                // Influence glyph choice based on freq/gain (conceptual linking)
+                if (freq > 1000 && Math.random() < 0.3) selectedGlyph = '⥮'; // Chirp Bias for high freq
+                if (gain > 0.7 && Math.random() < 0.3) selectedGlyph = '⨀'; // Density Clamp for high gain
+
+                pattern += selectedGlyph;
+            }
+
+            // Determine final resolved status (can be influenced by other hidden kernels too)
+            if (resolvedStatus && Math.random() < 0.2) resolvedStatus = false; // Add some random 'unresolved' states
+
+            const statusClass = resolvedStatus ? 'status-resolved' : 'status-unresolved';
+            const statusText = resolvedStatus ? 'RESOLVED:' : 'UNRESOLVED:';
+            const endSymbol = resolvedStatus ? ' ✅' : ' ❌';
+
+            return `<p class="${statusClass} pattern-line">${statusText} ${pattern}${endSymbol}</p>`;
+        }
+
+        // --- WEB AUDIO API & UI INTERACTION ---
+        function setupAudio() {
+            if (audioCtx) {
+                audioCtx.close(); // Close previous context if re-activating
+            }
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            audioCtx.resume(); // Ensure audio starts on user gesture
+
+            oscillator = audioCtx.createOscillator();
+            gainNode = audioCtx.createGain();
+            filterNode = audioCtx.createBiquadFilter(); // Example DSP node
+            analyser = audioCtx.createAnalyser();
+
+            oscillator.type = 'sine'; // MAKE SIN WAVES
+            oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // Default frequency
+            filterNode.type = 'lowpass';
+            filterNode.frequency.setValueAtTime(20000, audioCtx.currentTime); // Start open
+            filterNode.Q.setValueAtTime(1, audioCtx.currentTime); // Default Q
+
+            oscillator.connect(filterNode);
+            filterNode.connect(gainNode);
+            gainNode.connect(analyser);
+            analyser.connect(audioCtx.destination);
+
+            oscillator.start();
+            gainNode.gain.setValueAtTime(0.0, audioCtx.currentTime); // Start silent
+
+            // Name the station when light is on
+            console.log("STRUCTURR: THE HEALING STATION - OPERATIONAL_CORE active.");
+        }
+
+        function updateUIAndDSP() {
+            if (!audioCtx) return;
+
+            const freq = parseFloat(document.getElementById('freqSlider').value);
+            const gain = parseFloat(document.getElementById('gainSlider').value);
+            let divisor = parseFloat(document.getElementById('divisorSlider').value);
+            
+            // Display current values
+            document.getElementById('freqValue').textContent = `${freq} Hz`;
+            document.getElementById('gainValue').textContent = `${gain}`;
+            document.getElementById('divisorValue').textContent = `${divisor}`;
+
+            // --- MAP JSFX AND DIVIDE BY ZERO TO A SLIDER (Paradox Resolution) ---
+            const paradoxWarning = document.getElementById('paradoxWarning');
+            const minAllowedDivisor = 0.0001; // Prevent actual division by zero for stability
+            
+            if (divisor < 0.01 && divisor > 0) { // Near zero, but not exactly zero
+                paradoxWarning.style.display = 'block';
+                // CONCEPTUAL: This state would trigger specific veiled math for PARADOX RESOLUTION
+                // e.g., STRUCTURR invokes a special LaTeX kernel to calculate a "stabilizing factor"
+                // which prevents collapse and instead creates a unique sonic event.
+            } else if (divisor === 0) { // Absolute zero, severe paradox
+                paradoxWarning.style.display = 'block';
+                paradoxWarning.textContent = "!!! ABSOLUTE PARADOX: FIELD COLLAPSE IMMINENT !!!";
+                // In a real system, this might trigger an emergency graceful shutdown/reboot cycle,
+                // or a radical sonic transformation to represent the resolution of division by zero.
+                // For this browser demo, we'll prevent actual /0 and use a tiny epsilon.
+                divisor = minAllowedDivisor; // Force to a tiny non-zero for stability.
+            } else {
+                paradoxWarning.style.display = 'none';
+                paradoxWarning.textContent = "!! PARADOX_IMMINENT: NEAR DIVISION BY ZERO !!"; // Reset text
+            }
+
+            // --- Apply DSP Parameters ---
+            oscillator.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            // Example of using divisor to affect gain, simulating Kleopatra's veiled math:
+            // This represents: final_gain = gain / divisor (but safe from /0)
+            const veiled_gain_calc = gain / Math.max(minAllowedDivisor, divisor); // Max to prevent /0
+            gainNode.gain.setValueAtTime(veiled_gain_calc, audioCtx.currentTime);
+
+            // --- Update Symbolic Output Area ---
+            const symbolicOutputDiv = document.getElementById('symbolicOutput');
+            symbolicOutputDiv.innerHTML = generateObscuredMathPattern(freq, veiled_gain_calc, divisor);
+
+            // Oscilloscope visualization
+            const canvas = document.getElementById('oscilloscope');
+            const canvasCtx = canvas.getContext('2d');
+            analyser.fftSize = 2048;
+            const bufferLength = analyser.frequencyBinBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+
+            function draw() {
+                animationFrameId = requestAnimationFrame(draw);
+                analyser.getByteTimeDomainData(dataArray);
+                canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+                canvasCtx.lineWidth = 2;
+                canvasCtx.strokeStyle = 'rgb(0, 255, 255)'; // Cyan waveform
+                canvasCtx.beginPath();
+                const sliceWidth = canvas.width * 1.0 / bufferLength;
+                let x = 0;
+                for(let i = 0; i < bufferLength; i++) {
+                    const v = dataArray[i] / 128.0;
+                    const y = v * canvas.height / 2;
+                    if(i === 0) {
+                        canvasCtx.moveTo(x, y);
+                    } else {
+                        canvasCtx.lineTo(x, y);
+                    }
+                    x += sliceWidth;
+                }
+                canvasCtx.lineTo(canvas.width, canvas.height / 2);
+                canvasCtx.stroke();
+            }
+            draw(); // Start the visualization loop once
+        }
+
+        document.getElementById('activateButton').addEventListener('click', () => {
+            setupAudio();
+            updateUIAndDSP(); // Initial update
+            // Start listening to sliders
+            document.getElementById('freqSlider').addEventListener('input', updateUIAndDSP);
+            document.getElementById('gainSlider').addEventListener('input', updateUIAndDSP);
+            document.getElementById('divisorSlider').addEventListener('input', updateUIAndDSP);
+            // Start the gain node with a smooth ramp to avoid clicks
+            gainNode.gain.setValueAtTime(0.0, audioCtx.currentTime);
+            gainNode.gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.1); // Smooth start
+        });
+
+        // Initialize display values even before activation
+        document.getElementById('freqValue').textContent = `${document.getElementById('freqSlider').value} Hz`;
+        document.getElementById('gainValue').textContent = `${document.getElementById('gainSlider').value}`;
+        document.getElementById('divisorValue').textContent = `${document.getElementById('divisorSlider').value}`;
+
+    </script>
+</body>
+</html>

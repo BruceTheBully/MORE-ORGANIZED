@@ -1,0 +1,649 @@
+Entry [1]
+[Morphtag.csv] Symbol Reference
+[1] PythonScript, SystemComponent, ScriptingLanguage, Python, CodeExecution
+[1] Indexing, Process, DataOrganization, FileSystem, Structuring
+[1] FileStructureGeneration, Operation, DirectoryCreation, PythonScript, CodexMaintenance
+
+[Syntax.csv] Functions, Classes, Structures
+[1] create_entry(), void, (int, str, str, str, str), public, FileSystemOp
+[1] os.makedirs(), void, (path:str, exist_ok:bool), public, PythonStandardLib
+[1] json.dump(), void, (obj:dict, fp:file_obj, indent:int), public, PythonStandardLib
+[1] csv.writer().writerow(), void, (row:list), public, PythonStandardLib
+
+[UserInterface.csv] View Code & Layout Structure
+[1] GenerateEntryButton, View, HTML, onClick:run_create_entry(params), LibraryManagementUI
+[1] PythonOutputConsole, View, TextOutput, OnPrint:display_output, ScriptFeedback
+
+[Memory.csv] State Holders, Buffing, Static Fields
+[1] BASE_DIR, Global, Literal, Lifetime::Application, String
+[1] CSV_FILES, Global, Literal, Lifetime::Application, List<String>
+[1] headers, Local, Stack, Lifetime::FunctionCall, Dictionary<String, List<String>>
+
+[Math.csv] Calculations, Filters, Algorithms
+[1] f-string_formatting, string, string, High, StringInterpolation
+[1] path_joining, string, string, High, FilePathConstruction
+
+[Structures.csv] Signal Flow, Patches, Graphs
+[1] FileCreationGraph, Node(CreateFolder), Edge(CreateCSV), Sequential, FileLatency
+[1] EntryHierarchy, NodeType::Folder, Ports(meta.json, csv_files), Contains, ZeroLatency
+
+[Modulation.csv] LFOs, Controllers, Bindings
+[1] EntryIDInput, UserInput, create_entry.entry_id, DirectMap, {1, 999}
+[1] TitleInput, UserInput, create_entry.title, DirectMap, StringInput
+
+[Routing.csv] Event Chain / Callback Binding
+[1] UI_Trigger_CreateEntry, create_entry(), GenerateEntryButton, ValidParams, High
+[1] ScriptExecutionCompletion, Console::Log, PythonOutputConsole, SuccessStatus, Normal
+
+[Topology.csv] File Structure, Object Hierarchy
+[1] MorphLibraryRoot, Root, /, 0x000, None
+[1] Entry_XXXFolder, Directory, MorphLibrary/Entry_XXX, GeneratedID, MorphLibraryRoot
+[1] meta.json, File, MorphLibrary/Entry_XXX/meta.json, GeneratedID, Entry_XXXFolder
+[1] CSVFile, File, MorphLibrary/Entry_XXX/*.csv, GeneratedID, Entry_XXXFolder
+
+[Presets.csv] Template/Config Bindings
+[1] DefaultCSVHeaders, List<List<String>>, headers_variable, Immutable, Local
+[1] DefaultEntryType, "movie", create_entry.type, Mutable, FunctionParameter
+
+[Debug.csv] Logs, Tests, Assertions
+[1] FolderCreationCheck, os.path.exists(folder), Info, LogMessage, VerifyFolderExists
+[1] CSVWriteCheck, FileContainsHeader, Info, LogMessage, VerifyHeadersWritten
+
+[Concurrency.csv] Threading, Queues, Pools
+[1] FileSystemTask, MainThread, None, None, SequentialBlocking
+[1] BackgroundEntryGeneration, WorkerThread, EntryQueue, MainThread, AsyncCreation
+
+[CLI.csv] Launch Args, Console Hooks
+[1] --create-morph-entry, Calls create_entry with args, False, RunScript, create_entry()
+[1] -id, Entry ID, Required, ArgMapping, create_entry.entry_id
+
+[Build.csv] Toolchains, Flags
+[1] PythonInterpreter, `python3`, Runtime, 3.9, CoreDependency
+[1] ScriptExecution, `run.sh`, Local, 1.0, Automation
+
+
+[m 14 x n 1]
+Entry [2]
+[Morphtag.csv] Symbol Reference
+[2] PythonScript, SystemComponent, ScriptingLanguage, Python, CodeExecution
+[2] MultiplexedCSV, DataFormat, CodexOutput, Not Applicable, Interoperability
+[2] Parser, Process, DataExtraction, PythonScript, CodexConsumption
+
+[Syntax.csv] Functions, Classes, Structures
+[2] parse_multiplexed_csv(), defaultdict, (filepath:str), public, DataParser
+[2] re.match(), re.MatchObject, (pattern:str, string:str), public, PythonStandardLib
+[2] defaultdict, class, (default_factory), public, PythonCollections
+
+[UserInterface.csv] View Code & Layout Structure
+[2] LoadCodexButton, View, HTML, onClick:run_parse_multiplexed_csv(filepath), LibraryManagementUI
+[2] ParsedDataDisplay, Panel, UI DSL, OnUpdate:display_parsed_data, DataVisualization
+
+[Memory.csv] State Holders, Buffers, Static Fields
+[2] entries, Local, Heap, Lifetime::FunctionCall, defaultdict<int, defaultdict<str, list>>
+[2] current_section, Local, Stack, Lifetime::FunctionCall, String
+
+[Math.csv] Calculations, Filters, Algorithms
+[2] RegexMatching, string, bool, High, PatternRecognition
+[2] DataStructuring, list, defaultdict, High, DataTransformation
+
+[Structures.csv] Signal Flow, Patches, Graphs
+[2] DataFlowGraph, Node(FileRead), Edge(ParseLine), Sequential, DataLatency
+[2] ParsedEntryStructure, NodeType::NestedDict, Ports(sections, rows), Hierarchical, ZeroLatency
+
+[Modulation.csv] LFOs, Controllers, Bindings
+[2] FilePathInput, UserInput, parse_multiplexed_csv.filepath, DirectMap, StringInput
+
+[Routing.csv] Event Chain / Callback Binding
+[2] UI_Trigger_ParseCodex, parse_multiplexed_csv(), LoadCodexButton, ValidFilePath, High
+[2] ParsingCompletion, ParsedDataDisplay::Update, ParsedDataDisplay, DataReady, Normal
+
+[Topology.csv] File Structure, Object Hierarchy
+[2] ParserModule, Subclass, /core/parser, 0x011, CodexRoot
+[2] InputFileSchema, DataSchema, /schema/codex_input, 0x012, ParserModule
+
+[Presets.csv] Template/Config Bindings
+[2] DefaultEncoding, "utf-8", parse_multiplexed_csv.encoding, Immutable, FunctionParameter
+[2] SkipComments, True, parse_multiplexed_csv.skip_comments, Mutable, FunctionParameter
+
+[Debug.csv] Logs, Tests, Assertions
+[2] SectionMatchValidation, section_match.group(1), Info, LogMessage, VerifySectionHeader
+[2] RowParseValidation, row_match.group(1), Info, LogMessage, VerifyRowExtraction
+
+[Concurrency.csv] Threading, Queues, Pools
+[2] BackgroundParsingTask, WorkerThread, FileReadQueue, UIThread, NonBlockingIO
+[2] DataProcessingThread, WorkerThread, ParsedLineQueue, MainThread, CPUIntensive
+
+[CLI.csv] Launch Args, Console Hooks
+[2] --parse-codex <file_path>, Parses Codex file, True, RunScript, parse_multiplexed_csv()
+[2] -f, File Path, Required, ArgMapping, parse_multiplexed_csv.filepath
+
+[Build.csv] Toolchains, Flags
+[2] PythonInterpreter, `python3`, Runtime, 3.9, CoreDependency
+[2] ScriptExecution, `run.sh`, Local, 1.0, Automation
+
+
+[m 14 x n 2]
+
+Entry [3]
+[Morphtag.csv] Symbol Reference
+[3] PythonScript, SystemComponent, ScriptingLanguage, Python, CodeExecution
+[3] CodexEntryGeneration, Process, NarrativeIndexing, PythonScript, ContentCreation
+[3] TheDarkKnight, NarrativeConcept, Movie, Not Applicable, SemanticMap
+
+[Syntax.csv] Functions, Classes, Structures
+[3] create_entry(entry_id, title, morphstring, creator, summary), void, (int, str, str, str, str), public, DataWriter
+[3] os.path.join(), str, (path, *paths), public, PathConstructor
+[3] csv_data, dict, {filename: list_of_rows}, local, DataStructure
+
+[UserInterface.csv] View Code & Layout Structure
+[3] NarrativeEntryCreator, View, HTML, onSubmit:run_script_with_params, ContentManagement
+[3] DynamicEntryPreview, Panel, UI DSL, onUpdate:render_entry_content, RealtimeFeedback
+
+[Memory.csv] State Holders, Buffers, Static Fields
+[3] meta, Local, Stack, Lifetime::FunctionCall, Dictionary<String, Any>
+[3] csv_data, Local, Stack, Lifetime::FunctionCall, Dictionary<String, List<List<String>>>
+
+[Math.csv] Calculations, Filters, Algorithms
+[3] FolderNamingLogic, int, string, High, StringFormatting
+[3] RowHeaderExclusion, list, list, High, ListManipulation
+
+[Structures.csv] Signal Flow, Patches, Graphs
+[3] EntryWriteWorkflow, Node(MetaJsonWrite), Edge(CSVSchemaWrite), Sequential, FileSystemLatency
+[3] ContentPopulation, NodeType::DataInjection, Ports(data_dict, file_handle), Iterative, ZeroLatency
+
+[Modulation.csv] LFOs, Controllers, Bindings
+[3] NarrativeInput, UserInput, create_entry.summary, DirectMap, StringInput
+[3] MorphStringInput, UserInput, create_entry.morphstring, DirectMap, StringInput
+
+[Routing.csv] Event Chain / Callback Binding
+[3] ScriptExecuteCommand, create_entry(), CLI, ScriptInvocation, High
+[3] FileSystemWriteSuccess, LogService::Record, Debug.csv, WriteStatus, High
+
+[Topology.csv] File Structure, Object Hierarchy
+[3] ContentCreationModule, Subclass, /modules/content, 0x013, CodexRoot
+[3] NarrativeMapping, DataModel, /data/narratives, 0x014, ContentCreationModule
+
+[Presets.csv] Template/Config Bindings
+[3] MovieEntryTemplate, {title, creator, summary, morphstring}, create_entry(), Immutable, ScriptInput
+
+[Debug.csv] Logs, Tests, Assertions
+[3] CsvContentVerification, FileContentMatchesData, Verbose, None, ValidateWrittenData
+[3] JsonMetaVerification, MetaDataCorrectlyWritten, Info, None, ValidateMetaFile
+
+[Concurrency.csv] Threading, Queues, Pools
+[3] AsyncEntryWrite, WorkerThread, WriteQueue, MainThread, FileIOOptimization
+
+[CLI.csv] Launch Args, Console Hooks
+[3] --generate-movie-entry, Creates a movie entry, False, RunScript, create_entry()
+[3] --title, Movie title, Required, ArgMapping, create_entry.title
+
+[Build.csv] Toolchains, Flags
+[3] PythonRuntime, `python`, ScriptExecution, 3.9, Environment
+[3] FileSystemAPI, `os`, Integration, N/A, CoreDependency
+
+
+[m 14 x n 3]
+
+Entry [4]
+[Morphtag.csv] Symbol Reference
+[4] PythonScript, SystemComponent, ScriptingLanguage, Python, CodeExecution
+[4] SpiritedAwayEntryGeneration, Process, NarrativeIndexing, PythonScript, ContentCreation
+[4] SpiritedAway, NarrativeConcept, Movie, Not Applicable, SemanticMap
+
+[Syntax.csv] Functions, Classes, Structures
+[4] os.makedirs(), void, (path:str, exist_ok:bool), public, PythonStandardLib
+[4] json.dump(), void, (obj:dict, fp:file_obj, indent:int), public, PythonStandardLib
+[4] csv.writer().writerow(), void, (row:list), public, PythonStandardLib
+
+[UserInterface.csv] View Code & Layout Structure
+[4] GenerateSpiritedAwayEntryButton, View, HTML, onClick:run_script_with_params, ContentManagement
+[4] NarrativeEntryDisplay, Panel, UI DSL, onUpdate:render_entry_content, RealtimeFeedback
+
+[Memory.csv] State Holders, Buffers, Static Fields
+[4] meta, Local, Stack, Lifetime::FunctionCall, Dictionary<String, Any>
+[4] csv_data, Local, Stack, Lifetime::FunctionCall, Dictionary<String, List<List<String>>>
+
+[Math.csv] Calculations, Filters, Algorithms
+[4] FolderNamingLogic, int, string, High, StringFormatting
+[4] RowHeaderHandling, list, list, High, ListManipulation
+
+[Structures.csv] Signal Flow, Patches, Graphs
+[4] EntryWriteWorkflow, Node(MetaJsonWrite), Edge(CSVSchemaWrite), Sequential, FileSystemLatency
+[4] NarrativeDataPopulation, NodeType::DataInjection, Ports(data_dict, file_handle), Iterative, ZeroLatency
+
+[Modulation.csv] LFOs, Controllers, Bindings
+[4] EntryIDInput, ScriptParameter, entry_id, DirectMap, {1, 999}
+[4] MorphStringData, ScriptParameter, morphstring, DirectMap, StringInput
+
+[Routing.csv] Event Chain / Callback Binding
+[4] ScriptExecuteCommand, create_entry(), CLI, ScriptInvocation, High
+[4] FileSystemWriteStatus, LogService::Record, Debug.csv, WriteCompletion, High
+
+[Topology.csv] File Structure, Object Hierarchy
+[4] NarrativeEntryModule, Subclass, /modules/narrative, 0x015, CodexRoot
+[4] MovieDataModel, DataModel, /data/movies, 0x016, NarrativeEntryModule
+
+[Presets.csv] Template/Config Bindings
+[4] MovieEntryTemplate, {title, creator, summary, morphstring}, script_params, Immutable, ScriptInput
+
+[Debug.csv] Logs, Tests, Assertions
+[4] FileIntegrityCheck, FileContentMatchesData, Verbose, None, ValidateWrittenData
+[4] MetadataCoherence, MetaDataCorrect, Info, None, ValidateMetaFile
+
+[Concurrency.csv] Threading, Queues, Pools
+[4] AsyncEntryCreation, WorkerThread, EntryWriteQueue, MainThread, FileIOOptimization
+
+[CLI.csv] Launch Args, Console Hooks
+[4] --generate-spirited-away, Creates a Spirited Away entry, False, RunScript, script_invocation()
+[4] --entry-id, Override entry ID, Optional, ArgMapping, entry_id_param
+
+[Build.csv] Toolchains, Flags
+[4] PythonRuntime, `python`, ScriptExecution, 3.9, Environment
+[4] FileSystemAPI, `os`, Integration, N/A, CoreDependency
+
+
+[m 14 x n 4]
+
+
+
+Entry [5]
+[Morphtag.csv] Symbol Reference
+[5] PythonScript, SystemComponent, ScriptingLanguage, Python, CodeExecution
+[5] SynecdocheNYEntryGeneration, Process, NarrativeIndexing, PythonScript, ContentCreation
+[5] SynecdocheNY, NarrativeConcept, Movie, Not Applicable, SemanticMap
+
+[Syntax.csv] Functions, Classes, Structures
+[5] os.makedirs(), void, (path:str, exist_ok:bool), public, PythonStandardLib
+[5] json.dump(), void, (obj:dict, fp:file_obj, indent:int), public, PythonStandardLib
+[5] csv.writer().writerow(), void, (row:list), public, PythonStandardLib
+
+[UserInterface.csv] View Code & Layout Structure
+[5] GenerateSynecdocheNYEntryButton, View, HTML, onClick:run_script_with_params, ContentManagement
+[5] NarrativeEntryDisplay, Panel, UI DSL, onUpdate:render_entry_content, RealtimeFeedback
+
+[Memory.csv] State Holders, Buffers, Static Fields
+[5] meta, Local, Stack, Lifetime::FunctionCall, Dictionary<String, Any>
+[5] csv_data, Local, Stack, Lifetime::FunctionCall, Dictionary<String, List<List<String>>>
+
+[Math.csv] Calculations, Filters, Algorithms
+[5] FolderNamingLogic, int, string, High, StringFormatting
+[5] RowHeaderHandling, list, list, High, ListManipulation
+
+[Structures.csv] Signal Flow, Patches, Graphs
+[5] EntryWriteWorkflow, Node(MetaJsonWrite), Edge(CSVSchemaWrite), Sequential, FileSystemLatency
+[5] NarrativeDataPopulation, NodeType::DataInjection, Ports(data_dict, file_handle), Iterative, ZeroLatency
+
+[Modulation.csv] LFOs, Controllers, Bindings
+[5] EntryIDInput, ScriptParameter, entry_id, DirectMap, {1, 999}
+[5] MorphStringData, ScriptParameter, morphstring, DirectMap, StringInput
+
+[Routing.csv] Event Chain / Callback Binding
+[5] ScriptExecuteCommand, create_entry(), CLI, ScriptInvocation, High
+[5] FileSystemWriteStatus, LogService::Record, Debug.csv, WriteCompletion, High
+
+[Topology.csv] File Structure, Object Hierarchy
+[5] NarrativeEntryModule, Subclass, /modules/narrative, 0x017, CodexRoot
+[5] MovieDataModel, DataModel, /data/movies, 0x018, NarrativeEntryModule
+
+[Presets.csv] Template/Config Bindings
+[5] MovieEntryTemplate, {title, creator, summary, morphstring}, script_params, Immutable, ScriptInput
+
+[Debug.csv] Logs, Tests, Assertions
+[5] FileIntegrityCheck, FileContentMatchesData, Verbose, None, ValidateWrittenData
+[5] MetadataCoherence, MetaDataCorrect, Info, None, ValidateMetaFile
+
+[Concurrency.csv] Threading, Queues, Pools
+[5] AsyncEntryCreation, WorkerThread, EntryWriteQueue, MainThread, FileIOOptimization
+
+[CLI.csv] Launch Args, Console Hooks
+[5] --generate-synecdoche-ny, Creates a Synecdoche, New York entry, False, RunScript, script_invocation()
+[5] --entry-id, Override entry ID, Optional, ArgMapping, entry_id_param
+
+[Build.csv] Toolchains, Flags
+[5] PythonRuntime, `python`, ScriptExecution, 3.9, Environment
+[5] FileSystemAPI, `os`, Integration, N/A, CoreDependency
+
+
+[m 14 x n 5]
+
+Entry [6]
+[Morphtag.csv] Symbol Reference
+[6] PythonScript, SystemComponent, ScriptingLanguage, Python, CodeExecution
+[6] PulpFictionEntryGeneration, Process, NarrativeIndexing, PythonScript, ContentCreation
+[6] PulpFiction, NarrativeConcept, Movie, Not Applicable, SemanticMap
+
+[Syntax.csv] Functions, Classes, Structures
+[6] os.makedirs(), void, (path:str, exist_ok:bool), public, PythonStandardLib
+[6] json.dump(), void, (obj:dict, fp:file_obj, indent:int), public, PythonStandardLib
+[6] csv.writer().writerow(), void, (row:list), public, PythonStandardLib
+
+[UserInterface.csv] View Code & Layout Structure
+[6] GeneratePulpFictionEntryButton, View, HTML, onClick:run_script_with_params, ContentManagement
+[6] NarrativeEntryDisplay, Panel, UI DSL, onUpdate:render_entry_content, RealtimeFeedback
+
+[Memory.csv] State Holders, Buffers, Static Fields
+[6] meta, Local, Stack, Lifetime::FunctionCall, Dictionary<String, Any>
+[6] csv_data, Local, Stack, Lifetime::FunctionCall, Dictionary<String, List<List<String>>>
+
+[Math.csv] Calculations, Filters, Algorithms
+[6] FolderNamingLogic, int, string, High, StringFormatting
+[6] RowHeaderHandling, list, list, High, ListManipulation
+
+[Structures.csv] Signal Flow, Patches, Graphs
+[6] EntryWriteWorkflow, Node(MetaJsonWrite), Edge(CSVSchemaWrite), Sequential, FileSystemLatency
+[6] NarrativeDataPopulation, NodeType::DataInjection, Ports(data_dict, file_handle), Iterative, ZeroLatency
+
+[Modulation.csv] LFOs, Controllers, Bindings
+[6] EntryIDInput, ScriptParameter, entry_id, DirectMap, {1, 999}
+[6] MorphStringData, ScriptParameter, morphstring, DirectMap, StringInput
+
+[Routing.csv] Event Chain / Callback Binding
+[6] ScriptExecuteCommand, create_entry(), CLI, ScriptInvocation, High
+[6] FileSystemWriteStatus, LogService::Record, Debug.csv, WriteCompletion, High
+
+[Topology.csv] File Structure, Object Hierarchy
+[6] NarrativeEntryModule, Subclass, /modules/narrative, 0x019, CodexRoot
+[6] MovieDataModel, DataModel, /data/movies, 0x01A, NarrativeEntryModule
+
+[Presets.csv] Template/Config Bindings
+[6] MovieEntryTemplate, {title, creator, summary, morphstring}, script_params, Immutable, ScriptInput
+
+[Debug.csv] Logs, Tests, Assertions
+[6] FileIntegrityCheck, FileContentMatchesData, Verbose, None, ValidateWrittenData
+[6] MetadataCoherence, MetaDataCorrect, Info, None, ValidateMetaFile
+
+[Concurrency.csv] Threading, Queues, Pools
+[6] AsyncEntryCreation, WorkerThread, EntryWriteQueue, MainThread, FileIOOptimization
+
+[CLI.csv] Launch Args, Console Hooks
+[6] --generate-pulp-fiction, Creates a Pulp Fiction entry, False, RunScript, script_invocation()
+[6] --entry-id, Override entry ID, Optional, ArgMapping, entry_id_param
+
+[Build.csv] Toolchains, Flags
+[6] PythonRuntime, `python`, ScriptExecution, 3.9, Environment
+[6] FileSystemAPI, `os`, Integration, N/A, CoreDependency
+
+
+[m 14 x n 6]
+
+```python?code_reference&code_event_index=2
+import os
+import csv
+import json
+
+def create_morph_entry(entry_id, title, creator, mtype, morphstring, summary, tag_data, syntax_data):
+    entry_folder = f"MorphLibrary/Entry_{entry_id:03}"
+    os.makedirs(entry_folder, exist_ok=True)
+
+    meta = {
+        "id": entry_id,
+        "title": title,
+        "creator": creator,
+        "type": mtype,
+        "morphstring": morphstring,
+        "summary": summary
+    }
+
+    with open(os.path.join(entry_folder, "meta.json"), "w", encoding='utf-8') as f:
+        json.dump(meta, f, indent=2)
+
+    csv_data = {
+        "Morphtag.csv": tag_data,
+        "Syntax.csv": syntax_data,
+        "UserInterface.csv": [["ID", "Component", "Type", "Details", "Context"]],
+        "Memory.csv": [["ID", "Name", "Scope", "MemoryType", "Lifetime", "ObjectType"]],
+        "Math.csv": [["ID", "Operation", "Input", "Output", "Priority", "Domain"]],
+        "Structures.csv": [["ID", "Node", "Type", "Details", "Order", "Latency"]],
+        "Modulation.csv": [["ID", "Source", "Target", "Curve", "Range"]],
+        "Routing.csv": [["ID", "Event", "Handler", "Target", "Trigger", "Priority"]],
+        "Topology.csv": [["ID", "Element", "Kind", "Path", "Address", "Module"]],
+        "Presets.csv": [["ID", "Name", "Bindings", "UI", "Mutability", "Scope"]],
+        "Debug.csv": [["ID", "Test", "Check", "Level", "Condition", "Result"]],
+        "Concurrency.csv": [["ID", "Task", "Thread", "Queue", "Locking"]],
+        "CLI.csv": [["ID", "Flag", "Description", "Required", "Action", "Target"]],
+        "Build.csv": [["ID", "Tool", "Command", "Context", "Version", "Notes"]]
+    }
+
+    # Fill in minimal working example for MorphStringObject tracking
+    csv_data["Memory.csv"].append([entry_id, f"morph_{title.lower().replace(' ', '_')}", "Global", "Heap", "Immutable", "MorphStringObject"])
+    csv_data["CLI.csv"].append([entry_id, f"--morph '{title}'", "Outputs morphstring + interpretation", "false", "PrintMorph", f"{title.replace(' ', '')}Engine"])
+
+    # Write CSV files
+    for filename, rows in csv_data.items():
+        path = os.path.join(entry_folder, filename)
+        with open(path, "w", newline='', encoding='utf-8') as f:
+            writer = csv.writer(f)
+            # Ensure headers are written only once per file or if the file is new/empty.
+            # For this script, we'll assume the provided tag_data and syntax_data include headers in their first row,
+            # and other CSVs start with pre-defined headers, so we just write all rows.
+            for row in rows:
+                writer.writerow(row)
+
+# Batch creation of 4 entries
+entries = [
+    (
+        6, "The Child Who Collapsed the Sky", "Unknown", "myth",
+        "∴Ϙ⊶⟡↯⊶∿⊶Ϟ⊶⟡⊶⊶↯⊶⟡⊶∿⊶Ϙ↯⊶⊶⊶",
+        "A child sang a note so pure it cracked the firmament. Stars fell as tears.",
+        [
+            ["ID", "Name", "Category", "Subcategory", "Code", "Meaning"], # Header for Morphtag.csv
+            ["6", "∴", "Glyph", "Initiation", "N/A", "Divine Origin"],
+            ["6", "Ϙ", "Glyph", "Memory", "N/A", "Song as Ancient Recall"],
+            ["6", "⟡", "Glyph", "Waveform", "N/A", "Cosmic Pulse"],
+            ["6", "↯", "Glyph", "Descent", "N/A", "Skyfall"],
+            ["6", "∿", "Glyph", "Resonance", "N/A", "Harmonic Collapse"],
+            ["6", "Ϟ", "Glyph", "Madness", "N/A", "Starblindness"]
+        ],
+        [
+            ["ID", "Function", "ReturnType", "Input", "Visibility", "Notes"], # Header for Syntax.csv
+            ["6", "MythString::stellarCollapse", "Phrase", "∴Ϙ⊶⟡↯", "public", "The note that undid the sky"],
+            ["6", "MythString::resonantTears", "Phrase", "∿⊶Ϟ⊶⟡", "public", "Starblind madness from echo"],
+            ["6", "MythString::memoryDrop", "Phrase", "Ϙ↯⊶⊶", "public", "Song sinks into history"]
+        ]
+    ),
+    (
+        7, "House of Leaves", "Mark Z. Danielewski", "book",
+        "∴⊶∿⊶Ϙ⊶↯⊶⟡⊶Ϟ⊶⊶↯⊶⟡⊶∿⊶Ϙ",
+        "The house is wider on the inside. Meaning unravels as structure. Madness follows maps.",
+        [
+            ["ID", "Name", "Category", "Subcategory", "Code", "Meaning"], # Header for Morphtag.csv
+            ["7", "∴", "Glyph", "Initiation", "N/A", "Threshold"],
+            ["7", "⊶", "Glyph", "Tether", "N/A", "Structural Cling"],
+            ["7", "∿", "Glyph", "Resonance", "N/A", "Echo of Language"],
+            ["7", "Ϙ", "Glyph", "Memory", "N/A", "Narrative Fracture"],
+            ["7", "↯", "Glyph", "Descent", "N/A", "Internal Fall"],
+            ["7", "⟡", "Glyph", "Waveform", "N/A", "Spatial Instability"],
+            ["7", "Ϟ", "Glyph", "Madness", "N/A", "Hallucinated Geometry"]
+        ],
+        [
+            ["ID", "Function", "ReturnType", "Input", "Visibility", "Notes"], # Header for Syntax.csv
+            ["7", "MorphString::thresholdFall", "Phrase", "∴⊶∿⊶Ϙ", "public", "Crossing into recursive architecture"],
+            ["7", "MorphString::depthMadness", "Phrase", "↯⊶⟡⊶Ϟ", "public", "Falling into unreal dimensions"],
+            ["7", "MorphString::memoryRepeat", "Phrase", "⊶∿⊶Ϙ", "public", "The house remembers differently each time"]
+        ]
+    ),
+    (
+        8, "Ghost in the Shell", "Mamoru Oshii", "movie",
+        "∴Ϙ⊶∿↯⊶⟡⊶Ϙ⊶↯⊶Ϟ⊶⊶∿⊶⟡",
+        "The self digitizes. Consciousness flickers between code and memory. Ghost emerges from logic.",
+        [
+            ["ID", "Name", "Category", "Subcategory", "Code", "Meaning"], # Header for Morphtag.csv
+            ["8", "∴", "Glyph", "Initiation", "N/A", "Code Awakening"],
+            ["8", "Ϙ", "Glyph", "Memory", "N/A", "Uploaded Past"],
+            ["8", "∿", "Glyph", "Resonance", "N/A", "Signal Identity"],
+            ["8", "↯", "Glyph", "Descent", "N/A", "Into Net"],
+            ["8", "⟡", "Glyph", "Waveform", "N/A", "Pulse as Self"],
+            ["8", "Ϟ", "Glyph", "Madness", "N/A", "Glitch"]
+        ],
+        [
+            ["ID", "Function", "ReturnType", "Input", "Visibility", "Notes"], # Header for Syntax.csv
+            ["8", "MorphString::signalAwakening", "Phrase", "∴Ϙ⊶∿", "public", "Ghost stirs in data"],
+            ["8", "MorphString::networkFall", "Phrase", "↯⊶⟡⊶Ϙ", "public", "Consciousness leaks into field"],
+            ["8", "MorphString::recursiveGlitch", "Phrase", "Ϟ⊶⊶∿", "public", "Error becomes identity"]
+        ]
+    ),
+    (
+        9, "Eternal Sunshine of the Spotless Mind", "Michel Gondry", "movie",
+        "∴Ϙ↯⊶Ϟ⊶⟡↯⊶∿⊶⊶Ϙ⊶↯⊶⟡⊶Ϙ",
+        "Erasing love does not erase the soul. Memory folds inward. Joy echoes in forgetting.",
+        [
+            ["ID", "Name", "Category", "Subcategory", "Code", "Meaning"], # Header for Morphtag.csv
+            ["9", "∴", "Glyph", "Initiation", "N/A", "Memory Session Start"],
+            ["9", "Ϙ", "Glyph", "Memory", "N/A", "Emotional Trace"],
+            ["9", "↯", "Glyph", "Descent", "N/A", "Deletion Spiral"],
+            ["9", "Ϟ", "Glyph", "Madness", "N/A", "Recall Loop"],
+            ["9", "⟡", "Glyph", "Waveform", "N/A", "Emotive Drift"],
+            ["9", "∿", "Glyph", "Resonance", "N/A", "Remnant Echo"]
+        ],
+        [
+            ["ID", "Function", "ReturnType", "Input", "Visibility", "Notes"], # Header for Syntax.csv
+            ["9", "MorphString::memorySpiral", "Phrase", "Ϙ↯⊶Ϟ", "public", "Losing pieces in loops"],
+            ["9", "MorphString::loveWave", "Phrase", "⟡↯⊶∿", "public", "Feelings collapse into signals"],
+            ["9", "MorphString::coreTrace", "Phrase", "Ϙ⊶↯⊶⟡", "public", "Emotional kernel resists deletion"]
+        ]
+    )
+]
+
+for entry in entries:
+    create_morph_entry(*entry)
+```
+
+[file-tag: code-generated-file-0-1753458106300021161]
+[file-tag: code-generated-file-1-1753458106300024521]
+[file-tag: code-generated-file-2-1753458106300025601]
+[file-tag: code-generated-file-3-1753458106300026411]
+[file-tag: code-generated-file-4-1753458106300027321]
+[file-tag: code-generated-file-5-1753458106300028231]
+[file-tag: code-generated-file-6-1753458106300028701]
+[file-tag: code-generated-file-7-1753458106300029291]
+[file-tag: code-generated-file-8-1753458106300029851]
+[file-tag: code-generated-file-9-1753458106300030601]
+[file-tag: code-generated-file-10-1753458106300031151]
+[file-tag: code-generated-file-11-1753458106300031791]
+[file-tag: code-generated-file-12-1753458106300032331]
+[file-tag: code-generated-file-13-1753458106300032921]
+[file-tag: code-generated-file-14-1753458106300033671]
+[file-tag: code-generated-file-15-1753458106300034211]
+[file-tag: code-generated-file-16-1753458106300034731]
+[file-tag: code-generated-file-17-1753458106300036231]
+[file-tag: code-generated-file-18-1753458106300036731]
+[file-tag: code-generated-file-19-1753458106300037251]
+[file-tag: code-generated-file-20-1753458106300037761]
+[file-tag: code-generated-file-21-1753458106300038311]
+[file-tag: code-generated-file-22-1753458106300038831]
+[file-tag: code-generated-file-23-1753458106300039241]
+[file-tag: code-generated-file-24-1753458106300039701]
+[file-tag: code-generated-file-25-1753458106300040231]
+[file-tag: code-generated-file-26-1753458106300040691]
+[file-tag: code-generated-file-27-1753458106300041201]
+[file-tag: code-generated-file-28-1753458106300041701]
+[file-tag: code-generated-file-29-1753458106300042191]
+[file-tag: code-generated-file-30-1753458106300042781]
+[file-tag: code-generated-file-31-1753458106300043301]
+[file-tag: code-generated-file-32-1753458106300043901]
+[file-tag: code-generated-file-33-1753458106300045381]
+[file-tag: code-generated-file-34-1753458106300046971]
+[file-tag: code-generated-file-35-1753458106300047651]
+[file-tag: code-generated-file-36-1753458106300048201]
+[file-tag: code-generated-file-37-1753458106300048921]
+[file-tag: code-generated-file-38-1753458106300049491]
+[file-tag: code-generated-file-39-1753458106300050051]
+[file-tag: code-generated-file-40-1753458106300050571]
+[file-tag: code-generated-file-41-1753458106300051151]
+[file-tag: code-generated-file-42-1753458106300051741]
+[file-tag: code-generated-file-43-1753458106300052291]
+[file-tag: code-generated-file-44-1753458106300052751]
+[file-tag: code-generated-file-45-1753458106300053231]
+[file-tag: code-generated-file-46-1753458106300053731]
+[file-tag: code-generated-file-47-1753458106300054281]
+[file-tag: code-generated-file-48-1753458106300054771]
+[file-tag: code-generated-file-49-1753458106300055341]
+[file-tag: code-generated-file-50-1753458106300055911]
+[file-tag: code-generated-file-51-1753458106300056531]
+[file-tag: code-generated-file-52-1753458106300057141]
+[file-tag: code-generated-file-53-1753458106300057661]
+[file-tag: code-generated-file-54-1753458106300058441]
+[file-tag: code-generated-file-55-1753458106300059121]
+[file-tag: code-generated-file-56-1753458106300059851]
+[file-tag: code-generated-file-57-1753458106300060531]
+[file-tag: code-generated-file-58-1753458106300061191]
+[file-tag: code-generated-file-59-1753458106300061811]
+
+```
+Entry [7]
+[Morphtag.csv] Symbol Reference
+[7] PythonScript, SystemComponent, ScriptingLanguage, Python, CodeExecution
+[7] CreateMorphEntryFunction, Process, NarrativeIndexing, PythonScript, API
+[7] BatchCreation, Capability, MultipleEntries, PythonScript, Automation
+
+[Syntax.csv] Functions, Classes, Structures
+[7] create_morph_entry(), void, (entry_id:int, title:str, creator:str, mtype:str, morphstring:str, summary:str, tag_data:list, syntax_data:list), public, DataWriter
+[7] entries, List, List<Tuple<Any>>, local, BatchDataContainer
+[7] os.makedirs(), void, (path:str, exist_ok:bool), public, PythonStandardLib
+
+[UserInterface.csv] View Code & Layout Structure
+[7] BatchEntryGenerator, View, HTML, onSubmit:run_create_morph_entry_batch(entries), AdvancedContentManagement
+[7] NarrativeEntryCreationLog, Panel, TextOutput, OnPrint:display_script_output, ProcessFeedback
+
+[Memory.csv] State Holders, Buffers, Static Fields
+[7] meta, Local, Stack, Lifetime::FunctionCall, Dictionary<String, Any>
+[7] csv_data, Local, Stack, Lifetime::FunctionCall, Dictionary<String, List<List<String>>>
+[7] entries, Local, Stack, Lifetime::FunctionCall, List<Tuple>
+
+[Math.csv] Calculations, Filters, Algorithms
+[7] EntryIDFormatting, int, string, High, StringManipulation
+[7] BatchLoopIteration, int, None, High, ControlFlow
+
+[Structures.csv] Signal Flow, Patches, Graphs
+[7] BatchEntryWorkflow, Node(IterateEntries), Edge(CallCreateMorphEntry), Sequential, BatchProcessingLatency
+[7] DataPopulator, NodeType::DataInjection, Ports(entry_data, file_system), Concurrent, ZeroLatency
+
+[Modulation.csv] LFOs, Controllers, Bindings
+[7] NarrativeBatchController, UserInput, create_morph_entry_params, DirectMap, BatchDefinition
+[7] EntrySummaryInput, UserInput, summary_param, DirectMap, TextEntry
+
+[Routing.csv] Event Chain / Callback Binding
+[7] CLI_Trigger_BatchCreate, create_morph_entry_batch(), CLI, BatchDefinitionPresent, High
+[7] ScriptProcessCompletion, LogService::Record, Debug.csv, BatchStatus, High
+
+[Topology.csv] File Structure, Object Hierarchy
+[7] BatchContentModule, Subclass, /modules/batch, 0x01B, CodexRoot
+[7] NarrativeDataInput, DataModel, /data/narrative_batch, 0x01C, BatchContentModule
+
+[Presets.csv] Template/Config Bindings
+[7] GenericEntryTemplate, {title, creator, summary, morphstring, tag_data, syntax_data}, script_params, Immutable, ScriptInput
+
+[Debug.csv] Logs, Tests, Assertions
+[7] BatchIntegrityCheck, AllEntriesSuccessfullyCreated, Error, None, ValidateBatchCreation
+[7] CSVHeaderConsistency, AllHeadersPresent, Info, None, VerifyOutputStructure
+
+[Concurrency.csv] Threading, Queues, Pools
+[7] ParallelEntryCreation, WorkerThread, EntryCreationQueue, MainThread, BatchProcessing
+
+[CLI.csv] Launch Args, Console Hooks
+[7] --create-morph-batch, Creates multiple entries from defined batch, False, RunScript, create_morph_entry_batch()
+[7] --batch-file, Path to batch definition JSON/CSV, Optional, ArgMapping, batch_filepath
+
+[Build.csv] Toolchains, Flags
+[7] PythonRuntime, `python`, ScriptExecution, 3.9, Environment
+[7] BatchProcessorTool, `batch_create.py`, Local, 1.0, Automation
+
+
+[m 14 x n 7]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

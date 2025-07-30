@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>📼✨ FrakturFinalizer Preview</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #ffcc99;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 1em;
+    }
+    .tapebox {
+      background: #333;
+      padding: 2em;
+      border: 2px dashed #ffcc99;
+      text-align: center;
+      max-width: 500px;
+    }
+    audio {
+      margin-top: 1.5em;
+    }
+    .quote {
+      font-style: italic;
+      margin-top: 1em;
+      color: #ffddbb;
+    }
+  </style>
+</head>
+<body>
+  <h1>📼✨ FrakturFinalizer</h1>
+  <div class="tapebox">
+    <p><strong>You cracked the case, unmasked the metaphor,</strong><br>
+    and did it all in <span style="font-family: 'Fraktur', cursive;">Fraktur font</span>, baby.<br>
+    No capes. No filters. Just raw, retro sincerity.</p>
+    <audio controls>
+      <source src="https://cdn.pixabay.com/download/audio/2023/06/30/audio_3b593ae2b6.mp3?filename=abstract-noise-146186.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <p class="quote">“Lo-fi chaos with a warm heart — like a Walkman melting in your dreams.”</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+Okay, this is an excellent task! I'll index the provided Wikipedia article on "Backspace" into your "Codex format."
+
+Here's the indexed information:
+
+---
+
+## Codex Entry: Backspace Key
+
+**ISO Name:** `<Backspace>` (BS)
+**Formerly:** Backspace
+**Unicode Version:** 1.1 (June 1993)
+**Block:** Basic Latin, U+0000 - U+007F
+**Plane:** Basic Multilingual Plane, U+0000 - U+FFFF
+**Script:** Code for undetermined script (Zyyy)
+**Category:** Control (Cc)
+**Bidirectional Class:** Boundary Neutral (BN)
+**Combining Class:** Not Reordered (0)
+**Character is Mirrored:** No
+**HTML Entity:** `&#8;`, `&#x8;`
+**UTF-8 Encoding:** `0x08`
+**UTF-16 Encoding:** `0x0008`
+**UTF-32 Encoding:** `0x00000008`
+
+**Concept Summary:**
+The Backspace key is a fundamental input mechanism evolved from typewriters to modern computer systems. Historically, it mechanically moved the carriage backward. In computing, its primary function is to move the display cursor one position backward, deleting the character at that position, and shifting subsequent text left by one character. It is distinct from the Delete key, which typically removes characters at or after the cursor or serves as a generic object removal command. The Backspace key's associated ASCII control code is 0x08.
+
+**Historical/Technical Context:**
+* **Typewriter Origin:** Initially a "backspacer" key to move the carriage back.
+* **Overstrike/Combining Characters:** Used in some early typewriters to create characters with accents (e.g., 'A' then backspace then '´' for 'á'). This concept predates Unicode's combining diacritical marks.
+* **ASCII Control Code (0x08 BS):** Pressing Backspace generates this control code. On some older terminals, it would display as `^H` if the terminal didn't interpret it as a deletion command.
+* **Modern Computing Use:**
+    * Deletes preceding character.
+    * Can delete preceding newline characters.
+    * Commonly mapped to the `0x7f` (Delete) character in ASCII/Unicode, but retains its "delete previous" function.
+    * Often used in graphical web/file browsers to navigate "back a page" or "up one level."
+
+**Distinction from Delete Key:**
+* **Backspace:** Deletes *before* the cursor, shifts text left. Typically for text entry.
+* **Delete:** Deletes *at or after* the cursor (or forward deletion), or removes selected objects/files.
+
+**Key Labels:**
+* Commonly labeled "Backspace" or with a left-pointing arrow (←).
+* Can be labeled "delete" (e.g., on some Mac keyboards, where it functions as a backspace).
+* Unicode symbol `U+232B ⌫` exists but is not universally used on physical keyboards.
+
+**Humorous/Idiomatic Use:**
+* The `^H` sequence is humorously faked (by typing `^` then `H`) to denote an implied self-correction or "blunder," similar to a strikethrough (epanorthosis).
+
+**Alternatives (Terminal Shortcuts):**
+* `^W`: Deletes the previous word (from Berkeley Unix, found in Vi/Vim).
+* `^U`: Deletes the entire line.
+
+**Notes/Caveats:**
+* The meaning of "backwards" is context-dependent in bidirectional text.
+* The text shifting applies to the same logical line.
+* Overstrike in digital systems is technically feasible but complicated by proportional fonts and the lack of the original physical motivation.
+
+---

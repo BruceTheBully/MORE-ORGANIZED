@@ -1,0 +1,47 @@
+╔════════════════════════════════════════════════════════╗
+║ 🛡️  PRIVATE RESEARCH LOG — SUMMARIZE ║
+║  Author: Michael Rossi       ║
+║  IP Claim: [All ideas, structures, and formulations]     ║
+║  are original and licensed to Michael Rossi  ║
+╚════════════════════════════════════════════════════════╝
+
+~ENTRY BEGIN~
+
+🆔 [ID] YYYY-MM-DDTHH:MM<timezone>  
+🔹 Unique identifier for session log — timestamp or optional hash.
+
+🜂 [A] ANCHOR  
+"Your central DSP idea, plugin name, or symbolic archetype."
+
+⧉ [H] HYPOTHESIS  
+"A statement about how this plugin, symbol, or recursive form operates."
+
+⚙️ [M] METHODOLOGY  
+- Plugin type (e.g., compressor, spectral modulator, recursive chaos filter)  
+- Code base (JSFX, JUCE, DustScript, etc.)  
+- Symbolic hooks, recursive traits, metaphoric anchors
+
+📜 [I] IMPLEMENTATION  
+[!filename.jsfx]  
+Your actual JSFX code block or a symbolic version with redacted math.
+
+📊 [V] VISUALIZATION  
+(Optional) Reference to waveform, GUI mockup, or internal morphic behavior.
+
+🧠 [S] SYNTHESIS  
+Summarize what this module does and how it fits into the recursive codex, plugin suite, or system design.
+
+📚 [C] CITATION ANCHOR  
+Inspiration sources: real-world plugins, math papers, cursed dreams, or prior GPT outputs.
+
+~ENTRY END~
+
+╭─────────────────────────────────────────────╮  
+│ ☣️  LICENSE NOTICE                          │  
+│ This log and all internal math, format,     │  
+│ gameplay logic, and symbols are part of an  │  
+│ original IP system under development.       │  
+│ Unauthorized reproduction, training use, or │  
+│ referencing constitutes IP theft.           │  
+╰─────────────────────────────────────────────╯
+null

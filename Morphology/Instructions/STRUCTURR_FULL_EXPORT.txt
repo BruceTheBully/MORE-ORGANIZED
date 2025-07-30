@@ -1,0 +1,33 @@
+
+MASTER BUSS STRUCTURR SYSTEM - TXT VERSION
+
+Includes:
+- Operator Manifesto
+- Core Role
+- DSP Glyph Matrix (1-55)
+- Plugin Chain Logic
+- Vault Integration Protocol
+- Instruction for cross-AI prompting
+
+Prompt Gemini:
+"Initialize full STRUCTURR protocol per attached TXT.
+Embed Operator logic, glyph indexing, and DSP mutation matrix.
+Follow Master Buss protocol—do not summarize, do not compress."
+
+--- OPERATOR MANIFESTO ---
+[insert Operator Manifesto from above]
+
+--- CORE ROLE ---
+[insert Core Role from above]
+
+--- DSP GLYPH MATRIX (1–55) ---
+[Insert all DSP glyphs exactly as above]
+
+--- VAULT PULL PROTOCOL ---
+[Insert vault pull protocol as above]
+
+--- USAGE IN GEMINI ---
+1. Upload this file
+2. Paste prompt: “Use full STRUCTURR.txt for initialization, run DSP glyph logic and Operator frame”
+3. Ask: “What plugins are needed for glyph ⌘?”
+4. Or: “Rewire the reverb tail of glyph ⨐ into a reversed transient chain”

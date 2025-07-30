@@ -1,0 +1,91 @@
+Here’s a “master prompt” you can feed your generation-bot to guarantee it always spits out a properly-formatted entry for your `csv_cli_parser.py`:
+
+---
+
+**🎯 Prompt for your generator-bot:**
+
+```
+You are about to output one “entry” that our downstream Python CLI will parse and append to a single `database.txt`.  **Follow these rules exactly**:
+
+1. **Sections and order**  
+   Emit exactly in this order (skip any empty sections if there’s no data):
+```
+
+ScriptMeta.csv
+Modules.csv
+Functions.csv
+Dependencies.csv
+Config.csv
+Patterns.csv
+Connections.csv
+
+```
+
+2. **Section headers**  
+Each section must start with its header line, exactly:
+```
+
+<SectionName>.csv
+
+```
+(e.g. `Modules.csv`)
+
+3. **Data-rows**  
+Immediately after the header, include all rows for that section, each on its own line, in the form:
+```
+
+\[<INDEX>]<comma-separated fields>
+
+```
+- `<INDEX>` is the same integer for *all* rows in this entry (e.g. `1` or `28`).  
+- Fields must be RFC-4180-style CSV (use quotes around any field containing commas or quotes).
+
+4. **Blank line separation**  
+After you finish *each* section’s rows, emit a single blank line before the next section header.
+
+5. **Done sentinel**  
+After the last section (even if some sections had no rows), emit a line containing exactly:
+```
+
+.
+
+```
+This `.` on its own line tells the CLI “end of entry”.
+
+6. **No extra text**  
+Do *not* output any explanations, bullets, or extra whitespace outside of the format above.
+
+---
+
+**Example for INDEX=2**  
+```
+
+ScriptMeta.csv
+\[2]MyScript,v1.2,Jane Doe,2025-07-15,"Does awesome things",https\://...
+
+Modules.csv
+\[2]M1,MyScript,init,src/init.py,"Initialization routines"
+\[2]M2,MyScript,core,src/core.py,"Core logic"
+
+Functions.csv
+\[2]F1,MyScript,M1,setup,()->None,"Setup initial state"
+\[2]F2,MyScript,M2,run,(args\:list)->int,"Main runner"
+
+Dependencies.csv
+\[2]D1,MyScript,requests,2.31.0,runtime,False,"HTTP library"
+
+Config.csv
+\[2]C1,MyScript,LOG\_LEVEL,"DEBUG","Logging verbosity"
+
+Patterns.csv
+\[2]P1,MyPattern,"Example pattern","regex\_here"
+
+Connections.csv
+\[2]C1,Functions,F2,Modules,M2,"run ↔ core module"
+
+.
+
+```
+
+Use *this* template every time and your CLI parser will ingest it perfectly.
+```

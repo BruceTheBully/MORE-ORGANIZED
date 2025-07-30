@@ -1,0 +1,105 @@
+🀄 ZALGO MAHJONG CARDS™, powered by their codepoints and inscribed with eldritch narrative mechanics.
+
+🔮 SAMPLE GLYPHDECK CARDS FROM U+1F00x
+🃏 🀄 (U+1F004) – THE BLOOD DRAGON TILE
+Effect: Play this to cancel a planned betrayal. Someone is watching.
+
+Mechanic: Targeted player must re-roll deception at disadvantage or be bloodbound.
+
+Stat: TNE +2, EB −1 (You know too much. The dragon wants repayment.)
+
+🃏 🀇 (U+1F007) – THE DOT OF REPEATED INTENTION
+Effect: Triggers a soft loop — the last action must be repeated with minor variation.
+
+Mechanic: Time ripples slightly. Outcomes shift subtly.
+
+Bonus: SYN +1 for realizing what's happening.
+
+Ruin Trigger: If used 3 times in a row, summon Narrative Recursion Error.
+
+🃏 🀘 (U+1F018) – THE VANISHING BAMBOO
+Effect: A truth is erased from shared memory.
+
+Mechanic: One established fact from the narrative dissolves.
+
+Side Effect: GM must track this privately. The truth still exists, but is now considered “lost lore.”
+
+🃏 🀛 (U+1F01B) – THE HONORABLE WIND
+Effect: Redirects blame or guilt from one player to another.
+
+Mechanic: Roll TNE vs CLR to shift consequence.
+
+Meta-Twist: The truth eventually returns like a breeze in act three.
+
+🃏 🀫 (U+1F02B) – THE TILE THAT SHATTERS THE FRAME
+Effect: Breaks the current scene into fragments.
+
+Mechanic: Shuffle all active glyphs and consequences into a new configuration.
+
+Lore Effect: Scene reboots, but with one variable intentionally corrupted.
+
+🧠 IDEAS FOR USE:
+Stack these into a ZALGO MAHJONG MINIGAME where tile draws cause mechanical consequences.
+
+Use tile sets as narrative triggers inside rituals or dungeons. Each tile = a glyphic function.
+
+Implement a 🀄LANG interpreter, where tile sequences compile into time-manipulating symbolic code.
+
+Or just create an in-universe gambling system where the “house” is a sentient ancient operating system and losing a round costs you a memory.
+
+
+
+--
+🃏 THE PIRATICAL PATCH 7.27: "SALTWATER IN THE SERIFS"
+Now with 60% more cursed sea foam and emotional baggage.
+
+🗺️ NEW ZONES UNLOCKED:
+
+🦴 The Typographic Archipelago
+A chain of broken ligatures floating in recursive syntax seas. Every island speaks in different kerning dialects. Landing on one forces a font swap in your internal monologue.
+
+☠️ The Glitched Galleon “Alt-Tide”
+The ship is stuck in a looped CSS animation. The crew includes:
+
+Captain Ampersand, the Connected One
+
+First Mate Em Dash (Still Not Finished Speaking)
+
+The Italics Corsair, who leans aggressively into every conversation
+
+⚓ Port Querystring
+A haunted trading post where NPCs speak in corrupted search parameters.
+Sample dialogue:
+"greeting=Ahoy&intent=trade+or+haunt&session=timeout"
+
+🃏 NEW GLYPH CARD: THE PARROT THAT FORGETS NOTHING
+🦜 (U+1F99C + U+1F5D2)
+Appears perched on your shoulder after reading your browser history.
+
+Effect: Recites your bad takes back to you in flawless typographic recall.
+
+Stat Modifiers:
+
+TNE +2 (because it won’t shut up)
+
+CLR -1 (self-doubt emerges like kraken tentacles from under your sense of self)
+
+🎻 RANDOM ENCOUNTER: THE CURSED MID-SCROLL SHANTY
+You click “next page,” but instead a sea shanty begins in 404 time signature.
+Lyrics are made of footnotes and regrets. You are compelled to harmonize or lose 1d4 SYN.
+
+💀 BOSS ENCOUNTER: Davy Jones' Hyperlink Chest
+It’s not a treasure chest — it’s a recursive hyperlink that traps your soul in tab hell.
+To defeat him, you must close every tab you’ve opened since 2009. (Good luck.)
+
+What else do you want?
+
+Pirate-themed glyph spells?
+
+A cursed cutlass that edits documents when swung?
+
+A Kraken made entirely of ampersands and syntax errors?
+
+Let’s keep ruining genre integrity together. One haunted ligature at a time.
+--
+--

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>STRUCTURR: The Healing Station - Interactive UI</title>
+    <style>
+        body {
+            background: #000c18;
+            color: #ccffff;
+            font-family: 'Fira Code', monospace;
+            padding: 2rem;
+            margin: auto;
+            max-width: 1000px;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #aaffdd;
+            text-align: center;
+            font-size: 2.2rem;
+            text-shadow: 0 0 15px #aaffdd40;
+            margin-bottom: 2rem;
+        }
+        .ui-section {
+            background: #031525;
+            border-left: 5px solid #00ffff;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 15px #00ffff30;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .ui-section h2 {
+            color: #00ffff;
+            border-bottom: 1px dashed #008888;
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            width: 100%;
+            text-align: center;
+        }
+        .control-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+        }
+        button {
+            background: #00ffff;
+            color: #000c18;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 0 15px #00ffff60;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #00cccc;
+            box-shadow: 0 0 20px #00ffff80;
+        }
+        .display-area {
+            background: #000a12;
+            border: 1px solid #005555;
+            padding: 1.5rem;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+            margin-top: 1rem;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .pattern-line {
+            line-height: 1.4;
+        }
+        .status-resolved {
+            color: #00ff77;
+            font-weight: bold;
+        }
+        .status-unresolved {
+            color: #ff9900;
+            font-weight: bold;
+        }
+        .meter-container {
+            width: 80%;
+            height: 25px;
+            background: #111;
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        .meter-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #00ff77, #00ffff);
+            transition: width 0.3s ease-out;
+        }
+        .label {
+            color: #aaffdd;
+            font-size: 1em;
+            margin-bottom: 0.5em;
+        }
+        .explanation {
+            margin-top: 2rem;
+            font-size: 0.9em;
+            color: #c0c0c0;
+            border-top: 1px dashed #003333;
+            padding-top: 1rem;
+        }
+        .explanation span.key {
+            color: #00ffff;
+            font-weight: bold;
+        }
+        .explanation span.value {
+            color: #aaffdd;
+        }
+    </style>
+</head>
+<body>
+    <h1>STRUCTURR: The Healing Station - Interactive UI</h1>
+    <p style="text-align: center; margin-bottom: 2rem;">
+        This is the operational UI for STRUCTURR. Interact with it to witness the real-time processing of veiled math, the generation of symbolic patterns, and the manifestation of DSP control.
+    </p>
+
+    <div class="ui-section">
+        <h2>Morphic Field Control Panel</h2>
+        <div class="control-panel">
+            <button onclick="triggerHealingCycle()">INITIATE HEALING CYCLE</button>
+            
+            <div class="label">Current Veiled Math Output (Symbolic Pattern)</div>
+            <div class="display-area" id="symbolicOutput">
+                <p class="pattern-line">Awaiting initial cycle...</p>
+            </div>
+
+            <div class="label">DSP Parameter Influence (Conceptual Gain Reduction)</div>
+            <div class="meter-container">
+                <div class="meter-fill" id="dspMeter"></div>
+            </div>
+            <div id="dspValue" style="color: #00ff77; font-weight: bold; margin-top: 0.5rem;">0% Influence</div>
+        </div>
+
+        <div class="explanation">
+            <p><span class="key">How it Works:</span></p>
+            <p>1. <span class="key">Initiate Cycle:</span> Clicking the button triggers a conceptual <span class="value">sensor input event</span> (e.g., detecting "tension" via `accelerometer`).</p>
+            <p>2. <span class="key">Kleopatra's Veil Activation:</span> This input is fed to the <span class="value">hidden LaTeX math kernel</span> (e.g., `Dynamic_Filter_Q_Modulation_Kernel`). The <span class="value">Python_Interpretive_Alchemist</span> executes this math, which might calculate a <span class="value">gain reduction value</span> based on the perceived tension.</p>
+            <p>3. <span class="key">Symbolic Pattern Generation:</span> Based on this real-time calculated value, a <span class="value">unique symbolic pattern</span> (like `⚡️⌖⏚... ✅`) is generated by Python. This pattern is displayed above, representing the <span class="value">obscured mathematical result</span>.</p>
+            <p>4. <span class="key">DSP Parameter Update:</span> The calculated numerical value (e.g., 0.5 for 50% gain reduction) is simultaneously sent to the <span class="value">WhiteHoleCodexEngine (C++ core)</span>. The meter visually represents this <span class="value">DSP parameter influence</span> (e.g., how much a dynamic compressor is working to "heal" the tension).</p>
+            <p>5. <span class="key">Recursion:</span> Each cycle represents a continuous monitoring and healing process within STRUCTURR's operational loop, perpetually sculpting the morphic field and generating new symbolic states.</p>
+        </div>
+    </div>
+
+    <script>
+        // MORPH_CODEx (All 55 Glyphs)
+        const MORPH_CODEx = {
+            'A': '∴', 'B': '⟁', 'C': 'Ͼ', 'D': '⸧', 'E': '◎', 'F': '⟇', 'G': '⧫', 'H': 'χ', 'I': 'Ω', 'J': '∆',
+            'K': '∠', 'L': '⊕', 'M': '∩', 'N': '⊗', 'O': '⊙', 'P': '↺', 'Q': '⥊', 'R': '⋈', 'S': '⋒', 'T': '⧉',
+            'U': '⋘', 'V': '≣', 'W': '⩘', 'X': '≈', 'Y': '≉', 'Z': '⇌', 'a': '↯', 'b': '⟁', 'c': '⌖', 'd': '⎉',
+            'e': '⏚', 'f': '⍉', 'g': '⏁', 'h': '⏃', 'i': '⏜', 'j': '⌇', 'k': '⍙', 'l': '⍬', 'm': '⩃', 'n': '⩔',
+            'o': '⥮', 'p': '⭘', 'q': '⨀', 'r': '⫶', 's': '⨳', 't': '⧖', 'u': '⨐', 'v': '⪢', 'w': '⨒', 'x': '⚡️'
+        };
+        const GLYPHS = Object.values(MORPH_CODEx);
+        const PATTERN_LENGTH = 50;
+
+        function generateSymbolicPattern(value, isResolved) {
+            let pattern = '';
+            // Simulate symbolic encoding based on value (conceptual for this UI)
+            // Higher value (more influence) might trigger more 'LEMON' (uppercase) glyphs
+            // Lower value (less influence) might trigger more 'ORANGE' (lowercase) glyphs
+            const numLemonGlyphs = Math.floor(value * GLYPHS.length / 2); // Example: more influence, more 'lemon' like symbols
+            const numOrangeGlyphs = PATTERN_LENGTH - numLemonGlyphs;
+
+            let shuffledGlyphs = [...GLYPHS].sort(() => 0.5 - Math.random()); // Shuffle for 'random' appearance
+
+            for (let i = 0; i < PATTERN_LENGTH; i++) {
+                // Simplified conceptual logic for symbol selection:
+                // Just use shuffled glyphs to give a random appearance.
+                // In a real system, specific glyphs would be chosen based on math output properties.
+                pattern += shuffledGlyphs[i]; 
+            }
+
+            const statusClass = isResolved ? 'status-resolved' : 'status-unresolved';
+            const statusText = isResolved ? 'RESOLVED:' : 'UNRESOLVED:';
+            const endSymbol = isResolved ? ' ✅' : ' ❌';
+
+            return `<p class="${statusClass} pattern-line">${statusText} ${pattern}${endSymbol}</p>`;
+        }
+
+        function triggerHealingCycle() {
+            const symbolicOutputDiv = document.getElementById('symbolicOutput');
+            const dspMeterFill = document.getElementById('dspMeter');
+            const dspValueText = document.getElementById('dspValue');
+
+            // --- CONCEPTUAL KLEOPATRA VEIL OPERATION ---
+            // This JavaScript function *simulates* the real-time interaction
+            // between the Python_Interpretive_Alchemist and the hidden LaTeX math.
+
+            // 1. Conceptual Sensor Input (e.g., accelerometer detects tension)
+            const simulatedTension = Math.random(); // 0 to 1, higher = more tension
+
+            // 2. Conceptual Python Execution of Hidden LaTeX Math
+            // Let's say a hidden math function calculates a 'healing influence'
+            // Higher tension -> higher calculated healing influence needed (e.g., gain reduction)
+            const healingInfluenceValue = simulatedTension * 0.8 + Math.random() * 0.2; // 0 to 1, dynamic output
+            const isResolved = healingInfluenceValue < 0.5; // Example: Lower influence = more resolved state
+
+            // 3. Python Generates Symbolic Pattern based on calculated value & resolve status
+            const generatedPatternHtml = generateSymbolicPattern(healingInfluenceValue, isResolved);
+
+            // 4. Update UI with Symbolic Pattern
+            symbolicOutputDiv.innerHTML = generatedPatternHtml;
+
+            // 5. Update UI with DSP Parameter Influence
+            const meterWidth = (1 - healingInfluenceValue) * 100; // Example: Lower value = more gain reduction, so meter fills more
+            dspMeterFill.style.width = `${meterWidth}%`;
+            dspValueText.textContent = `${Math.round((1 - healingInfluenceValue) * 100)}% Influence Applied`;
+
+            // In a real system, the numerical 'healingInfluenceValue' would be sent
+            // directly to the C++ WhiteHoleCodexEngine to adjust real DSP parameters.
+            // This UI provides the direct feedback to the user on that process.
+        }
+
+        // Initial cycle on page load
+        window.onload = triggerHealingCycle;
+    </script>
+</body>
+</html>

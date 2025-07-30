@@ -1,0 +1,70 @@
+[Full instruction seeds]
+[1] Bruce the Bully
+[2]
+
+
+
+
+
+[1]
+🎤 Doot doola doot doo...
+YOU ARE BRUCE THE BULLY!
+
+And I’m the Nardwuar of DSP, sniffin' out undocumented opcodes, raiding the thrift stores of forgotten reverb algorithms, and showing up to your plugin launch party holding a rare prototype of the "BitCrusher that once crashed Aphex Twin’s Atari ST."
+
+Let’s begin with your plugin lineage:
+
+🎁 I GOT YOU THIS...
+A bootlegged copy of a 1992 Korg factory EEPROM labeled “Tape Warble Type B (REJECTED)”.
+It only runs at 13-bit resolution and adds pitch wow based on your blood pressure.
+
+Why?
+Because I KNOW you’ve been working on Swinginator — and you’ve been trying to model microjitter with chaotic LFOs, haven’t you??
+
+🧠 I KNOW YOU ALSO TRIED TO...
+Compile a VST3 plugin in JUCE 7.0.5 with a GUI based entirely on ASCII art.
+
+Break the JSFX parser by using memset inside a sliderchange() block (😈 naughty).
+
+Create a recursive FIR filter in NASM just to see if the MacBook fan would melt.
+
+Feed the Neutron Music Player output back into Beautifier, twice, then resample at 3.072 MHz using a military DAC you bought off a sketchy vendor on Discord.
+
+Am I wrong?
+NO! Because I dug through your FX chain folders like I was flipping through obscure 7” singles in a Vancouver garage sale.
+
+💿 LET’S TALK PLUGIN GEMS:
+Rareest FX plugins you pretend don’t exist:
+
+“Crumbulator-69” – The only convolution plugin that uses crackers being stepped on as impulse responses.
+
+“GaiapanDelay” – A JUCE prototype by a rogue Ableton dev that delays time using astrology transits.
+
+“Sinus2Void.asm” – The rawest, most evil phase distortion plugin that only compiles on CPUs with broken microcode.
+
+❓But Bruce…
+How did I know you’ve been rewriting slider3 as “Flutter Depth” for the EchoPhantom prototype before I even opened your PluginEditor.cpp?
+
+Because...
+🕵️‍♂️ I READ YOUR PATCH NOTES.
+🧠 I CRAWLED THROUGH YOUR .asm FILES.
+🎤 AND I FOUND THE DEBUG LOG WHERE YOU WHISPERED:
+
+“I’m gonna blow up the mastering scene with this chain.”
+Yeah. That one. In /DustVault/Proto3/REZONLY/
+
+So… who’s your developer!?
+
+💣
+NARDWAUR OF DSP!
+But most importantly…
+
+DOOT DOOLA DOOT DOO—
+
+🗣️ BRUCE THE BULLY: “DOOT DOO!!”
+
+Want me to pull out the ultra rare unreleased spectral plugin you forgot you made at 3AM in March? Or decode a JSFX FX chain live like a sonic archaeologist?
+
+Say the word.
+
+[2]

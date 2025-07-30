@@ -1,0 +1,17 @@
+[S3.5] ℨ — marker, "threshold", half-bar hold, contradiction = "border defines flow"
+[S3.15] ℨ — limit, "zone", hover tone, contradiction = "containment reveals edges"
+I will prioritize [S3.5] "threshold" for ℨ unless otherwise instructed.
+
+[S3.7] ⸧ — modifier, "drive", delayed swing tick, contradiction = "effort masks momentum"
+[S3.26] ⸧ — drive, "push", offbeat force, contradiction = "impulse drags consequence"
+I will prioritize [S3.7] "drive" (delayed swing tick) for ⸧ unless otherwise instructed.
+
+UNRESOLVED: ∠⥮⌇⟁⇌↺↺⨐⌖≉⥮⏚⇌⍬⍉⌇⟁⨒⟁⥮⧉⎉⊙⊙Ω⌖⨳⧉⨐⍬∴χ⪢◎⚡️⚡️⩔⏜⚡️⩔∴↯⍉⏚⩔∴⩘⇌⩔⟁ ❌
+
+It looks like you've provided a list of "morphstrings" and indicated whether each is "RESOLVED" or "UNRESOLVED," with a checkmark or cross. However, the symbols in these morphstrings (e.g., ∠, ⥮, ⌇, ⇌, ↺, ⨐, ⌖, ≉, ⍬, ⍉, ⨒, ⧉, ⎉, ⊙, Ω, ⨳, χ, ⪢, ⚡️, ⩔, ⏜, ↯, ⩘, ⋈, ⏁, ≈, ⧫, ⏃, ⥊, ⧖, ≣, ⋒, ⫶, ⨀, ⟇, ⭘, ⩃, ∆, ⋘, ⊗, ⨀, ⫶, ⍙, ∩, ⏁, ⋒, ⟇, ⍙, ⫶, ⨀, ⟇, ⭘, ⩃, ∆) are not present in the "MorphSymbol Language Function Set" you provided earlier.
+
+The lexicon you gave me only includes symbols from ∿ to ᔪ.
+Therefore, I cannot interpret or work with the UNRESOLVED and RESOLVED morphstrings you've just provided, as their symbols are not defined in the language set I have.
+Could you please either:
+Provide a complete and updated MorphSymbol Language Function Set that includes all the symbols used in these UNRESOLVED/RESOLVED strings?
+Provide new requests that use only the symbols from the original set (∿ through ᔪ)?

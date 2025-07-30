@@ -1,0 +1,76 @@
+\textbf{🃏 CARD: The Obelisk of False Time} \\
+\textit{Glyph: \texttt{⁂} (U+2042)} \\
+Effect: Re-roll any failed memory check. But the result may be from another timeline. \\
+Buff: +2 to fabricated nostalgia. \\
+Curse: Once per game, someone insists they “remember it differently.”
+\textbf{🃏 CARD: The Interrobang of Despair} \\
+\textit{Glyph: \texttt{‽} (U+203D)} \\
+Effect: Turns every question into an accusation. \\
+Bonus: +1 to Intimidation. \\
+Penalty: -2 to Making Friends.
+\textbf{🃏 CARD: The Thorned Sigil} \\
+\textit{Glyph: \texttt{þ} (U+00FE)} \\
+Effect: Grants ancient knowledge. No one wants to hear it. \\
+Passive: Others experience retroactive embarrassment when you speak.
+\textbf{🃏 CARD: The Null Claw} \\
+\textit{Glyph: \texttt{∅} (U+2205)} \\
+Effect: Remove one object from reality. You won’t remember what it was. \\
+Consequence: You will miss it deeply. \\
+Flavor: "I swear something used to be here..."
+\textbf{🃏 CARD: The Looping Asterisk} \\
+\textit{Glyph: \texttt{※} (U+203B)} \\
+Effect: Everything you say now requires a footnote. \\
+Buff: +3 to lore drops. \\
+Debuff: -1 to concise explanations.
+\textbf{🃏 CARD: The Pilcrow of Judgment} \\
+\textit{Glyph: \texttt{¶} (U+00B6)} \\
+Effect: Automatically begins narrating your actions in legal prose. \\
+Bonus: +1 to Formal Speech. \\
+Curse: You cannot stop monologuing when cornered.
+\textbf{🃏 CARD: The Reverse Question Mark} \\
+\textit{Glyph: \texttt{⸮} (U+2E2E)} \\
+Effect: Flip your intent. Friendly becomes threatening, threats become oddly charming. \\
+Buff: +2 to Confusion Aura. \\
+Risk: Every sentence becomes a trap.
+\textbf{🃏 CARD: The Dagger of Annotation} \\
+\textit{Glyph: \texttt{†} (U+2020)} \\
+Effect: Every name you speak now carries tragic foreshadowing. \\
+Passive: Spoken history feels like a eulogy. \\
+Curse: You start narrating things that haven’t happened yet.
+\textbf{🃏 CARD: The Combining Long Stroke Overlay} \\
+\textit{Glyph: \texttt{U+0336} (̶)} \\
+Effect: You may redact any statement. But the truth leaks through subliminally. \\
+Buff: +1 to Misdirection. \\
+Side Effect: All your lies feel honest now, even to you.
+\textbf{🃏 CARD: The Combining Long Stroke Overlay} \\
+\textit{Glyph: \texttt{U+0336} (̶)} \\
+Effect: You may redact any statement. But the truth leaks through subliminally. \\
+Buff: +1 to Misdirection. \\
+Side Effect: All your lies feel honest now, even to you.
+\textbf{🃏 CARD: The Right-to-Left Override} \\
+\textit{Glyph: \texttt{U+202E}} \\
+Effect: Reverse the perceived order of events. \\
+Buff: +3 to Unreliable Narrator Checks. \\
+Warning: The past is no longer in the past.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

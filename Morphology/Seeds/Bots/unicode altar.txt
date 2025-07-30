@@ -1,0 +1,60 @@
+desc:Unicode Altar - MorphDSP Relic Interface
+
+slider1:altar_knob1=0<0,1,0.01>⟁ Bifurcation Fold
+slider2:altar_knob2=0<0,1,0.01>⧫ Memory Trimmer
+slider3:altar_knob3=0<0,1,0.01>∴ Logic Gate Threshold
+slider4:altar_knob4=0<0,1,0.01>⏚ Temporal Fuzz
+slider5:altar_knob5=0<0,1,0.01>⚔ Harmonic Bitstab
+slider6:altar_knob6=0<0,1,0.01>◎ Peak Visual Orb
+slider7:altar_knob7=0<0,1,0.01>𝓟 Formant Phase Glide
+slider8:altar_knob8=0<0,1,0.01>🪬 Background Entropy Pull
+
+@init
+// Glyph Altar: Binding DSP rituals to knobs
+bufsize = 4096;
+mempos = 0;
+rand_entropy = 0;
+
+@slider
+bifurcation = altar_knob1;
+memory_trim = altar_knob2;
+logic_cut = altar_knob3;
+chrono_fuzz = altar_knob4;
+bitstab = altar_knob5;
+peak_orb = altar_knob6;
+formant_glide = altar_knob7;
+entropy_pull = altar_knob8;
+
+// Entropy engine (🪬): live entropy from project state
+rand_entropy += sin(mempos * 0.0123 + slider3 * 42.42) * entropy_pull;
+mempos += 1;
+rand_entropy -= floor(rand_entropy); // stay within [0,1]
+
+@sample
+spl0 = spl0 * (1 - bitstab * 0.3) + sin(spl0 * chrono_fuzz * 700 + rand_entropy * 3.14) * bifurcation * 0.5;
+spl1 = spl1 * (1 - bitstab * 0.3) + sin(spl1 * chrono_fuzz * 700 + rand_entropy * 3.14) * bifurcation * 0.5;
+
+// Memory fragment re-sequencer ⧫
+if (rand_entropy > 0.98) (
+  spl0 = spl1 = memory_trim * sin(mempos * 0.05) * 0.2;
+);
+
+// Formant and logic mod ∴ 𝓟
+spl0 += sin(peak_orb * 60 + formant_glide * 440) * logic_cut * 0.1;
+spl1 += sin(peak_orb * 60 + formant_glide * 441) * logic_cut * 0.1;
+
+// Peak visual orb ◎ (dummy meter for now)
+gfx_x = 0;
+gfx_y = 0;
+gfx_r = 0.6 + peak_orb * 0.4;
+gfx_g = 0.3 + bifurcation * 0.7;
+gfx_b = 0.5 + chrono_fuzz * 0.5;
+gfx_a = 1;
+gfx_rectto(gfx_x+100, gfx_y+50);
+
+// 🪬 draws in ghost energy from UTF-8 residue
+// Optional: connect to clipboard / input buffer?
+
+// Output
+spl0 *= 1.0 - entropy_pull * 0.2;
+spl1 *= 1.0 - entropy_pull * 0.2;

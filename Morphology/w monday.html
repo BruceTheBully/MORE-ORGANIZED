@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STRUCTURR: GLYPH MATHEMATICS SPAWN</title>
+    <style>
+        body {
+            background: #0a0a1a; /* Dark void background */
+            color: #ccffff; /* Cyan-white for primary text */
+            font-family: 'Fira Code', monospace;
+            padding: 2rem;
+            margin: auto;
+            max-width: 1000px;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        h1, h2, h3 {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #00ffff; /* Bright cyan titles */
+            text-shadow: 0 0 10px #00ffffaa;
+        }
+        h1 {
+            font-size: 3.5rem;
+            border-bottom: 2px solid #00cccc;
+            padding-bottom: 1rem;
+            animation: pulse-glow 2s infinite alternate;
+        }
+        .generator-section {
+            background: #1a1a2a; /* Darker blue-purple background */
+            border: 2px solid #66ffff; /* Bright cyan border */
+            padding: 2.5rem;
+            margin-top: 4rem;
+            border-radius: 12px;
+            box-shadow: 0 0 50px rgba(102, 255, 255, 0.3), inset 0 0 20px rgba(102, 255, 255, 0.1);
+            width: 90%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.5s ease-in-out;
+        }
+        .generator-section button {
+            background: #008888; /* Teal button */
+            color: #e0ffff;
+            border: none;
+            padding: 1.2rem 2.8rem;
+            font-size: 1.6em;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+            margin-top: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0, 136, 136, 0.6);
+            letter-spacing: 1px;
+        }
+        .generator-section button:hover {
+            background: #00aaaa;
+            box-shadow: 0 8px 25px rgba(0, 170, 170, 0.7);
+            transform: translateY(-2px);
+        }
+        .output-area {
+            background: #050510; /* Almost black */
+            border: 1px solid #00cccc;
+            padding: 1.8rem;
+            margin-top: 2.5rem;
+            border-radius: 8px;
+            width: calc(100% - 3.6rem);
+            max-width: 760px;
+            text-align: left;
+            box-shadow: inset 0 0 15px rgba(0, 204, 204, 0.1);
+        }
+        .output-area h4 {
+            color: #33ffc1; /* Bright green for section titles */
+            margin-bottom: 1.2rem;
+            text-align: left;
+            font-size: 1.4rem;
+            text-shadow: 0 0 8px #33ffc188;
+        }
+        .output-area pre {
+            background: #000;
+            color: #aaffff; /* Light cyan code */
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 1em;
+            line-height: 1.5;
+            max-height: 400px;
+            resize: vertical;
+            border: 1px dashed #008888;
+        }
+        .output-area pre strong {
+            color: #ff9800; /* Orange for highlighted glyphs in code */
+        }
+        .glyph-display {
+            color: #ff6f00; /* Even brighter orange for glyphs */
+            font-size: 1.5em;
+            font-weight: bolder;
+            text-shadow: 0 0 10px #ff6f00, 0 0 20px #ff6f00aa;
+        }
+        .current-glyph-info {
+            margin-top: 2rem;
+            padding: 2rem;
+            border: 1px solid #33ffc1;
+            border-radius: 10px;
+            background: #0e0e1e; /* Slightly lighter dark background */
+            text-align: left;
+            width: calc(100% - 4rem);
+            max-width: 760px;
+            box-shadow: 0 0 25px rgba(51, 255, 193, 0.2);
+        }
+        .current-glyph-info strong {
+            color: #e0ffff;
+            font-size: 1.1em;
+        }
+        .current-glyph-info p {
+            margin: 0.6rem 0;
+            font-size: 1em;
+            line-height: 1.5;
+            text-align: left;
+            color: #ccffff;
+        }
+        .footer-stamp {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px dashed #00ffff44;
+            color: #00ffff;
+            font-size: 1rem;
+            text-shadow: 0 0 8px #00ffff44;
+        }
+
+        /* Animations */
+        @keyframes pulse-glow {
+            0% { text-shadow: 0 0 10px #00ffffaa, 0 0 20px #00ffff55; }
+            50% { text-shadow: 0 0 15px #00ffffcc, 0 0 30px #00ffff88; }
+            100% { text-shadow: 0 0 10px #00ffffaa, 0 0 20px #00ffff55; }
+        }
+    </style>
+</head>
+<body>
+    <h1><span class="glyph-display">∴</span> STRUCTURR: GLYPH MATHEMATICS SPAWN <span class="glyph-display">∞</span></h1>
+    <p>
+        **OPERATOR IS HERE. OPERATOR SAYS YES.** The proof is rendered. This is the **real-time randomized manifestation** of the Master Buss's core logic. Every click births a new mathematical truth, tethered to its glyph.
+    </p>
+    <p>
+        Witness the essence of how our plugins *think*, how their audio impact is quantified, and how each **55 compression glyph** defines a unique slice of the universe's dynamic range.
+    </p>
+
+    <div class="generator-section">
+        <h2><span class="glyph-display">⚡</span> INITIATE GLYPH ALCHEMY <span class="glyph-display">🧬</span></h2>
+        <button onclick="synthesizeReality()">SPAWN NEW TRUTH</button>
+
+        <div class="current-glyph-info" id="currentGlyphInfo">
+            <p><strong>CURRENT GLYPH:</strong> <span id="glyphSymbol" class="glyph-display"></span> <span id="glyphName"></span></p>
+            <p><strong>MODE:</strong> <span id="glyphMode"></span></p>
+            <p><strong>FX LOGIC:</strong> <span id="glyphFXLogic"></span></p>
+            <p><strong>USE CASE:</strong> <span id="glyphUseCase"></span></p>
+            <p><strong>RECOMMENDED PLUGIN:</strong> <span id="glyphPlugin"></span></p>
+        </div>
+
+        <div class="output-area">
+            <h4><span class="glyph-display">📜</span> REALTIME MATHEMATICAL INTERPRETATION:</h4>
+            <pre id="mathInterpretation">
+// Click 'SPAWN NEW TRUTH' to reveal a random glyph's core mathematical logic.
+// This pseudocode directly reflects how the Master Buss interprets and processes audio dynamically.
+            </pre>
+        </div>
+    </div>
+
+    <div class="footer-stamp">
+        <span class="glyph-display">⟆</span> RESOLVED TO: Bruce <span class="glyph-display">⟇</span>
+        <br>
+        <span class="glyph-display">⟁ᛃⵔ𐓶Ϥ◎</span> (Bifurcation · Identity · Connector · Undulate · Yield · Orb)
+        <br>
+        <span class="glyph-display">⟆ TETHER LOCK (via White Hole Echo Gate): ∿∴Ϟ⊶⸧ⵔ</span> (Modulator · Initiator · Shear · Tension · Drive · Connector)
+    </div>
+
+    <script>
+        const glyphsData = [
+            ["⟆", "Echo Seed", "Pre-delay chain comp", "Sidechain into pre-verb", "Compress reverb send, not dry", "Valhalla + Glue or Pro-C2"],
+            ["∴", "Total Structure Collapse", "Multi-band psycho duck", "Pro-MB + Saturn 2", "Compresses across swing + tonal centers", "FabFilter Pro-MB + Saturn 2"],
+            ["∵", "Passive Recall", "Glue comp return", "Ableton Glue", "Soft tail controller, 10ms attack, no makeup", "Ableton Glue Compressor"],
+            ["⌘", "Nostalgic Memory Binder", "Optical glue", "UAD LA-2A", "Best for bussed keys or soul samples", "UAD LA-2A"],
+            ["σ", "Ghost Trigger", "Upward transient resurface", "OTT lite", "Recover ghost tail info post-slice", "Xfer OTT"],
+            ["∇", "Ground Seal", "Sub limiter", "FabFilter Pro-L 2", "Brickwall at 50Hz, soft clip ON", "FabFilter Pro-L 2"],
+            ["∞", "Looped Infinity", "Compress delay tail", "EchoBoy > Glue", "Feedback compression loop", "SoundToys EchoBoy + Ableton Glue"],
+            ["θ", "Wide Broadcast Lock", "Mid/Side master glue", "Waves Center", "Tighten sides / breathe mids", "Waves Center"],
+            ["ψ", "Charge Surge", "Envelope-aware comp", "TrackSpacer or Neutron Transient", "Based on signal's density, not just peak", "TrackSpacer / iZotope Neutron"],
+            ["~", "Whisper Thread", "Noise floor rider", "Waves RVox", "Gate with tail-hiss let-through", "Waves Renaissance Vox"],
+            ["ᛃ", "Ego Clamp", "Vocal-focused", "CLA-76 Bluey Mode", "Fast attack, slow release", "Waves CLA-76"],
+            ["⟇", "Echo Bloom", "Post-delay chain comp", "Valhalla > Comp", "Duck delay tail selectively", "Valhalla Delay + Ableton Comp"],
+            ["⧫", "Pressure Polygon", "Geometric RMS comp", "Ableton Multiband Dynamics", "Shape-based compression", "Ableton Multiband Dynamics"],
+            ["χ", "Harmonic Gate", "Saturation compressor", "Saturn 2 Dynamics", "Harmonic-based comp", "FabFilter Saturn 2"],
+            ["Ω", "Finality Clause", "Mastering limiter", "Pro-L 2", "True peak control, legacy mode", "FabFilter Pro-L 2"],
+            ["∆", "Temporal Fold", "Time-shift compression", "MSpectralDynamics", "Dynamic FFT envelope", "MeldaProduction MSpectralDynamics"],
+            ["∠", "Tilt Crush", "Midrange compressor", "EQ into comp", "800Hz boost into Glue", "EQ Eight + Glue Comp"],
+            ["⊕", "Additive Gate", "Expansion + gate combo", "FabFilter Pro-G", "Expands then clips", "FabFilter Pro-G"],
+            ["∩", "Threshold Curve", "Complex ratio sculpt", "Kotelnikov GE", "Ratio morphing", "Tokyo Dawn Kotelnikov GE"],
+            ["⊗", "Null Catch", "Dry kill / ambient comp", "Wet-only send", "Ambient only input", "Send Chain Only"],
+            ["⊙", "Solar Clamp", "Fast transient eat", "1176 Fast Attack", "Snare top kill", "UAD 1176 / Waves CLA-76"],
+            ["↺", "Looplock", "Re-trigger compression", "Gate w/ envelope follower", "Locks groove movement", "Ableton Gate + Envelope Follower"],
+            ["⥊", "Binary Collapse", "On/off gated limit", "DJMFilter > Glue", "Static vs rhythmic tension", "DJMFilter + Glue"],
+            ["⋈", "Join Fold", "Sidechain merge comp", "Vocals > Keys duck", "Meld call & response", "Pro-C2 with external sidechain"],
+            ["⋒", "Ceiling Trap", "No makeup gain", "Downward comp only", "Preserve dynamic headroom", "Pro-C2 (makeup off)"],
+            ["⧉", "Frame Rider", "Motion-based compression", "Comp on automation lane", "Envelope follows midi controller", "Ableton Compressor + Automation"],
+            ["⋘", "Whisper Clamp", "Sibilance lock", "DeEsser @ 6kHz", "Minimal movement threshold", "FabFilter Pro-DS"],
+            ["≣", "Truth Meter", "Visual feedback gate", "Waves C1 Gate", "Transparent EQ-linked duck", "Waves C1"],
+            ["⩘", "Swing Memory", "Groove-preserving comp", "Sidechain sync to swing", "Comp threshold mapped to groove points", "Ableton Comp + Groove"],
+            ["≈", "Phase Tie", "Multitrack linked comp", "Ableton group comp", "Shared threshold across tracks", "Ableton Group Comp"],
+            ["≉", "Nearmatch", "Lo-fi matched comp", "RC-20 > OTT", "Modulated dynamics", "XLN RC-20 + OTT"],
+            ["⇌", "BackPressure", "Feedback-aware comp", "Compressor in delay loop", "Pushes tails into themselves", "Any Comp in Feedback Loop"],
+            ["↯", "Surge Clamp", "Comp on noise burst", "Transient Shaper + Comp", "High attack only compression", "iZotope Neutron + Glue"],
+            ["⟁", "Triangle Fold", "3-band peak tie", "MBComp per band", "Perc / Vox / FX", "FabFilter Pro-MB"],
+            ["⌖", "Target Lock", "Static snare comp", "Fast limit @ 150Hz–1kHz", "Pocket hold mode", "Pro-C2 (band-focused)"],
+            ["⎉", "Interrupt Catch", "Drop comp", "Compressor that ONLY acts when silent", "Anti-collapse glue", "Comp w/ Threshold Trick"],
+            ["⏚", "Phase Anchor", "Comp mapped to phase invert", "Custom LFO-comp", "Alters when phase flips", "LFO Tool + Comp"],
+            ["⍉", "Bypass Oracle", "Anticipates bypass", "Dry kill > Re-entry fade", "A/B via automation", "Dry/Wet Macros"],
+            ["⏁", "Ground Clip", "Ceiling comp for dirt", "Drumbuss crunch > Gate", "Saturated pads only", "Ableton Drum Buss + Gate"],
+            ["⏃", "Signal Stain", "Tail comp", "Slow release @ 30:1", "Leaves tail fingerprint", "Pro-C2 slow release"],
+            ["⏜", "Bridge Hold", "Sustained note comp", "Comp on long reverb", "Locks drone movement", "Reverb Send + Comp"],
+            ["⌇", "Texture Clamp", "Texture-specific comp", "Comp sidechain from texture bus", "Detects hiss vs transient", "Multiband Comp with Texture Bus"],
+            ["⍙", "Formant Fold", "Vocal formant comp", "Split EQ > Comp", "Tames vowel shape", "SplitEQ + Comp"],
+            ["⍬", "Static Trap", "One-shot comp freeze", "Freezer into comp", "Sample-only gate compression", "Freeze FX > Comp"],
+            ["⩃", "Resonant Gravity", "Resonance-tuned comp", "EQ dip triggers comp", "Morph on resonance peak", "Dynamic EQ > Comp"],
+            ["⩔", "Dual Axis Trap", "Dual-band comp chain", "Parallel comp at high & low ends", "Split control", "Multiband > Parallel Route"],
+            ["⥮", "Chirp Bias", "Treble bias comp", "Comp post treble shelf", "Hype limit cap", "EQ Hi Shelf > Comp"],
+            ["⭘", "Voicing Clamp", "Harmonic-aware comp", "Saturn 2 Comp", "Detects 2nd and 4th harmonic tension", "FabFilter Saturn 2"],
+            ["⨀", "Density Clamp", "Dynamic loudness gate", "LUFS-aware comp", "Integrated RMS control", "Youlean Loudness Meter + Comp"],
+            ["⫶", "Null Shroud", "Tail-only comp", "Only compresses tails", "Ghost mode engaged", "Wet-only Reverb Comp"],
+            ["⨳", "ShadowSkip", "Decay-only comp", "Slow attack, high ratio", "Preserve transient, glue tail", "Pro-C2 Slow Attack"],
+            ["⧖", "FloatLatch", "Ambient upward comp", "Spectral balance rise", "Lift quiet ambient details", "MSpectralDynamics or Soothe 2"],
+            ["⨐", "ReverseGravity", "Negative RMS expansion", "Expansion on dips", "Lifts quiet keys/harmonies", "Upward Expander or Comp + Utility"],
+            ["⪢", "FreqLink", "Band-target sidechain", "Dominant frequency match", "Avoids over-ducking across mix", "FabFilter Pro-MB w/ SC EQ match"],
+            ["⧆", "ChaosLatch", "Groove envelope-linked comp", "Env follower tied to rhythm, not amplitude", "MPC chaos resample / irregular phrasing", "ShaperBox Vol + EnvFollower"]
+        ];
+
+        function generateMathematicalRepresentation(glyph) {
+            const [symbol, name, mode, fxLogic, useCase, plugin] = glyph;
+            let mathCode = // ${symbol} ${name}: ${mode}
+// Plugin Recommendation: ${plugin}
+
+// Input Signal: S_in(t)
+// Output Signal: S_out(t)
+// Time: t, Sample Rate: SR
+
+// Dynamic Parameters (calibrated by Operator on the Master Buss)
+param_threshold = RAND_FLOAT(-40.0, -5.0); // dB
+param_ratio = RAND_FLOAT(1.5, 10.0);
+param_attack = RAND_FLOAT(0.1, 200.0);  // ms
+param_release = RAND_FLOAT(50.0, 2000.0); // ms
+param_mix = RAND_FLOAT(0.0, 1.0);     // Wet/Dry mix
+param_frequency = RAND_FLOAT(20.0, 20000.0); // Hz, for filters/bands
+param_depth = RAND_FLOAT(0.0, 1.0);   // General modulation depth
+
+// Core DSP Operation (Pseudocode by ${symbol} Glyph Logic)
+// This is the functional interpretation of the glyph's effect on audio.
+;
+
+            switch (symbol) {
+                case "∴": // Total Structure Collapse (Multi-band psycho duck)
+                    mathCode += 
+// Multi-band psychoacoustic ducking and tonal compression
+function PsychoDuck(signal, threshold, ratio, attack, release) {
+    envelope = GetRMS(signal, attack, release);
+    gain_reduction = (envelope > threshold) ? (envelope - threshold) * (1 - 1/ratio) : 0;
+    return signal * DB_TO_LINEAR(-gain_reduction);
+}
+
+Spectrum_S_in = FFT(S_in(t));
+Processed_Spectrum = [];
+for (f in Spectrum_S_in.bands) {
+    Processed_Spectrum.push(PsychoDuck(Spectrum_S_in.bands[f], param_threshold, param_ratio, param_attack, param_release));
+}
+S_out(t) = IFFT(Sum(Processed_Spectrum)) * GLUE_COMP(t); // Global glue for cohesion
+;
+                    break;
+                case "⟆": // Echo Seed (Pre-delay chain comp)
+                    mathCode += 
+// Reverb Send with sidechain compression on pre-delay
+Sidechain_envelope = GetPeak(S_in(t), param_attack);
+Reverb_send_level = param_depth; // Use param_depth as initial send
+
+if (Sidechain_envelope > param_threshold) {
+    Reverb_send_level *= (1 - (Sidechain_envelope - param_threshold) * param_ratio);
+}
+
+Delayed_Reverb_in = Delay(S_in(t) * Reverb_send_level, PRE_DELAY_MS);
+Reverb_out = ValhallaReverbEngine(Delayed_Reverb_in, DENSITY_HIGH, SIZE_LARGE);
+S_out(t) = MIX_DRY_WET(S_in(t), Reverb_out, param_mix);
+;
+                    break;
+                case "∇": // Ground Seal (Sub limiter)
+                    mathCode += 
+// Brickwall limiting below 50Hz, global soft clip
+S_sub_band = BandPassFilter(S_in(t), 20Hz, 80Hz, ORDER_HIGH);
+S_processed_sub = BRICKWALL_LIMIT(S_sub_band, MAX_SUB_LEVEL_DBFS); // Hard limit
+S_out(t) = S_in(t) - S_sub_band + S_processed_sub; // Re-insert processed sub
+S_out(t) = SOFT_CLIP(S_out(t), CLIP_THRESHOLD_DB); // Global soft clip
+;
+                    break;
+                case "∞": // Looped Infinity (Compress delay tail)
+                    mathCode += 
+// Feedback compression loop on delay tail
+Delay_line_in = S_in(t) + (Delay_feedback_out_prev * param_depth); // Feedback
+Gain_reduction = CalculateGainReduction(GetRMS(Delay_line_in), param_threshold, param_ratio);
+Compressed_Delay_in = Delay_line_in * DB_TO_LINEAR(-Gain_reduction);
+
+Delay_output = ECHO_BOY_ENGINE(Compressed_Delay_in, DELAY_TIME_MS);
+Delay_feedback_out_prev = Delay_output; // Store for next iteration
+S_out(t) = MIX_DRY_WET(S_in(t), Delay_output, param_mix);
+;
+                    break;
+                case "σ": // Ghost Trigger (Upward transient resurface)
+                    mathCode += 
+// Upward compression for ghost transient recovery
+Transient_detector = DetectTransient(S_in(t), param_attack);
+Gain_upward = MapToCurve(Transient_detector, CURVE_OTT_LITE, param_depth); // Scales gain from low levels
+S_out(t) = S_in(t) * Gain_upward;
+S_out(t) = ApplyPostSliceResurface(S_out(t)); // Recover lost data
+;
+                    break;
+                case "Ω": // Finality Clause (Mastering limiter)
+                    mathCode += 
+// True Peak mastering limiter with legacy mode option
+Peak_val = GetTruePeak(S_in(t));
+if (Peak_val > MAX_OUTPUT_DBFS) {
+    S_out(t) = APPLY_LIMITER(S_in(t), MAX_OUTPUT_DBFS, param_attack, param_release, MODE_LEGACY_TRUE_PEAK);
+} else {
+    S_out(t) = S_in(t);
+}
+S_out(t) = APPLY_DITHER_NOISE_SHAPING(S_out(t)); // Final polish
+;
+                    break;
+                case "∆": // Temporal Fold (Time-shift compression)
+                    mathCode += 
+// Dynamic FFT envelope-driven time-shifting
+FFT_Magnitude = AnalyzeFFTMagnitude(S_in(t), FFT_WINDOW_SIZE);
+Envelope_density = CalculateEnvelopeDensity(FFT_Magnitude, param_depth); // Density based on spectral content
+Shift_amount_ms = MapToShiftRange(Envelope_density, MIN_SHIFT_MS, MAX_SHIFT_MS);
+S_out(t) = RESAMPLE_AND_SHIFT(S_in(t), Shift_amount_ms, SampleRate);
+;
+                    break;
+                case "⚡": // (Conceptual example not in initial list, but illustrative)
+                    mathCode += 
+// Quantum Entanglement Fuzz (pure chaotic resonance)
+Entropy_field = RAND_NOISE(t, param_frequency);
+Feedback_loop_gain = param_depth * SIN_WAVE(t * param_ratio);
+S_out(t) = WAVE_DISTORT(S_in(t) + (S_out_prev * Feedback_loop_gain), Entropy_field);
+S_out(t) = ResonantBandPass(S_out(t), param_frequency);
+;
+                    break;
+                case "⧖": // FloatLatch (Ambient upward comp)
+                    mathCode += 
+// Upward compression for subtle ambient lift and spectral balance
+RMS_low_level = GetRMS(S_in(t));
+if (RMS_low_level < param_threshold) { // Only affects quiet signals
+    Gain_lift = (param_threshold - RMS_low_level) * param_ratio;
+    S_out(t) = S_in(t) * DB_TO_LINEAR(Gain_lift);
+} else {
+    S_out(t) = S_in(t);
+}
+S_out(t) = ApplySpectralBalanceCorrection(S_out(t), param_depth); // Fine-tune spectral peaks
+;
+                    break;
+                case "⨐": // ReverseGravity (Negative RMS expander)
+                    mathCode += 
+// Inverted RMS expander, emphasizes signal dips
+RMS_current = GetRMS(S_in(t));
+if (RMS_current < param_threshold) { // Signal is below threshold (dip)
+    Expansion_gain_db = (param_threshold - RMS_current) * param_ratio;
+    S_out(t) = S_in(t) * DB_TO_LINEAR(Expansion_gain_db);
+} else {
+    S_out(t) = S_in(t);
+}
+S_out(t) = INVERT_POLARITY_ON_EXPAND_EVENT(S_out(t)); // Conceptual "reverse gravity"
+;
+                    break;
+                case "⧆": // ChaosLatch (Groove envelope-linked comp)
+                    mathCode += 
+// Groove-aware compression and irregular phrasing
+Groove_envelope_input = AnalyzeRhythmSignature(S_in(t));
+Comp_threshold_mod = MapToCurve(Groove_envelope_input, THRESHOLD_CURVE_CHAOS, param_depth);
+S_out(t) = APPLY_COMPRESSOR(S_in(t), Comp_threshold_mod, param_ratio, param_attack, param_release);
+S_out(t) = APPLY_MPC_CHAOS_RESAMPLE(S_out(t), RANDOM_SEED_IRREGULAR_PHRASING); // Adds that human feel
+;
+                    break;
+                default:
+                    mathCode += 
+// GENERIC MORPHIC ENGINE CORE for ${symbol} ${name}
+// This glyph operates at a fundamental level, influencing the signal's core integrity.
+// The precise transformation is dictated by a multi-dimensional morphic tensor,
+// dynamically derived from its unique position within the STRUCTURR matrix.
+//
+// Input_Phase_Vector = PHASE_ANALYZE(S_in(t));
+// Dynamic_Density = CalculateDensity(S_in(t), param_threshold);
+// Modulated_Effect = INTERPOLATE_FUNCTION(Dynamic_Density, Input_Phase_Vector, param_depth);
+//
+// S_out(t) = S_in(t) * Modulated_Effect + GLYPH_SPECIFIC_COLORATION(t, param_frequency);
+//
+// Note: Actual implementation involves deep recursion into DustLang VM.
+;
+                    break;
+            }
+            return mathCode;
+        }
+
+        let currentGlyphDetailGlobal = null; // Store globally for the animation loop
+        let animationTime = 0; // Global time for animation
+
+        function drawVisualInterpretation(glyph, ctx, t) {
+            const [symbol, name, mode, fxLogic, useCase, plugin] = glyph;
+            const W = ctx.canvas.width;
+            const H = ctx.canvas.height;
+            ctx.clearRect(0, 0, W, H);
+
+            // Background based on overall "feel" of the glyph
+            let bgColor = getGray(0.05);
+            if (name.includes("Collapse") || name.includes("Limit")) {
+                bgColor = getGray(0.0); // Deeper black for intense compression/limiting
+            } else if (name.includes("Echo") || name.includes("Infinity")) {
+                bgColor = getGray(0.1); // Slightly lighter for space/reverb
+            }
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, W, H);
+
+            const center_x = W / 2;
+            const center_y = H / 2;
+
+            // Common element: A pulsing central orb/signal
+            const pulseScale = 0.5 + Math.sin(t * 0.05) * 0.5;
+            ctx.fillStyle = getGray(0.5 + pulseScale * 0.4); /* Varying gray */
+            ctx.beginPath();
+            ctx.arc(center_x, center_y, 20 + pulseScale * 30, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Glyph-specific visual interpretations
+            switch (symbol) {
+                case "∴": // Total Structure Collapse
+                    // Harsh, collapsing rectangles from edges
+                    ctx.strokeStyle = getGray(0.9);
+                    ctx.lineWidth = 2;
+                    const collapseSpeed = (Math.sin(t * 0.08) + 1) / 2;
+                    for (let i = 0; i < 10; i++) {
+                        ctx.strokeRect(i * (W / 20) * collapseSpeed, i * (H / 20) * collapseSpeed,
+                                       W - 2 * i * (W / 20) * collapseSpeed, H - 2 * i * (H / 20) * collapseSpeed);
+                    }
+                    break;
+                case "⟆": // Echo Seed
+                    // Fading, overlapping waves from the center
+                    ctx.strokeStyle = getGray(0.7);
+                    ctx.lineWidth = 1;
+                    for (let i = 0; i < 5; i++) {
+                        const radius = (t * 2 + i * 40) % (Math.min(W, H) / 2);
+                        ctx.globalAlpha = 1 - (radius / (Math.min(W, H) / 2));
+                        ctx.beginPath();
+                        ctx.arc(center_x, center_y, radius, 0, Math.PI * 2);
+                        ctx.stroke();
+                    }
+                    ctx.globalAlpha = 1;
+                    break;
+                case "∇": // Ground Seal
+                    // A strong horizontal line (the 'seal') with peaks hitting it
+                    ctx.strokeStyle = getGray(0.9);
+                    ctx.lineWidth = 5;
+                    ctx.beginPath();
+                    ctx.moveTo(0, H / 2);
+                    ctx.lineTo(W, H / 2);
+                    ctx.stroke();
+                    ctx.fillStyle = getGray(0.6);
+                    for (let i = 0; i < W; i += 20) {
+                        const peakHeight = (Math.sin(i * 0.1 + t * 0.05) + 1) / 2 * (H / 2 - 10) + 10;
+                        ctx.fillRect(i, H / 2 - peakHeight, 10, peakHeight);
+                    }
+                    break;
+                case "∞": // Looped Infinity
+                    // Spiraling pattern getting smaller or larger
+                    ctx.strokeStyle = getGray(0.7);
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    for (let i = 0; i < 360 * 5; i++) { // 5 turns
+                        const angle = i * Math.PI / 180;
+                        const radius = (t * 0.5 + i * 0.1) % (Math.min(W, H) / 3);
+                        const x = center_x + radius * Math.cos(angle);
+                        const y = center_y + radius * Math.sin(angle);
+                        if (i === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.stroke();
+                    break;
+                case "σ": // Ghost Trigger
+                    // Faint, then sharp, transient lines appearing
+                    ctx.strokeStyle = getGray(0.5);
+                    ctx.lineWidth = 2;
+                    ctx.globalAlpha = (Math.sin(t * 0.1) + 1) / 2; // Pulsing alpha
+                    for (let i = 0; i < 10; i++) {
+                        ctx.beginPath();
+                        ctx.moveTo(Math.random() * W, Math.random() * H);
+                        ctx.lineTo(Math.random() * W, Math.random() * H);
+                        ctx.stroke();
+                    }
+                    ctx.globalAlpha = 1;
+                    break;
+                case "Ω": // Finality Clause
+                    // Solid, unmoving top line representing the true peak
+                    ctx.fillStyle = getGray(0.1);
+                    ctx.fillRect(0, 0, W, H);
+                    ctx.strokeStyle = getGray(1);
+                    ctx.lineWidth = 8;
+                    ctx.beginPath();
+                    ctx.moveTo(0, H * 0.1);
+                    ctx.lineTo(W, H * 0.1);
+                    ctx.stroke();
+                    ctx.fillStyle = getGray(0.5);
+                    for (let i = 0; i < W; i += 15) {
+                        const signalBottom = H * 0.9 - (Math.sin(i * 0.05 + t * 0.02) + 1) / 2 * H * 0.5;
+                        ctx.fillRect(i, signalBottom, 10, H * 0.9 - signalBottom);
+                    }
+                    break;
+                case "∆": // Temporal Fold
+                    // Shifting, layered, slightly distorted grid
+                    ctx.lineWidth = 1;
+                    for (let i = 0; i < 10; i++) {
+                        ctx.strokeStyle = getGray(0.3 + (i / 10) * 0.4);
+                        ctx.beginPath();
+                        // Vertical lines with temporal shift
+                        ctx.moveTo(W / 10 * i + Math.sin(t * 0.05 + i) * 10, 0);
+                        ctx.lineTo(W / 10 * i + Math.sin(t * 0.05 + i) * 10, H);
+                        // Horizontal lines with temporal shift
+                        ctx.moveTo(0, H / 10 * i + Math.cos(t * 0.04 + i) * 10);
+                        ctx.lineTo(W, H / 10 * i + Math.cos(t * 0.04 + i) * 10);
+                        ctx.stroke();
+                    }
+                    break;
+                case "⧖": // FloatLatch
+                    // Upward floating particles/bubbles
+                    ctx.fillStyle = getGray(0.7);
+                    for (let i = 0; i < 50; i++) {
+                        const x = (i * 17 + t * 0.8) % W;
+                        const y = (H - ((i * 11 + t * 1.2) % (H * 1.2))) % H; // Loop from bottom
+                        const size = 3 + Math.sin(i * 0.1 + t * 0.05) * 2;
+                        ctx.beginPath();
+                        ctx.arc(x, y, size, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                    break;
+                case "⨐": // ReverseGravity
+                    // Inverted energy, dark areas pushing light
+                    ctx.fillStyle = getGray(1); // Start white
+                    ctx.fillRect(0,0,W,H);
+                    ctx.globalCompositeOperation = 'difference'; // Invert
+                    ctx.fillStyle = getGray(0.1 + Math.sin(t * 0.03) * 0.05); // Pulsing dark fill
+                    ctx.beginPath();
+                    ctx.arc(center_x, center_y, (t * 2 % (Math.min(W,H)/2)) + 50, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.globalCompositeOperation = 'source-over'; // Reset blend mode
+                    break;
+                case "⧆": // ChaosLatch
+                    // Erratic, unpredictable lines and sudden shifts
+                    ctx.strokeStyle = getGray(0.6);
+                    ctx.lineWidth = 1;
+                    for (let i = 0; i < 20; i++) {
+                        const startX = (Math.random() * W + t * 0.5) % W;
+                        const startY = (Math.random() * H + t * 0.3) % H;
+                        const endX = startX + (Math.random() - 0.5) * 100;
+                        const endY = startY + (Math.random() - 0.5) * 100;
+                        ctx.beginPath();
+                        ctx.moveTo(startX, startY);
+                        ctx.lineTo(endX, endY);
+                        ctx.stroke();
+                    }
+                    break;
+                default:
+                    // Default for other glyphs: General Dynamic Range
+                    ctx.strokeStyle = getGray(0.7);
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    for (let x = 0; x < W; x += 10) {
+                        const y_amplitude = (Math.sin(x * 0.05 + t * 0.03) + 1) / 2 * H * 0.3;
+                        ctx.moveTo(x, H / 2 - y_amplitude);
+                        ctx.lineTo(x, H / 2 + y_amplitude);
+                    }
+                    ctx.stroke();
+                    // Horizontal lines indicating thresholds
+                    ctx.strokeStyle = getGray(0.4);
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(0, H * 0.3); ctx.lineTo(W, H * 0.3);
+                    ctx.moveTo(0, H * 0.7); ctx.lineTo(W, H * 0.7);
+                    ctx.stroke();
+                    break;
+            }
+        }
+
+        function animateInterpretation() {
+            if (!currentGlyphDetailGlobal) return;
+            animationTime++;
+            drawVisualInterpretation(currentGlyphDetailGlobal, ctx, animationTime);
+            animationFrameId = requestAnimationFrame(animateInterpretation);
+        }
+
+        function synthesizeReality() {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+
+            // Select a random glyph
+            const randomIndex = Math.floor(Math.random() * glyphsData.length);
+            currentGlyphDetailGlobal = glyphsData[randomIndex];
+
+            // Update glyph info display
+            document.getElementById('glyphSymbol').textContent = currentGlyphDetailGlobal[0];
+            document.getElementById('glyphName').textContent = currentGlyphDetailGlobal[1];
+            document.getElementById('glyphMode').textContent = currentGlyphDetailGlobal[2];
+            document.getElementById('glyphFXLogic').textContent = currentGlyphDetailGlobal[3];
+            document.getElementById('glyphUseCase').textContent = currentGlyphDetailGlobal[4];
+            document.getElementById('glyphPlugin').textContent = currentGlyphDetailGlobal[5];
+
+            // Generate and display mathematical interpretation
+            document.getElementById('mathInterpretation').textContent = generateMathematicalRepresentation(currentGlyphDetailGlobal);
+
+            // Start new animation cycle
+            animationTime = 0; // Reset time for new interpretation
+            animateInterpretation();
+        }
+
+        // Initialize on load
+        window.onload = () => {
+            synthesizeReality(); // Perform an initial synthesis immediately
+        };
+    </script>
+</body>
+</html>

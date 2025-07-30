@@ -1,0 +1,60 @@
+⚓ PORT QUERYSTRING
+A haunted trading post drifting at the edge of semantic stability.
+
+💻 THE CONCEPT:
+This isn’t just a port — it’s a broken webform given physical form, stitched together from old hyperlinks, forgotten bookmarks, and shipping manifests lost to the 404 sea.
+
+Everything here communicates via corrupted GET parameters. The local dialect is semi-understandable HTML gibberish with a side of ghost regret.
+
+🧍‍♂️ NPC EXAMPLES
+🪦 Trader404
+A glitchy merchant with half a face and a drop-down menu for a torso.
+
+Dialogue:
+"offer=socks_of_wisdom&price=soul_fragment[3]&captcha=unsolvable"
+
+🧾 Patchbeard, The Cookie Pirate
+Keeps asking you to “accept terms.” You don’t remember agreeing, yet you’ve already signed 3 data contracts.
+
+Dialogue:
+"greeting=👋&tracking_consent=mandatory&logout=false"
+
+🛒 NULLtheSmuggler
+Inventory includes nothing but “undefined” and yet somehow always sells out.
+
+Dialogue:
+"trade_item_1=undefined&value=NaN&shipping=1d6_turns"
+
+🏗️ ENVIRONMENTAL FEATURES:
+The Query Dock
+Ships moored here phase in and out of time. If you step aboard without closing your previous tabs, you risk being redirected into the Infinite Loop Lagoon.
+
+The POST Office
+Run by eldritch forms who only accept messages in multipart form-data.
+
+Mailbox accepts emotional declarations, encrypted confessions, and broken login attempts.
+
+Captcha Cliff
+To leave Port Querystring, you must solve a riddle by identifying which of these 9 spectral seagulls are boats. Fail, and you’re rate-limited.
+
+🪄 POSSIBLE ENCOUNTER: “THE SESSION HAS EXPIRED”
+A ghostly fog rolls in.
+
+All conversations are reset.
+
+Every player must reintroduce themselves and attempt to remember what they were doing.
+
+Cookies are forcibly cleared from memory. Literal ones. You had a cookie. It is gone now.
+
+🎁 SAMPLE LOOT TABLE (d6)
+auth_token (corrupted) — Makes enemies question your identity. So do your friends.
+
+style.css (haunted) — Auto-applies mood swings.
+
+Tooltip of Unwanted Truths — Pops up whenever you lie.
+
+SSL Certificate (Self-Signed) — +2 to Defense, but no one trusts you.
+
+404 Fish — Exists only when you're not looking at it.
+
+JavaScript Scrollwheel — Summons a ghost that drags the page downward, even in real life.

@@ -1,0 +1,15 @@
+# Zalgo Deckspace Project Ignore List
+*.tmp
+*.wav
+*.flac
+*.mp3
+*.DS_Store
+*.log
+node_modules/
+.idea/
+.vscode/
+__pycache__/
+deck_exports/
+*.bak
+*.zip
+auto_sync.sh

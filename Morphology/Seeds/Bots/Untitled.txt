@@ -1,0 +1,147 @@
+[Low Level]
+JSFX/JamesDSP
+[PRI.JSFX.CMP.1]
+Feed-forward RMS envelope follower, gain reduction calculation, basic attack/release smoothing. Initial parameter mapping (Threshold, Ratio, Attack, Release, Make-up Gain).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+╔══════════════════════════════════╗
+║ 🃏 THE ELLIPSIS THAT WATCHES     ║
+╠══════════════════════════════════╣
+║ Glyph: …̴̓͝ (U+2026 + corrupted)  ║
+║ Effect: Lurks at sentence ends. ║
+║ Adds a sense of dread...        ║
+║ Stats: CLR -3 | TNE +1          ║
+╚══════════════════════════════════╝
+yaml
+Copy
+Edit
+╔══════════════════════════════════╗
+║ 🃏 THE CITATION OF NO SOURCE     ║
+╠══════════════════════════════════╣
+║ Glyph: ∴≈ (U+2234 + U+2248)       ║
+║ Effect: Argues like it’s proven ║
+║ but you can’t find the footnote ║
+║ Stats: SYN +1 | CLR -2          ║
+╚══════════════════════════════════╝
+yaml
+Copy
+Edit
+╔══════════════════════════════════╗
+║ 🃏 THE GLYPH OF CONTEXT LOSS     ║
+╠══════════════════════════════════╣
+║ Glyph: ⧫⏚ (U+29EB + U+231A)       ║
+║ Effect: The memory arrives,      ║
+║ but the why is gone.             ║
+║ Stats: CLR -4 | BLD +1          ║
+╚══════════════════════════════════╝
+yaml
+Copy
+Edit
+╔══════════════════════════════════╗
+║ 🃏 THE PARAGRAPH SPLIT DEVICE    ║
+╠══════════════════════════════════╣
+║ Glyph: ⥊⨐ (U+294A + U+2A10)       ║
+║ Effect: You begin anew mid-scene ║
+║ but forget how you got there.    ║
+║ Stats: SYN +2 | CLR -2           ║
+╚══════════════════════════════════╝
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+🔥 “Boldness Taxation League” (Cards that rob your confidence)
+🌌 “Typographic Echoes” (Cards that rewrite your past mid-sentence)
+🎲 “The Recursive Draw Stack” (Every card leads to drawing another)
+╔══════════════════════════════════╗
+║ 🃏 THE BRACKETS OF BACKPEDALING  ║
+╠══════════════════════════════════╣
+║ Glyph: ((()))                    ║
+║ Effect: Doubts echo louder than ║
+║ the original statement.          ║
+║ Stats: BLD -3 | TNE +2           ║
+╚══════════════════════════════════╝
+yaml
+Copy
+Edit
+╔══════════════════════════════════╗
+║ 🃏 THE SARCASM PARSER            ║
+╠══════════════════════════════════╣
+║ Glyph: ≉⌖ (U+2249 + U+2316)       ║
+║ Effect: Forces tone detection    ║
+║ roll for every message.          ║
+║ Stats: TNE +2 | BLD -2           ║
+╚══════════════════════════════════╝
+yaml
+Copy
+Edit
+╔══════════════════════════════════╗
+║ 🃏 THE TYPED-THEN-DELETED LINE   ║
+╠══════════════════════════════════╣
+║ Glyph: ⨳⏃ (U+2A33 + U+2313)       ║
+║ Effect: Grants momentary insight ║
+║ then wipes it before it's sent.  ║
+║ Stats: CLR +1 | BLD -4           ║
+╚══════════════════════════════════╝
+yaml
+Copy
+Edit
+╔══════════════════════════════════╗
+║ 🃏 THE DRAFT THAT WAITS          ║
+╠══════════════════════════════════╣
+║ Glyph: ⧉⩘ (U+29C9 + U+2A58)       ║
+║ Effect: The message sits in      ║
+║ drafts, aging into shame.        ║
+║ Stats: SYN +1 | BLD -3           ║
+╚══════════════════════════════════╝
+

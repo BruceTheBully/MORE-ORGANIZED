@@ -1,0 +1,1285 @@
+Character List
+U+0400
+
+Ѐ
+Cyrillic Capital Letter Ie with Grave
+
+U+0401
+
+Ё
+Cyrillic Capital Letter Io
+
+U+0402
+
+Ђ
+Cyrillic Capital Letter Dje
+
+U+0403
+
+Ѓ
+Cyrillic Capital Letter Gje
+
+U+0404
+
+Є
+Cyrillic Capital Letter Ukrainian Ie
+
+U+0405
+
+Ѕ
+Cyrillic Capital Letter Dze
+
+U+0406
+
+І
+Cyrillic Capital Letter Byelorussian-Ukrainian I
+
+U+0407
+
+Ї
+Cyrillic Capital Letter Yi
+
+U+0408
+
+Ј
+Cyrillic Capital Letter Je
+
+U+0409
+
+Љ
+Cyrillic Capital Letter Lje
+
+U+040A
+
+Њ
+Cyrillic Capital Letter Nje
+
+U+040B
+
+Ћ
+Cyrillic Capital Letter Tshe
+
+U+040C
+
+Ќ
+Cyrillic Capital Letter Kje
+
+U+040D
+
+Ѝ
+Cyrillic Capital Letter I with Grave
+
+U+040E
+
+Ў
+Cyrillic Capital Letter Short U
+
+U+040F
+
+Џ
+Cyrillic Capital Letter Dzhe
+
+U+0410
+
+А
+Cyrillic Capital Letter A
+
+U+0411
+
+Б
+Cyrillic Capital Letter Be
+
+U+0412
+
+В
+Cyrillic Capital Letter Ve
+
+U+0413
+
+Г
+Cyrillic Capital Letter Ghe
+
+U+0414
+
+Д
+Cyrillic Capital Letter De
+
+U+0415
+
+Е
+Cyrillic Capital Letter Ie
+
+U+0416
+
+Ж
+Cyrillic Capital Letter Zhe
+
+U+0417
+
+З
+Cyrillic Capital Letter Ze
+
+U+0418
+
+И
+Cyrillic Capital Letter I
+
+U+0419
+
+Й
+Cyrillic Capital Letter Short I
+
+U+041A
+
+К
+Cyrillic Capital Letter Ka
+
+U+041B
+
+Л
+Cyrillic Capital Letter El
+
+U+041C
+
+М
+Cyrillic Capital Letter Em
+
+U+041D
+
+Н
+Cyrillic Capital Letter En
+
+U+041E
+
+О
+Cyrillic Capital Letter O
+
+U+041F
+
+П
+Cyrillic Capital Letter Pe
+
+U+0420
+
+Р
+Cyrillic Capital Letter Er
+
+U+0421
+
+С
+Cyrillic Capital Letter Es
+
+U+0422
+
+Т
+Cyrillic Capital Letter Te
+
+U+0423
+
+У
+Cyrillic Capital Letter U
+
+U+0424
+
+Ф
+Cyrillic Capital Letter Ef
+
+U+0425
+
+Х
+Cyrillic Capital Letter Ha
+
+U+0426
+
+Ц
+Cyrillic Capital Letter Tse
+
+U+0427
+
+Ч
+Cyrillic Capital Letter Che
+
+U+0428
+
+Ш
+Cyrillic Capital Letter Sha
+
+U+0429
+
+Щ
+Cyrillic Capital Letter Shcha
+
+U+042A
+
+Ъ
+Cyrillic Capital Letter Hard Sign
+
+U+042B
+
+Ы
+Cyrillic Capital Letter Yeru
+
+U+042C
+
+Ь
+Cyrillic Capital Letter Soft Sign
+
+U+042D
+
+Э
+Cyrillic Capital Letter E
+
+U+042E
+
+Ю
+Cyrillic Capital Letter Yu
+
+U+042F
+
+Я
+Cyrillic Capital Letter Ya
+
+U+0430
+
+а
+Cyrillic Small Letter A
+
+U+0431
+
+б
+Cyrillic Small Letter Be
+
+U+0432
+
+в
+Cyrillic Small Letter Ve
+
+U+0433
+
+г
+Cyrillic Small Letter Ghe
+
+U+0434
+
+д
+Cyrillic Small Letter De
+
+U+0435
+
+е
+Cyrillic Small Letter Ie
+
+U+0436
+
+ж
+Cyrillic Small Letter Zhe
+
+U+0437
+
+з
+Cyrillic Small Letter Ze
+
+U+0438
+
+и
+Cyrillic Small Letter I
+
+U+0439
+
+й
+Cyrillic Small Letter Short I
+
+U+043A
+
+к
+Cyrillic Small Letter Ka
+
+U+043B
+
+л
+Cyrillic Small Letter El
+
+U+043C
+
+м
+Cyrillic Small Letter Em
+
+U+043D
+
+н
+Cyrillic Small Letter En
+
+U+043E
+
+о
+Cyrillic Small Letter O
+
+U+043F
+
+п
+Cyrillic Small Letter Pe
+
+U+0440
+
+р
+Cyrillic Small Letter Er
+
+U+0441
+
+с
+Cyrillic Small Letter Es
+
+U+0442
+
+т
+Cyrillic Small Letter Te
+
+U+0443
+
+у
+Cyrillic Small Letter U
+
+U+0444
+
+ф
+Cyrillic Small Letter Ef
+
+U+0445
+
+х
+Cyrillic Small Letter Ha
+
+U+0446
+
+ц
+Cyrillic Small Letter Tse
+
+U+0447
+
+ч
+Cyrillic Small Letter Che
+
+U+0448
+
+ш
+Cyrillic Small Letter Sha
+
+U+0449
+
+щ
+Cyrillic Small Letter Shcha
+
+U+044A
+
+ъ
+Cyrillic Small Letter Hard Sign
+
+U+044B
+
+ы
+Cyrillic Small Letter Yeru
+
+U+044C
+
+ь
+Cyrillic Small Letter Soft Sign
+
+U+044D
+
+э
+Cyrillic Small Letter E
+
+U+044E
+
+ю
+Cyrillic Small Letter Yu
+
+U+044F
+
+я
+Cyrillic Small Letter Ya
+
+U+0450
+
+ѐ
+Cyrillic Small Letter Ie with Grave
+
+U+0451
+
+ё
+Cyrillic Small Letter Io
+
+U+0452
+
+ђ
+Cyrillic Small Letter Dje
+
+U+0453
+
+ѓ
+Cyrillic Small Letter Gje
+
+U+0454
+
+є
+Cyrillic Small Letter Ukrainian Ie
+
+U+0455
+
+ѕ
+Cyrillic Small Letter Dze
+
+U+0456
+
+і
+Cyrillic Small Letter Byelorussian-Ukrainian I
+
+U+0457
+
+ї
+Cyrillic Small Letter Yi
+
+U+0458
+
+ј
+Cyrillic Small Letter Je
+
+U+0459
+
+љ
+Cyrillic Small Letter Lje
+
+U+045A
+
+њ
+Cyrillic Small Letter Nje
+
+U+045B
+
+ћ
+Cyrillic Small Letter Tshe
+
+U+045C
+
+ќ
+Cyrillic Small Letter Kje
+
+U+045D
+
+ѝ
+Cyrillic Small Letter I with Grave
+
+U+045E
+
+ў
+Cyrillic Small Letter Short U
+
+U+045F
+
+џ
+Cyrillic Small Letter Dzhe
+
+U+0460
+
+Ѡ
+Cyrillic Capital Letter Omega
+
+U+0461
+
+ѡ
+Cyrillic Small Letter Omega
+
+U+0462
+
+Ѣ
+Cyrillic Capital Letter Yat
+
+U+0463
+
+ѣ
+Cyrillic Small Letter Yat
+
+U+0464
+
+Ѥ
+Cyrillic Capital Letter Iotified E
+
+U+0465
+
+ѥ
+Cyrillic Small Letter Iotified E
+
+U+0466
+
+Ѧ
+Cyrillic Capital Letter Little Yus
+
+U+0467
+
+ѧ
+Cyrillic Small Letter Little Yus
+
+U+0468
+
+Ѩ
+Cyrillic Capital Letter Iotified Little Yus
+
+U+0469
+
+ѩ
+Cyrillic Small Letter Iotified Little Yus
+
+U+046A
+
+Ѫ
+Cyrillic Capital Letter Big Yus
+
+U+046B
+
+ѫ
+Cyrillic Small Letter Big Yus
+
+U+046C
+
+Ѭ
+Cyrillic Capital Letter Iotified Big Yus
+
+U+046D
+
+ѭ
+Cyrillic Small Letter Iotified Big Yus
+
+U+046E
+
+Ѯ
+Cyrillic Capital Letter Ksi
+
+U+046F
+
+ѯ
+Cyrillic Small Letter Ksi
+
+U+0470
+
+Ѱ
+Cyrillic Capital Letter Psi
+
+U+0471
+
+ѱ
+Cyrillic Small Letter Psi
+
+U+0472
+
+Ѳ
+Cyrillic Capital Letter Fita
+
+U+0473
+
+ѳ
+Cyrillic Small Letter Fita
+
+U+0474
+
+Ѵ
+Cyrillic Capital Letter Izhitsa
+
+U+0475
+
+ѵ
+Cyrillic Small Letter Izhitsa
+
+U+0476
+
+Ѷ
+Cyrillic Capital Letter Izhitsa with Double Grave Accent
+
+U+0477
+
+ѷ
+Cyrillic Small Letter Izhitsa with Double Grave Accent
+
+U+0478
+
+Ѹ
+Cyrillic Capital Letter Uk
+
+U+0479
+
+ѹ
+Cyrillic Small Letter Uk
+
+U+047A
+
+Ѻ
+Cyrillic Capital Letter Round Omega
+
+U+047B
+
+ѻ
+Cyrillic Small Letter Round Omega
+
+U+047C
+
+Ѽ
+Cyrillic Capital Letter Omega with Titlo
+
+U+047D
+
+ѽ
+Cyrillic Small Letter Omega with Titlo
+
+U+047E
+
+Ѿ
+Cyrillic Capital Letter Ot
+
+U+047F
+
+ѿ
+Cyrillic Small Letter Ot
+
+U+0480
+
+Ҁ
+Cyrillic Capital Letter Koppa
+
+U+0481
+
+ҁ
+Cyrillic Small Letter Koppa
+
+U+0482
+
+҂
+Cyrillic Thousands Sign
+
+U+0483
+
+◌҃
+Combining Cyrillic Titlo
+
+U+0484
+
+◌҄
+Combining Cyrillic Palatalization
+
+U+0485
+
+◌҅
+Combining Cyrillic Dasia Pneumata
+
+U+0486
+
+◌҆
+Combining Cyrillic Psili Pneumata
+
+U+0487
+
+◌҇
+Combining Cyrillic Pokrytie
+
+U+0488
+
+҈
+Combining Cyrillic Hundred Thousands Sign
+
+U+0489
+
+҉
+Combining Cyrillic Millions Sign
+
+U+048A
+
+Ҋ
+Cyrillic Capital Letter Short I with Tail
+
+U+048B
+
+ҋ
+Cyrillic Small Letter Short I with Tail
+
+U+048C
+
+Ҍ
+Cyrillic Capital Letter Semisoft Sign
+
+U+048D
+
+ҍ
+Cyrillic Small Letter Semisoft Sign
+
+U+048E
+
+Ҏ
+Cyrillic Capital Letter Er with Tick
+
+U+048F
+
+ҏ
+Cyrillic Small Letter Er with Tick
+
+U+0490
+
+Ґ
+Cyrillic Capital Letter Ghe with Upturn
+
+U+0491
+
+ґ
+Cyrillic Small Letter Ghe with Upturn
+
+U+0492
+
+Ғ
+Cyrillic Capital Letter Ghe with Stroke
+
+U+0493
+
+ғ
+Cyrillic Small Letter Ghe with Stroke
+
+U+0494
+
+Ҕ
+Cyrillic Capital Letter Ghe with Middle Hook
+
+U+0495
+
+ҕ
+Cyrillic Small Letter Ghe with Middle Hook
+
+U+0496
+
+Җ
+Cyrillic Capital Letter Zhe with Descender
+
+U+0497
+
+җ
+Cyrillic Small Letter Zhe with Descender
+
+U+0498
+
+Ҙ
+Cyrillic Capital Letter Ze with Descender
+
+U+0499
+
+ҙ
+Cyrillic Small Letter Ze with Descender
+
+U+049A
+
+Қ
+Cyrillic Capital Letter Ka with Descender
+
+U+049B
+
+қ
+Cyrillic Small Letter Ka with Descender
+
+U+049C
+
+Ҝ
+Cyrillic Capital Letter Ka with Vertical Stroke
+
+U+049D
+
+ҝ
+Cyrillic Small Letter Ka with Vertical Stroke
+
+U+049E
+
+Ҟ
+Cyrillic Capital Letter Ka with Stroke
+
+U+049F
+
+ҟ
+Cyrillic Small Letter Ka with Stroke
+
+U+04A0
+
+Ҡ
+Cyrillic Capital Letter Bashkir Ka
+
+U+04A1
+
+ҡ
+Cyrillic Small Letter Bashkir Ka
+
+U+04A2
+
+Ң
+Cyrillic Capital Letter En with Descender
+
+U+04A3
+
+ң
+Cyrillic Small Letter En with Descender
+
+U+04A4
+
+Ҥ
+Cyrillic Capital Ligature En Ghe
+
+U+04A5
+
+ҥ
+Cyrillic Small Ligature En Ghe
+
+U+04A6
+
+Ҧ
+Cyrillic Capital Letter Pe with Middle Hook
+
+U+04A7
+
+ҧ
+Cyrillic Small Letter Pe with Middle Hook
+
+U+04A8
+
+Ҩ
+Cyrillic Capital Letter Abkhasian Ha
+
+U+04A9
+
+ҩ
+Cyrillic Small Letter Abkhasian Ha
+
+U+04AA
+
+Ҫ
+Cyrillic Capital Letter Es with Descender
+
+U+04AB
+
+ҫ
+Cyrillic Small Letter Es with Descender
+
+U+04AC
+
+Ҭ
+Cyrillic Capital Letter Te with Descender
+
+U+04AD
+
+ҭ
+Cyrillic Small Letter Te with Descender
+
+U+04AE
+
+Ү
+Cyrillic Capital Letter Straight U
+
+U+04AF
+
+ү
+Cyrillic Small Letter Straight U
+
+U+04B0
+
+Ұ
+Cyrillic Capital Letter Straight U with Stroke
+
+U+04B1
+
+ұ
+Cyrillic Small Letter Straight U with Stroke
+
+U+04B2
+
+Ҳ
+Cyrillic Capital Letter Ha with Descender
+
+U+04B3
+
+ҳ
+Cyrillic Small Letter Ha with Descender
+
+U+04B4
+
+Ҵ
+Cyrillic Capital Ligature Te Tse
+
+U+04B5
+
+ҵ
+Cyrillic Small Ligature Te Tse
+
+U+04B6
+
+Ҷ
+Cyrillic Capital Letter Che with Descender
+
+U+04B7
+
+ҷ
+Cyrillic Small Letter Che with Descender
+
+U+04B8
+
+Ҹ
+Cyrillic Capital Letter Che with Vertical Stroke
+
+U+04B9
+
+ҹ
+Cyrillic Small Letter Che with Vertical Stroke
+
+U+04BA
+
+Һ
+Cyrillic Capital Letter Shha
+
+U+04BB
+
+һ
+Cyrillic Small Letter Shha
+
+U+04BC
+
+Ҽ
+Cyrillic Capital Letter Abkhasian Che
+
+U+04BD
+
+ҽ
+Cyrillic Small Letter Abkhasian Che
+
+U+04BE
+
+Ҿ
+Cyrillic Capital Letter Abkhasian Che with Descender
+
+U+04BF
+
+ҿ
+Cyrillic Small Letter Abkhasian Che with Descender
+
+U+04C0
+
+Ӏ
+Cyrillic Letter Palochka
+
+U+04C1
+
+Ӂ
+Cyrillic Capital Letter Zhe with Breve
+
+U+04C2
+
+ӂ
+Cyrillic Small Letter Zhe with Breve
+
+U+04C3
+
+Ӄ
+Cyrillic Capital Letter Ka with Hook
+
+U+04C4
+
+ӄ
+Cyrillic Small Letter Ka with Hook
+
+U+04C5
+
+Ӆ
+Cyrillic Capital Letter El with Tail
+
+U+04C6
+
+ӆ
+Cyrillic Small Letter El with Tail
+
+U+04C7
+
+Ӈ
+Cyrillic Capital Letter En with Hook
+
+U+04C8
+
+ӈ
+Cyrillic Small Letter En with Hook
+
+U+04C9
+
+Ӊ
+Cyrillic Capital Letter En with Tail
+
+U+04CA
+
+ӊ
+Cyrillic Small Letter En with Tail
+
+U+04CB
+
+Ӌ
+Cyrillic Capital Letter Khakassian Che
+
+U+04CC
+
+ӌ
+Cyrillic Small Letter Khakassian Che
+
+U+04CD
+
+Ӎ
+Cyrillic Capital Letter Em with Tail
+
+U+04CE
+
+ӎ
+Cyrillic Small Letter Em with Tail
+
+U+04CF
+
+ӏ
+Cyrillic Small Letter Palochka
+
+U+04D0
+
+Ӑ
+Cyrillic Capital Letter A with Breve
+
+U+04D1
+
+ӑ
+Cyrillic Small Letter A with Breve
+
+U+04D2
+
+Ӓ
+Cyrillic Capital Letter A with Diaeresis
+
+U+04D3
+
+ӓ
+Cyrillic Small Letter A with Diaeresis
+
+U+04D4
+
+Ӕ
+Cyrillic Capital Ligature A Ie
+
+U+04D5
+
+ӕ
+Cyrillic Small Ligature A Ie
+
+U+04D6
+
+Ӗ
+Cyrillic Capital Letter Ie with Breve
+
+U+04D7
+
+ӗ
+Cyrillic Small Letter Ie with Breve
+
+U+04D8
+
+Ә
+Cyrillic Capital Letter Schwa
+
+U+04D9
+
+ә
+Cyrillic Small Letter Schwa
+
+U+04DA
+
+Ӛ
+Cyrillic Capital Letter Schwa with Diaeresis
+
+U+04DB
+
+ӛ
+Cyrillic Small Letter Schwa with Diaeresis
+
+U+04DC
+
+Ӝ
+Cyrillic Capital Letter Zhe with Diaeresis
+
+U+04DD
+
+ӝ
+Cyrillic Small Letter Zhe with Diaeresis
+
+U+04DE
+
+Ӟ
+Cyrillic Capital Letter Ze with Diaeresis
+
+U+04DF
+
+ӟ
+Cyrillic Small Letter Ze with Diaeresis
+
+U+04E0
+
+Ӡ
+Cyrillic Capital Letter Abkhasian Dze
+
+U+04E1
+
+ӡ
+Cyrillic Small Letter Abkhasian Dze
+
+U+04E2
+
+Ӣ
+Cyrillic Capital Letter I with Macron
+
+U+04E3
+
+ӣ
+Cyrillic Small Letter I with Macron
+
+U+04E4
+
+Ӥ
+Cyrillic Capital Letter I with Diaeresis
+
+U+04E5
+
+ӥ
+Cyrillic Small Letter I with Diaeresis
+
+U+04E6
+
+Ӧ
+Cyrillic Capital Letter O with Diaeresis
+
+U+04E7
+
+ӧ
+Cyrillic Small Letter O with Diaeresis
+
+U+04E8
+
+Ө
+Cyrillic Capital Letter Barred O
+
+U+04E9
+
+ө
+Cyrillic Small Letter Barred O
+
+U+04EA
+
+Ӫ
+Cyrillic Capital Letter Barred O with Diaeresis
+
+U+04EB
+
+ӫ
+Cyrillic Small Letter Barred O with Diaeresis
+
+U+04EC
+
+Ӭ
+Cyrillic Capital Letter E with Diaeresis
+
+U+04ED
+
+ӭ
+Cyrillic Small Letter E with Diaeresis
+
+U+04EE
+
+Ӯ
+Cyrillic Capital Letter U with Macron
+
+U+04EF
+
+ӯ
+Cyrillic Small Letter U with Macron
+
+U+04F0
+
+Ӱ
+Cyrillic Capital Letter U with Diaeresis
+
+U+04F1
+
+ӱ
+Cyrillic Small Letter U with Diaeresis
+
+U+04F2
+
+Ӳ
+Cyrillic Capital Letter U with Double Acute
+
+U+04F3
+
+ӳ
+Cyrillic Small Letter U with Double Acute
+
+U+04F4
+
+Ӵ
+Cyrillic Capital Letter Che with Diaeresis
+
+U+04F5
+
+ӵ
+Cyrillic Small Letter Che with Diaeresis
+
+U+04F6
+
+Ӷ
+Cyrillic Capital Letter Ghe with Descender
+
+U+04F7
+
+ӷ
+Cyrillic Small Letter Ghe with Descender
+
+U+04F8
+
+Ӹ
+Cyrillic Capital Letter Yeru with Diaeresis
+
+U+04F9
+
+ӹ
+Cyrillic Small Letter Yeru with Diaeresis
+
+U+04FA
+
+Ӻ
+Cyrillic Capital Letter Ghe with Stroke and Hook
+
+U+04FB
+
+ӻ
+
+Cyrillic Small Letter Ghe with Stroke and Hook
+
+U+04FC
+
+Ӽ
+
+Cyrillic Capital Letter Ha with Hook
+
+U+04FD
+
+ӽ
+
+Cyrillic Small Letter Ha with Hook
+
+U+04FE
+
+Ӿ
+
+Cyrillic Capital Letter Ha with Stroke
+
+U+04FF
+
+ӿ
+
+Cyrillic Small Letter Ha with Stroke

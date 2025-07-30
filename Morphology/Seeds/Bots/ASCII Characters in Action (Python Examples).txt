@@ -1,0 +1,119 @@
+ASCII Characters in Action (Python Examples)
+This document demonstrates some common ASCII characters, especially control characters, in Python code. To see these in action, copy the Python code blocks and run them in your Python interpreter or a .py file.
+
+Important Note: The visual output in a browser's <pre> tag might not perfectly reflect how these characters behave in a terminal. For the most accurate demonstration, run the Python code in a console/terminal.
+1. Line Feed (LF / `\n`) - U+000A
+The Line Feed character moves the cursor to the next line. It's the standard way to create new lines in most programming environments (Unix/Linux/macOS style newlines).
+
+
+# Python code to demonstrate Line Feed
+print("Hello\nWorld!")
+print("This is line one.\nThis is line two.\nAnd this is line three.")
+        
+Expected Output (in a terminal):
+
+Hello
+World!
+This is line one.
+This is line two.
+And this is line three.
+        
+2. Horizontal Tab (HT / `\t`) - U+0009
+The Horizontal Tab character inserts horizontal whitespace, typically aligning text to predefined "tab stops."
+
+
+# Python code to demonstrate Horizontal Tab
+print("Name:\tAlice")
+print("Age:\t30")
+print("City:\tNew York")
+
+print("\tThis line is indented with a tab.")
+        
+Expected Output (in a terminal):
+
+Name:   Alice
+Age:    30
+City:   New York
+
+    This line is indented with a tab.
+        
+3. Carriage Return (CR / `\r`) - U+000D
+The Carriage Return character moves the cursor to the beginning of the current line without advancing to the next line. This can lead to overwriting previously printed text on the same line. On Windows, \r\n (CRLF) is the standard newline sequence.
+
+
+# Python code to demonstrate Carriage Return
+print("Loading...    ", end='\r') # The 'end='\r' makes it return to start of line
+import time
+time.sleep(1) # Wait a bit
+print("Processing...", end='\r')
+time.sleep(1)
+print("Complete!    ") # Trailing spaces to clear "Processing..."
+
+print("\n--- Another example ---")
+print("AAAAABBBBB\rCCCCC") # CCCCC overwrites AAAAA
+        
+Expected Output (in a terminal):
+
+(You will see "Loading...", then it changes to "Processing...", then to "Complete!" on the same line)
+Complete!
+
+--- Another example ---
+CCCCCBBBBB
+        
+Note on Carriage Return: The behavior of `\r` is best observed in a live terminal. In a browser's pre-formatted text, it might just move to the beginning of the *displayed line* but won't animate like in a terminal.
+4. Backspace (BS / `\b`) - U+0008
+The Backspace character moves the cursor back one position, potentially overwriting the previous character if followed by another character.
+
+
+# Python code to demonstrate Backspace
+print("Hello World!\b\b\b\b") # Moves back 4 spaces
+print("Hello World!\b\b\b\b_New") # Overwrites "orld" with "_New"
+        
+Expected Output (in a terminal):
+
+Hello Worl
+Hello W_New!
+        
+5. NUL (Null Character / `\0`) - U+0000
+The Null character is often used as a string terminator in languages like C. In Python, it's just another character in a string, but it can have special meaning in file formats or network protocols.
+
+
+# Python code to demonstrate Null character
+my_string = "Hello\0World"
+print(f"String with null: '{my_string}'")
+print(f"Length of string: {len(my_string)}")
+
+# Note: In C/C++, a null character would terminate the string here.
+# In Python, it's just a character like any other.
+        
+Expected Output:
+
+String with null: 'Hello World'
+Length of string: 11
+        
+6. Form Feed (FF / `\f`) - U+000C
+Historically, Form Feed was used to advance paper to the top of the next page in a printer. In modern terminals, its behavior varies but might clear the screen or act as a line break.
+
+
+# Python code to demonstrate Form Feed
+print("Page 1 content.\fPage 2 content.")
+        
+Expected Output (varies by terminal, might just be a newline or clear screen):
+
+Page 1 content.
+Page 2 content.
+        
+7. Printable Characters (U+0020 onwards)
+These are the regular characters you see and type every day. Python handles them just as you'd expect.
+
+
+# Python code demonstrating printable characters
+print("This is a normal sentence with digits 123 and symbols !@#$")
+print("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+print("abcdefghijklmnopqrstuvwxyz")
+        
+Expected Output:
+
+This is a normal sentence with digits 123 and symbols !@#$
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz

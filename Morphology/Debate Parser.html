@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EchoBrowser ∿ MorphOS Kernel</title>
+  <style>
+    body { font-family: monospace; background: #0e0e0e; color: #f0f0f0; padding: 30px; }
+    h1 { color: #FF89C0; }
+    input, label { font-size: 1em; margin: 0.5em 0; }
+    .glyph { font-size: 1.5em; display: inline-block; margin-right: 0.5em; }
+    .entry-block {
+      border-left: 3px solid #FF89C0;
+      background: #1a1a1a;
+      margin: 1.5em 0;
+      padding: 1em;
+      box-shadow: 0 0 10px #111;
+    }
+    .entry-title { font-size: 1.3em; color: #aaffaa; margin-bottom: 0.4em; }
+    .morph { font-weight: bold; color: #FF89C0; margin-bottom: 0.5em; }
+    .note { font-style: italic; color: #aaa; margin-top: 0.5em; }
+    .eqblock {
+      font-size: 0.95em;
+      background: #222;
+      color: #a0e0ff;
+      padding: 0.5em;
+      margin-top: 0.3em;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>∿ EchoBrowser Interface ⊶</h1>
+  <label for="fileInput">Drop MorphJSON File:</label>
+  <input type="file" id="fileInput"><br><br>
+  <div id="output"></div>
+
+  <script>
+    document.getElementById("fileInput").addEventListener("change", function(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const json = JSON.parse(e.target.result);
+        document.getElementById("output").innerHTML = renderJSON(json);
+      };
+      reader.readAsText(file);
+    });
+
+    function renderJSON(data) {
+      let html = "";
+      for (let key in data) {
+        if (Array.isArray(data[key])) {
+          data[key].forEach(entry => {
+            html += `<div class="entry-block">
+              <div class="entry-title">${entry.title || entry.id || "Untitled Entry"}</div>
+              ${entry.type ? `<div class="morph">[${entry.type}]</div>` : ""}
+              ${entry.description || entry.section || entry.content || ""}
+              ${entry.morph_symbols ? `<div class="morph">Symbols: ${entry.morph_symbols}</div>` : ""}
+              ${entry.equation_inference ? formatEquations(entry.equation_inference) : ""}
+              ${entry.notes ? `<div class="note">${entry.notes}</div>` : ""}
+            </div>`;
+          });
+        }
+      }
+      return html;
+    }
+
+    function formatEquations(eqObj) {
+      let eqHTML = `<div class="eqblock">`;
+      for (let name in eqObj) {
+        eqHTML += `${name}: ${eqObj[name]}\n`;
+      }
+      return eqHTML + `</div>`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kleopatra's Veil: Dynamic Field Generator</title>
+    <style>
+        body {
+            background: #000c18;
+            color: #ccffff;
+            font-family: 'Fira Code', monospace;
+            padding: 2rem;
+            margin: auto;
+            max-width: 900px;
+        }
+        h1 {
+            color: #aaffdd;
+            text-align: center;
+            font-size: 2.2rem;
+            text-shadow: 0 0 15px #aaffdd40;
+        }
+        .veil-layer {
+            background: #031525;
+            border-left: 5px solid #00ffff;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 8px #00ffff30;
+        }
+        .veil-layer h2 {
+            color: #00ffff;
+            margin-top: 0;
+            border-bottom: 1px dashed #008888;
+            padding-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+        .pattern-group {
+            margin-bottom: 1rem;
+            word-break: break-all; /* Ensure long lines wrap */
+        }
+        .pattern-group p {
+            line-height: 1.8;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .status-resolved {
+            color: #00ff77; /* Green for resolved */
+            font-weight: bold;
+        }
+        .status-unresolved {
+            color: #ff9900; /* Orange for unresolved */
+            font-weight: bold;
+        }
+        .legend {
+            margin-top: 3rem;
+            font-size: 0.8em;
+            color: #66ccff;
+            border-top: 1px dashed #336699;
+            padding-top: 1rem;
+        }
+        .legend span {
+            font-weight: bold;
+        }
+        .generate-button {
+            background: #00ffff;
+            color: #000c18;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #00ffff50;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+        }
+        .generate-button:hover {
+            background: #00cccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kleopatra's Veil: Dynamic Field Generator</h1>
+    <p>This is your auto-indexing machine for symbolic patterns. Each pattern represents a complex, hidden mathematical equation. Refresh the page or click 'Generate New Patterns' to produce a new set.</p>
+
+    <button class="generate-button" onclick="populatePatterns()">Generate New Patterns</button>
+
+    <div id="patternContainer">
+        </div>
+
+    <div class="legend">
+        <p>Each symbolic pattern (e.g., "⚡️⟆ᛃ∇◎...") is a unique, dynamically generated representation of a complex, hidden mathematical equation. Without the full STRUCTURR protocol (LaTeX source, Python interpreter, and mapping logic), these patterns appear as random strings. Their <span class="status-resolved">RESOLVED</span> / <span class="status-unresolved">UNRESOLVED</span> status reflects the real-time outcome of the hidden equation's calculation (50% chance).</p>
+        <p>The <span style="color:#ffcc00">orange lowercase</span> letters in the description (conceptual, not rendered directly in patterns) represent **ORANGE_LOWERCASE** morphic function: subtle, organic, ground-level shifts and nuanced groove variations.</p>
+        <p>The <span style="color:#ff0000">RED UPPERCASE</span> letters in the description (conceptual, not rendered directly in patterns) represent **LEMON_UPPERCASE** morphic function: sharp, decisive, high-energy events, transient surges, and critical decision points.</p>
+    </div>
+
+    <script>
+        const MORPH_CODEx = {
+            'A': '∴', 'B': '⟁', 'C': 'Ͼ', 'D': '⸧', 'E': '◎', 'F': '⟇', 'G': '⧫', 'H': 'χ', 'I': 'Ω', 'J': '∆',
+            'K': '∠', 'L': '⊕', 'M': '∩', 'N': '⊗', 'O': '⊙', 'P': '↺', 'Q': '⥊', 'R': '⋈', 'S': '⋒', 'T': '⧉',
+            'U': '⋘', 'V': '≣', 'W': '⩘', 'X': '≈', 'Y': '≉', 'Z': '⇌', 'a': '↯', 'b': '⟁', 'c': '⌖', 'd': '⎉',
+            'e': '⏚', 'f': '⍉', 'g': '⏁', 'h': '⏃', 'i': '⏜', 'j': '⌇', 'k': '⍙', 'l': '⍬', 'm': '⩃', 'n': '⩔',
+            'o': '⥮', 'p': '⭘', 'q': '⨀', 'r': '⫶', 's': '⨳', 't': '⧖', 'u': '⨐', 'v': '⪢', 'w': '⨒', 'x': '⚡️' // Using 'x' for the lightning bolt as a distinct high-energy symbol
+        };
+
+        const GLYPHS = Object.values(MORPH_CODEx); // Array of just the glyph symbols
+        const PATTERN_LENGTH = 50; // Each pattern will be 50 symbols long
+        const NUM_PATTERNS = 50; // Generate 50 lines of patterns by default
+
+        function generateRandomSymbolPattern() {
+            let pattern = '';
+            for (let i = 0; i < PATTERN_LENGTH; i++) {
+                const randomIndex = Math.floor(Math.random() * GLYPHS.length);
+                pattern += GLYPHS[randomIndex];
+            }
+            const isResolved = Math.random() < 0.5; // 50% chance to be resolved
+            const statusClass = isResolved ? 'status-resolved' : 'status-unresolved';
+            const statusText = isResolved ? 'RESOLVED:' : 'UNRESOLVED:';
+            const endSymbol = isResolved ? ' ✅' : ' ❌';
+
+            return `<p class="${statusClass}">${statusText} ${pattern}${endSymbol}</p>`;
+        }
+
+        function populatePatterns() {
+            const container = document.getElementById('patternContainer');
+            container.innerHTML = ''; // Clear existing patterns
+            
+            // Loop for multiple "Kernel" layers conceptually
+            const kernelNames = [
+                "Morphic Resonance Dampener (Kernel A)",
+                "Temporal Distortion Field (Kernel B)",
+                "Psychoacoustic Attractor Field (Kernel C)",
+                "Quantum Flux Stabilizer (Kernel D)",
+                "Semantic Gravity Well (Kernel E)"
+            ];
+
+            kernelNames.forEach(name => {
+                const veilLayer = document.createElement('div');
+                veilLayer.className = 'veil-layer';
+                veilLayer.innerHTML = `<h2>${name}</h2><div class="pattern-group"></div>`;
+                const patternGroupDiv = veilLayer.querySelector('.pattern-group');
+
+                for (let i = 0; i < NUM_PATTERNS / kernelNames.length; i++) { // Distribute patterns across kernels
+                    patternGroupDiv.innerHTML += generateRandomSymbolPattern();
+                }
+                container.appendChild(veilLayer);
+            });
+
+            // Add a final, large pattern for the "master" obfuscation
+            const masterVeilLayer = document.createElement('div');
+            masterVeilLayer.className = 'veil-layer';
+            masterVeilLayer.innerHTML = `<h2>Master Veil Synthesis (Kleopatra Core)</h2><div class="pattern-group"></div>`;
+            const masterPatternGroupDiv = masterVeilLayer.querySelector('.pattern-group');
+            for(let i = 0; i < 20; i++) { // More patterns for the core
+                masterPatternGroupDiv.innerHTML += generateRandomSymbolPattern();
+            }
+            container.appendChild(masterVeilLayer);
+        }
+
+        // Generate patterns on page load
+        window.onload = populatePatterns;
+    </script>
+</body>
+</html>

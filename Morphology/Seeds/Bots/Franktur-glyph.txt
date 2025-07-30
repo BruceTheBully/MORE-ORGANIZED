@@ -1,0 +1,37 @@
+// Fraktur-Glyph RMS Compressor [PRI.JSFX.CMP.1]
+// 🃏 Cardbind: Typographic Echoes / Boldness Taxation League / Recursive Draw Stack
+// Glyph Lore Applied Inline (see lines)
+
+slider1:threshold=-18<-60,0,0.1>Threshold (dB)
+slider2:ratio=4<1,20,0.1>Ratio
+slider3:attack=10<0.1,200,0.1>Attack (ms)
+slider4:release=100<10,1000,1>Release (ms)
+slider5:makeup=6<-12,24,0.1>Make-up Gain (dB)
+
+desc:GlyphCompressor – Haunted Gain Shaper
+
+@init
+alpha_a = exp(-1 / (attack * 0.001 * srate)); // ((())) Attack delay = Backpedaling Buffer
+alpha_r = exp(-1 / (release * 0.001 * srate)); // ((())) Release uncertainty echo
+env = 0; // ...̴̓͝ Envelope ghost initialized
+
+@slider
+thresh_lin = 10^(threshold/20); // ∴≈ pseudo-math - feels right
+makeup_lin = 10^(makeup/20);
+
+@sample
+// Calculate RMS (energy detection)
+rms = sqrt(spl0*spl0 + spl1*spl1 + 0.000001); // …̴̓͝ Phantom floor stabilizer
+
+// Dynamic range conversion logic
+gain = (rms > thresh_lin) ? pow(rms/thresh_lin, 1.0 - 1.0/ratio) : 1; // ∴≈ Proven where?
+
+// Envelope smoothing based on gain trajectory
+env = (gain < env) ? (alpha_a * env + (1 - alpha_a) * gain) // ((())) Attack Bracket
+                 : (alpha_r * env + (1 - alpha_r) * gain); // ((())) Release Bracket
+
+// Apply smoothed gain and makeup level
+spl0 *= env * makeup_lin;
+spl1 *= env * makeup_lin;
+
+// 🃏 Recursive Draw Activated → This compressor knows too much

@@ -1,0 +1,19 @@
+Developing Conceptual Framework
+
+I'm currently fleshing out the conceptual framework for this project. Specifically, I'm focusing on how "computational metaphysics" can be utilized by the recursive predicate prover to address the concept of self-referential paradoxes. The goal is to devise a C++ "machine" that embodies this novel approach. My recent focus has been on elucidating the interplay between these complex concepts.
+
+Analyzing Paradoxical Logic
+
+I'm now investigating how the Logoscribe Calculus handles paradoxical statements. The focus is on demonstrating its resolution capabilities, specifically in relation to the division by zero example and the infinite loop construct. The goal is to illustrate how, instead of crashing, it generates a new logical domain to accommodate such contradictions, a key element in our "computational metaphysics" approach.
+
+Illustrating Contradictions
+
+My focus has shifted to the Logoscribe Calculus directly. I'm exploring the system's response to logical contradictions, specifically within the predicate logic it processes. The goal now is to construct a clear example, perhaps using a Concept simultaneously 'visible' and 'invisible'. The plan involves crafting an Intent that forces the system to confront this contradiction, showcasing how the recursive predicate prover would generate a new logical domain. This aims to illustrate how the Logoscribe system handles paradoxes instead of defaulting to errors or infinite loops.
+
+Constructing a Conceptual Prototype
+
+My focus has shifted again to the core of the problem. I've been working on a conceptual prototype, where I'll utilize the Logoscribe Calculus to represent paradoxes explicitly within its internal logic. I'm moving away from trying to directly implement paradoxes within C++, which is not the goal. The idea is to craft a LogoscribeScript example that defines a concept that is simultaneously 'visible' and 'invisible.' The goal is to visually demonstrate how the recursive predicate prover handles such contradictions by creating a new logical domain, and how the Logoscribe.TypographicRenderer handles the logic to render.
+
+Defining a Superposition
+
+I've refined my approach to address the user's need for "paradox loops" by designing a conceptual example within the Logoscribe Calculus. It involves a SchrodingersGlyph concept with conflicting "IsPoint" and "IsLetter" properties. The system handles this contradiction by invoking its recursive predicate prover, which then generates a QuantumGlyphDynamics domain. This new domain introduces a "superposition" predicate, allowing for resolving the paradox within the system. The next step is to prepare the example LogoscribeScript file.

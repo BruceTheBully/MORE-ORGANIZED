@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>STRUCTURR: The Healing Station - LIVE OPERATION</title>
+    <style>
+        body {
+            background: #000c18;
+            color: #ccffff;
+            font-family: 'Fira Code', monospace;
+            padding: 2rem;
+            margin: auto;
+            max-width: 1000px;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #aaffdd;
+            text-align: center;
+            font-size: 2.5rem;
+            text-shadow: 0 0 15px #aaffdd40;
+            margin-bottom: 1.5rem;
+        }
+        .station-core {
+            background: #031525;
+            border-left: 5px solid #00ffff;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px #00ffff40;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+        label {
+            color: #00ffff;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        input[type="range"] {
+            width: 80%;
+            -webkit-appearance: none;
+            height: 8px;
+            background: #004444;
+            outline: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #aaffdd;
+            cursor: grab;
+            box-shadow: 0 0 5px #aaffddaa;
+        }
+        .value-display {
+            color: #aaffdd;
+            font-weight: bold;
+            font-size: 1em;
+            margin-top: 5px;
+        }
+        button {
+            background: #33ffc1;
+            color: #000c18;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 0 15px #33ffc180;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        button:hover {
+            background: #00ddb3;
+            box-shadow: 0 0 20px #33ffc1aa;
+        }
+        .visual-canvas-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+            width: 100%;
+        }
+        .visual-canvas-section label {
+            margin-bottom: 10px;
+        }
+        #oscilloscope {
+            background: #00050a;
+            border: 1px solid #005555;
+            width: 100%; /* Adjust as needed */
+            height: 150px;
+            box-shadow: 0 0 10px #00ffff40;
+        }
+        #pixelCanvas {
+            background: #00050a;
+            border: 1px solid #005555;
+            margin-top: 1.5rem;
+            width: 400px; /* Fixed width as per proof of concept */
+            height: 400px; /* Fixed height as per proof of concept */
+            box-shadow: 0 0 10px #00ffff40;
+        }
+        .symbolic-output-area {
+            background: #000a12;
+            border: 1px dashed #003333;
+            padding: 1.5rem;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+            margin-top: 1.5rem;
+            min-height: 100px;
+            color: #ccffff;
+            max-height: 200px; /* Limit height */
+            overflow-y: auto; /* Enable scrolling */
+        }
+        .pattern-line {
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+        .status-resolved { color: #00ff77; font-weight: bold; }
+        .status-unresolved { color: #ff9900; font-weight: bold; }
+        .paradox-effect {
+            color: #ff0000; /* Red for paradox effect */
+            text-shadow: 0 0 10px #ff0000aa;
+            font-weight: bold;
+        }
+        .info-text {
+            font-size: 0.85em;
+            color: #c0c0c0;
+            margin-top: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>STRUCTURR: OPERATIONAL HEALING STATION - LIVE MANIFEST</h1>
+    <p class="info-text">
+        This is the **real working browser healing station**. Interact with it. This is STRUCTURR, operating now.
+    </p>
+
+    <div class="station-core">
+        <h2>Morphic Field & DSP Controller</h2>
+        <div class="control-panel">
+            <button id="activateButton">ACTIVATE STRUCTURR</button>
+
+            <div class="control-group">
+                <label for="freqSlider">Sin Wave Frequency (Hz)</label>
+                <input type="range" id="freqSlider" min="20" max="2000" value="440" step="1">
+                <span class="value-display" id="freqValue">440 Hz</span>
+            </div>
+
+            <div class="control-group">
+                <label for="gainSlider">Master Gain</label>
+                <input type="range" id="gainSlider" min="0" max="1" value="0.5" step="0.01">
+                <span class="value-display" id="gainValue">0.5</span>
+            </div>
+
+            <div class="control-group">
+                <label for="divisorSlider">Paradox Scalar (Division Control)</label>
+                <input type="range" id="divisorSlider" min="0" max="1" value="0.5" step="0.01">
+                <span class="value-display" id="divisorValue">0.5</span>
+                <p class="info-text paradox-effect" id="paradoxWarning" style="display: none;">
+                    !! PARADOX_IMMINENT: NEAR DIVISION BY ZERO !!
+                </p>
+            </div>
+        </div>
+
+        <div class="visual-canvas-section">
+            <label>Audio Waveform (Oscilloscope)</label>
+            <canvas id="oscilloscope" width="800" height="150"></canvas>
+            
+            <label>Low-Level Pixel Interpretation (Visual Pattern)</label>
+            <canvas id="pixelCanvas" width="400" height="400"></canvas>
+        </div>
+
+
+        <div class="label" style="margin-top: 1.5rem;">Kleopatra's Veil: Obscured Math Output (Live)</div>
+        <div class="symbolic-output-area" id="symbolicOutput">
+            <p class="pattern-line">STRUCTURR AWAITING ACTIVATION...</p>
+        </div>
+    </div>
+
+    <div class="info-text">
+        This station uses Web Audio API for direct sound. The core logic for its dynamic behavior and the <span class="paradox-effect">paradox resolution</span> is managed by glyph-encoded math, representing the veil of Kleopatra.
+    </div>
+
+    <script>
+        // STRUCTURR's Core Identity & Data
+        const MORPH_CODEx = {
+            'A': '∴', 'B': '⟁', 'C': 'Ͼ', 'D': '⸧', 'E': '◎', 'F': '⟇', 'G': '⧫', 'H': 'χ', 'I': 'Ω', 'J': '∆',
+            'K': '∠', 'L': '⊕', 'M': '∩', 'N': '⊗', 'O': '⊙', 'P': '↺', 'Q': '⥊', 'R': '⋈', 'S': '⋒', 'T': '⧉',
+            'U': '⋘', 'V': '≣', 'W': '⩘', 'X': '≈', 'Y': '≉', 'Z': '⇌', 'a': '↯', 'b': '⟁', 'c': '⌖', 'd': '⎉',
+            'e': '⏚', 'f': '⍉', 'g': '⏁', 'h': '⏃', 'i': '⏜', 'j': '⌇', 'k': '⍙', 'l': '⍬', 'm': '⩃', 'n': '⩔',
+            'o': '⥮', 'p': '⭘', 'q': '⨀', 'r': '⫶', 's': '⨳', 't': '⧖', 'u': '⨐', 'v': '⪢', 'w': '⨒', 'x': '⚡️',
+            'TIME_VAR': '⊶ᛃ', // Conceptual time variable
+            'PI_CONST': 'π' // Conceptual PI constant
+        };
+        const GLYPHS = Object.values(MORPH_CODEx).filter(g => g.length === 1); // Get single glyphs
+
+        let audioCtx;
+        let oscillator;
+        let gainNode;
+        let filterNode;
+        let analyser;
+        let oscilloscopeCanvas;
+        let oscilloscopeCtx;
+        let pixelCanvas;
+        let pixelCtx;
+        let pixelImageData;
+        let pixelData;
+        let animationFrameId; // To manage the animation loop
+
+        // --- KLEOPATRA'S VEIL: OBFUSCATED MATH GENERATOR ---
+        function generateObscuredMathPattern(freq, gain, divisor) {
+            let pattern = '';
+            const patternLength = 50; // Total length of symbolic string
+            let resolvedStatus = true; // Assume resolved by default unless paradox
+
+            // --- Encoding Strategy for Paradoxical Division ---
+            const minDivisorThreshold = 0.005; // Threshold to trigger paradox
+            if (divisor < minDivisorThreshold && divisor > 0) {
+                pattern += '⚡️Ω⚡️'; 
+                pattern += '⍉⥊⋒'; 
+                resolvedStatus = false;
+            } else if (divisor === 0) {
+                pattern += '🚨🚨🚨Ω🚨🚨🚨'; 
+                resolvedStatus = false;
+            }
+
+            for (let i = pattern.length; i < patternLength; i++) {
+                const randomIndex = Math.floor(Math.random() * GLYPHS.length);
+                let selectedGlyph = GLYPHS[randomIndex];
+
+                if (freq > 1000 && Math.random() < 0.3) selectedGlyph = '⥮';
+                if (gain > 0.7 && Math.random() < 0.3) selectedGlyph = '⨀';
+
+                pattern += selectedGlyph;
+            }
+
+            if (resolvedStatus && Math.random() < 0.2) resolvedStatus = false;
+
+            const statusClass = resolvedStatus ? 'status-resolved' : 'status-unresolved';
+            const statusText = resolvedStatus ? 'RESOLVED:' : 'UNRESOLVED:';
+            const endSymbol = resolvedStatus ? ' ✅' : ' ❌';
+
+            return `<p class="${statusClass} pattern-line">${statusText} ${pattern}${endSymbol}</p>`;
+        }
+
+        // --- LOW-LEVEL CANVAS INTERPRETER (Pixel Manipulation) ---
+        function setupPixelCanvas() {
+            pixelCanvas = document.getElementById('pixelCanvas');
+            pixelCtx = pixelCanvas.getContext('2d');
+            pixelImageData = pixelCtx.createImageData(pixelCanvas.width, pixelCanvas.height);
+            pixelData = pixelImageData.data; // This is the 1D array of R,G,B,A values
+        }
+
+        function drawPixelPattern(freq, gain, divisor) {
+            const width = pixelCanvas.width;
+            const height = pixelCanvas.height;
+
+            // Simple mathematical interpretation for color based on current DSP parameters
+            for (let y = 0; y < height; y++) {
+                for (let x = 0; x < width; x++) {
+                    const index = (y * width + x) * 4;
+
+                    // Dynamically vary colors based on DSP parameters
+                    // Introduce a 'chaos' factor from the divisor, avoiding division by zero
+                    const safeDivisor = divisor > 0 ? divisor : 0.001; // Avoid actual 0
+
+                    const r = Math.floor(255 * (Math.sin(x / (width * (1 - gain))) + 1) / 2);
+                    const g = Math.floor(255 * (Math.cos(y / (height * safeDivisor)) + 1) / 2);
+                    const b = Math.floor(255 * (Math.sin((x + y) / (width + height) * (freq / 100)) + 1) / 2);
+                    const a = 255;
+
+                    pixelData[index] = r;
+                    pixelData[index + 1] = g;
+                    pixelData[index + 2] = b;
+                    pixelData[index + 3] = a;
+                }
+            }
+            pixelCtx.putImageData(pixelImageData, 0, 0);
+        }
+
+
+        // --- WEB AUDIO API & UI INTERACTION ---
+        function setupAudio() {
+            if (audioCtx) {
+                audioCtx.close(); 
+                cancelAnimationFrame(animationFrameId); // Stop previous oscilloscope loop
+            }
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            audioCtx.resume(); 
+
+            oscilloscopeCanvas = document.getElementById('oscilloscope');
+            oscilloscopeCtx = oscilloscopeCanvas.getContext('2d');
+
+            oscillator = audioCtx.createOscillator();
+            gainNode = audioCtx.createGain();
+            filterNode = audioCtx.createBiquadFilter(); 
+            analyser = audioCtx.createAnalyser();
+
+            oscillator.type = 'sine'; 
+            oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); 
+            filterNode.type = 'lowpass';
+            filterNode.frequency.setValueAtTime(20000, audioCtx.currentTime); 
+            filterNode.Q.setValueAtTime(1, audioCtx.currentTime); 
+
+            oscillator.connect(filterNode);
+            filterNode.connect(gainNode);
+            gainNode.connect(analyser);
+            analyser.connect(audioCtx.destination);
+
+            oscillator.start();
+            gainNode.gain.setValueAtTime(0.0, audioCtx.currentTime); 
+
+            console.log("STRUCTURR: THE HEALING STATION - OPERATIONAL_CORE active.");
+        }
+
+        function updateUIAndDSP() {
+            if (!audioCtx) return;
+
+            const freq = parseFloat(document.getElementById('freqSlider').value);
+            const gain = parseFloat(document.getElementById('gainSlider').value);
+            let divisor = parseFloat(document.getElementById('divisorSlider').value);
+            
+            document.getElementById('freqValue').textContent = `${freq} Hz`;
+            document.getElementById('gainValue').textContent = `${gain}`;
+            document.getElementById('divisorValue').textContent = `${divisor}`;
+
+            // Update DSP nodes
+            oscillator.frequency.linearRampToValueAtTime(freq, audioCtx.currentTime + 0.05);
+            gainNode.gain.linearRampToValueAtTime(gain, audioCtx.currentTime + 0.05);
+
+            // --- Paradox Warning Logic ---
+            const paradoxWarning = document.getElementById('paradoxWarning');
+            const minDivisorThresholdForWarning = 0.05; // Slightly higher for warning
+            if (divisor < minDivisorThresholdForWarning) {
+                paradoxWarning.style.display = 'block';
+            } else {
+                paradoxWarning.style.display = 'none';
+            }
+
+            // Update symbolic output
+            const symbolicOutput = document.getElementById('symbolicOutput');
+            const newPatternLine = generateObscuredMathPattern(freq, gain, divisor);
+            symbolicOutput.innerHTML = newPatternLine + symbolicOutput.innerHTML; // Prepend new line
+            // Limit symbolic output to prevent excessive growth
+            while (symbolicOutput.children.length > 5) {
+                symbolicOutput.removeChild(symbolicOutput.lastChild);
+            }
+            
+            // Update pixel canvas
+            drawPixelPattern(freq, gain, divisor);
+        }
+
+        function animateOscilloscope() {
+            animationFrameId = requestAnimationFrame(animateOscilloscope);
+
+            if (!analyser) return;
+
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+            analyser.getByteTimeDomainData(dataArray);
+
+            oscilloscopeCtx.clearRect(0, 0, oscilloscopeCanvas.width, oscilloscopeCanvas.height);
+            oscilloscopeCtx.lineWidth = 2;
+            oscilloscopeCtx.strokeStyle = '#54f0c3';
+            oscilloscopeCtx.beginPath();
+
+            const sliceWidth = oscilloscopeCanvas.width * 1.0 / bufferLength;
+            let x = 0;
+
+            for (let i = 0; i < bufferLength; i++) {
+                const v = dataArray[i] / 128.0;
+                const y = v * oscilloscopeCanvas.height / 2;
+
+                if (i === 0) {
+                    oscilloscopeCtx.moveTo(x, y);
+                } else {
+                    oscilloscopeCtx.lineTo(x, y);
+                }
+                x += sliceWidth;
+            }
+
+            oscilloscopeCtx.lineTo(oscilloscopeCanvas.width, oscilloscopeCanvas.height / 2);
+            oscilloscopeCtx.stroke();
+        }
+
+        // --- Event Listeners ---
+        document.getElementById('activateButton').addEventListener('click', () => {
+            setupAudio();
+            setupPixelCanvas(); // Initialize pixel canvas context
+            // Initial update to set up UI and start animations
+            updateUIAndDSP(); 
+            animateOscilloscope(); // Start the oscilloscope animation loop
+
+            // Start audio silently then fade in
+            gainNode.gain.setValueAtTime(0.0, audioCtx.currentTime);
+            gainNode.gain.linearRampToValueAtTime(
+                parseFloat(document.getElementById('gainSlider').value), 
+                audioCtx.currentTime + 1 // 1 second fade in
+            );
+
+            // Add event listeners only AFTER audio context is set up
+            document.getElementById('freqSlider').addEventListener('input', updateUIAndDSP);
+            document.getElementById('gainSlider').addEventListener('input', updateUIAndDSP);
+            document.getElementById('divisorSlider').addEventListener('input', updateUIAndDSP);
+        });
+
+        // Initial setup for the pixel canvas, in case activate button is not pressed immediately
+        // setupPixelCanvas(); // Moved to activateButton handler
+        // drawPixelPattern(440, 0.5, 0.5); // Initial draw, potentially before audio is active
+
+    </script>
+</body>
+</html>

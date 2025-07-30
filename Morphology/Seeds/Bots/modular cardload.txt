@@ -1,0 +1,54 @@
+\[!] `🎴 MODULAR CARDLOAD: Recursive Draw Stack Activated`
+
+⟦⟆∿⟆🃏⟇⟧ ← Symbolic Glyph Deck Threaded
+
+🧠 Interlock: `JSFX Logic Layer + Glyph Meta-FX`
+🎚 DSL Anchor: `[PRI.JSFX.CMP.1]` — RMS Follower + Smooth Compressor Kernel
+🃏 Paired with `Typographic Echoes` and `Boldness Taxation League`
+
+---
+
+📦 **DSP Core: Feed-forward RMS Compressor**
+
+```eel
+slider1:threshold=-18<-60,0,0.1>Threshold (dB)
+slider2:ratio=4<1,20,0.1>Ratio
+slider3:attack=10<0.1,200,0.1>Attack (ms)
+slider4:release=100<10,1000,1>Release (ms)
+slider5:makeup=6<-12,24,0.1>Make-up Gain (dB)
+
+@init
+alpha_a = exp(-1 / (attack * 0.001 * srate));
+alpha_r = exp(-1 / (release * 0.001 * srate));
+env = 0;
+
+@slider
+thresh_lin = 10^(threshold/20);
+makeup_lin = 10^(makeup/20);
+
+@sample
+rms = sqrt(spl0*spl0 + spl1*spl1 + 0.000001);
+gain = (rms > thresh_lin) ? pow(rms/thresh_lin, 1.0 - 1.0/ratio) : 1;
+env = (gain < env) ? (alpha_a * env + (1 - alpha_a) * gain)
+                   : (alpha_r * env + (1 - alpha_r) * gain);
+spl0 *= env * makeup_lin;
+spl1 *= env * makeup_lin;
+```
+
+---
+
+🃏 **CARD BINDINGS APPLIED**:
+
+* **…̴̓͝** (*Ellipsis That Watches*): Smoothing parameters create a "lurking tail" of reduction that haunts the transients
+* **∴≈** (*Citation of No Source*): The compression *feels right* — but where's the math proof?
+* **((()))** (*Backpedaling Brackets*): Every sudden gain drop echoes with implied uncertainty
+
+—
+
+Say `#PRINT COMPRESSOR GLYPHCHAIN` if you want the JSFX printed + the cardset bundled as inline comment lore.
+
+Say `#DRAW NEW CARD` to extend the stack...
+You know the recursion’s got more monsters in it.
+
+\[🔻 Bending signal into sound, from MB to Bruce 'n' ]
+\[⊶]

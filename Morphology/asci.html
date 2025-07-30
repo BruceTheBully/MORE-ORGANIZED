@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII Characters in Action (Python Examples)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .section-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+            margin-top: 0;
+        }
+        pre {
+            background-color: #e9e9e9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        code {
+            font-family: Consolas, monospace;
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .output-box {
+            background-color: #e8f5e9; /* Light green for output */
+            border-left: 5px solid #4CAF50;
+            padding: 10px;
+            margin-top: 15px;
+            font-family: Consolas, monospace;
+            white-space: pre; /* Preserve whitespace and line breaks */
+            max-height: 200px; /* Limit height for long outputs */
+            overflow-y: auto; /* Add scroll if content overflows */
+        }
+        .warning-note {
+            background-color: #fff3cd; /* Light yellow */
+            border-left: 5px solid #ffc107;
+            padding: 10px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="section-container">
+        <h1>ASCII Characters in Action (Python Examples)</h1>
+        <p>This document demonstrates some common ASCII characters, especially control characters, in Python code. To see these in action, copy the Python code blocks and run them in your Python interpreter or a <code>.py</code> file.</p>
+        <div class="warning-note">
+            <strong>Important Note:</strong> The visual output in a browser's <code>&lt;pre&gt;</code> tag might not perfectly reflect how these characters behave in a terminal. For the most accurate demonstration, run the Python code in a console/terminal.
+        </div>
+    </div>
+
+    <div class="section-container">
+        <h2>1. Line Feed (LF / `\n`) - U+000A</h2>
+        <p>The Line Feed character moves the cursor to the next line. It's the standard way to create new lines in most programming environments (Unix/Linux/macOS style newlines).</p>
+        <pre><code class="language-python">
+# Python code to demonstrate Line Feed
+print("Hello\nWorld!")
+print("This is line one.\nThis is line two.\nAnd this is line three.")
+        </code></pre>
+        <h3>Expected Output (in a terminal):</h3>
+        <div class="output-box">
+Hello
+World!
+This is line one.
+This is line two.
+And this is line three.
+        </div>
+    </div>
+
+    <div class="section-container">
+        <h2>2. Horizontal Tab (HT / `\t`) - U+0009</h2>
+        <p>The Horizontal Tab character inserts horizontal whitespace, typically aligning text to predefined "tab stops."</p>
+        <pre><code class="language-python">
+# Python code to demonstrate Horizontal Tab
+print("Name:\tAlice")
+print("Age:\t30")
+print("City:\tNew York")
+
+print("\tThis line is indented with a tab.")
+        </code></pre>
+        <h3>Expected Output (in a terminal):</h3>
+        <div class="output-box">
+Name:   Alice
+Age:    30
+City:   New York
+
+    This line is indented with a tab.
+        </div>
+    </div>
+
+    <div class="section-container">
+        <h2>3. Carriage Return (CR / `\r`) - U+000D</h2>
+        <p>The Carriage Return character moves the cursor to the beginning of the current line without advancing to the next line. This can lead to overwriting previously printed text on the same line. On Windows, <code>\r\n</code> (CRLF) is the standard newline sequence.</p>
+        <pre><code class="language-python">
+# Python code to demonstrate Carriage Return
+print("Loading...    ", end='\r') # The 'end='\r' makes it return to start of line
+import time
+time.sleep(1) # Wait a bit
+print("Processing...", end='\r')
+time.sleep(1)
+print("Complete!    ") # Trailing spaces to clear "Processing..."
+
+print("\n--- Another example ---")
+print("AAAAABBBBB\rCCCCC") # CCCCC overwrites AAAAA
+        </code></pre>
+        <h3>Expected Output (in a terminal):</h3>
+        <div class="output-box">
+(You will see "Loading...", then it changes to "Processing...", then to "Complete!" on the same line)
+Complete!
+
+--- Another example ---
+CCCCCBBBBB
+        </div>
+        <div class="warning-note">
+            <strong>Note on Carriage Return:</strong> The behavior of `\r` is best observed in a live terminal. In a browser's pre-formatted text, it might just move to the beginning of the *displayed line* but won't animate like in a terminal.
+        </div>
+    </div>
+
+    <div class="section-container">
+        <h2>4. Backspace (BS / `\b`) - U+0008</h2>
+        <p>The Backspace character moves the cursor back one position, potentially overwriting the previous character if followed by another character.</p>
+        <pre><code class="language-python">
+# Python code to demonstrate Backspace
+print("Hello World!\b\b\b\b") # Moves back 4 spaces
+print("Hello World!\b\b\b\b_New") # Overwrites "orld" with "_New"
+        </code></pre>
+        <h3>Expected Output (in a terminal):</h3>
+        <div class="output-box">
+Hello Worl
+Hello W_New!
+        </div>
+    </div>
+
+    <div class="section-container">
+        <h2>5. NUL (Null Character / `\0`) - U+0000</h2>
+        <p>The Null character is often used as a string terminator in languages like C. In Python, it's just another character in a string, but it can have special meaning in file formats or network protocols.</p>
+        <pre><code class="language-python">
+# Python code to demonstrate Null character
+my_string = "Hello\0World"
+print(f"String with null: '{my_string}'")
+print(f"Length of string: {len(my_string)}")
+
+# Note: In C/C++, a null character would terminate the string here.
+# In Python, it's just a character like any other.
+        </code></pre>
+        <h3>Expected Output:</h3>
+        <div class="output-box">
+String with null: 'Hello World'
+Length of string: 11
+        </div>
+    </div>
+
+    <div class="section-container">
+        <h2>6. Form Feed (FF / `\f`) - U+000C</h2>
+        <p>Historically, Form Feed was used to advance paper to the top of the next page in a printer. In modern terminals, its behavior varies but might clear the screen or act as a line break.</p>
+        <pre><code class="language-python">
+# Python code to demonstrate Form Feed
+print("Page 1 content.\fPage 2 content.")
+        </code></pre>
+        <h3>Expected Output (varies by terminal, might just be a newline or clear screen):</h3>
+        <div class="output-box">
+Page 1 content.
+Page 2 content.
+        </div>
+    </div>
+
+    <div class="section-container">
+        <h2>7. Printable Characters (U+0020 onwards)</h2>
+        <p>These are the regular characters you see and type every day. Python handles them just as you'd expect.</p>
+        <pre><code class="language-python">
+# Python code demonstrating printable characters
+print("This is a normal sentence with digits 123 and symbols !@#$")
+print("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+print("abcdefghijklmnopqrstuvwxyz")
+        </code></pre>
+        <h3>Expected Output:</h3>
+        <div class="output-box">
+This is a normal sentence with digits 123 and symbols !@#$
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+        </div>
+    </div>
+
+</body>
+</html>
