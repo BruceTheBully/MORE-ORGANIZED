@@ -2,14 +2,6 @@
 
 Welcome to the official archive of symbolic systems, recursive healing constructs, and morphic DSP architectures by **Michael Rossi (aka Bruce the Bully)**.
 
-## 🧭 Sections
-
-- [`OFFICIAL-math`](./OFFICIAL-math) — Recursive math, Sonons, white hole fields, and compression logic.
-- [`ZALGO-EXTENSIONS`](./ZALGO-EXTENSIONS) — .zalgo-based interpreters, tarot-style glyph readers.
-- [`DUSTLANG`](./DUSTLANG) — Symbolic DSP language and compiler tools.
-- [`HTML-INTERFACES`](./HTML-INTERFACES) — Experiments in self-interpreting shells and extension UI.
-
----
 
 > 📜 All files are protected under the following IP policy:
 
