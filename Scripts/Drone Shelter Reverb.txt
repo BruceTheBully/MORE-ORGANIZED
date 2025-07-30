@@ -1,0 +1,56 @@
+desc: DroneShelter Reverb
+//tags: dark reverb, echo, ambience
+
+slider1:0.7<0,1,0.01>Reverb Mix
+slider2:-18<-60,-6,1>Feedback Decay (dB/s)
+slider3:0.3<0,1,0.01>Echo Ghost Probability
+slider4:0.5<0.1,2,0.01>Reverb Time Multiplier
+
+@init
+DB_2_LOG = 0.115129254;
+namespace = 0;
+feedback_gain = exp(slider2 * DB_2_LOG / srate);
+bufsize = min(srate * 2, 88200); // limit buffer size to 2 seconds max
+bufpos = 0;
+
+// Memory buffers
+buffer0 = memalloc(namespace, bufsize);
+buffer1 = memalloc(namespace, bufsize);
+
+@slider
+wet = slider1;
+dry = 1 - wet;
+feedback_gain = exp(slider2 * DB_2_LOG / srate);
+echo_prob = slider3;
+rev_time_mul = slider4;
+
+@sample
+// Read input samples
+inL = spl0;
+inR = spl1;
+
+// Reverb feedback & decay processing
+reverbL = buffer0[bufpos];
+reverbR = buffer1[bufpos];
+
+// Random Echo Ghost insert logic
+rand_val = rand(1);
+if (rand_val < echo_prob) (
+    echo_amp = 0.5;
+    echo_offset = (rand(0.05, 0.5) * srate)|0;
+    echo_pos = (bufpos - echo_offset + bufsize) % bufsize;
+    ghostL = buffer0[echo_pos] * echo_amp;
+    ghostR = buffer1[echo_pos] * echo_amp;
+) else (
+    ghostL = ghostR = 0;
+);
+
+// Update buffer
+buffer0[bufpos] = inL + reverbL * feedback_gain * rev_time_mul;
+buffer1[bufpos] = inR + reverbR * feedback_gain * rev_time_mul;
+
+// Output processing
+spl0 = dry * inL + wet * (reverbL + ghostL);
+spl1 = dry * inR + wet * (reverbR + ghostR);
+
+bufpos = (bufpos + 1) % bufsize;

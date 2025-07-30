@@ -1,0 +1,40 @@
+desc: HarmStack Width Enhancer
+//tags: stereo, harmonic, width, dynamic EQ
+
+slider1:0.6<0,1,0.01>Width Enhancer Mix
+slider2:-3<-12,0,0.1>Mid Dip Gain (dB)
+slider3:4<1,10,0.1>Harmonic Strength
+slider4:2<0,6,0.1>Dynamic Side EQ Boost (dB)
+
+@init
+DB_2_LOG = 0.115129254;
+mid_gain = exp(slider2 * DB_2_LOG);
+side_eq_boost = exp(slider4 * DB_2_LOG);
+
+@slider
+width_mix = slider1;
+mid_gain = exp(slider2 * DB_2_LOG);
+harmonics = slider3;
+side_eq_boost = exp(slider4 * DB_2_LOG);
+
+@sample
+mid = (spl0 + spl1) * 0.5;
+side = (spl0 - spl1) * 0.5;
+
+harm_side = side;
+temp = side;
+i = 0;
+loop(harmonics,
+    temp = temp * temp;
+    harm_side += temp / (i + 2);
+    i += 1;
+);
+
+side_boosted = harm_side * side_eq_boost;
+
+mid *= mid_gain;
+
+side = side * (1 - width_mix) + side_boosted * width_mix;
+
+spl0 = mid + side;
+spl1 = mid - side;

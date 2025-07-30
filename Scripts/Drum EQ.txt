@@ -1,0 +1,61 @@
+desc: XQ Equalizer
+//tags: MIDI, drums, velocity processor
+
+slider1:0<0,3,1{General MIDI,Addictive Drums,BFD,Superior Drummer}>Drum Map
+slider2:0<0,1,1{Kill,Pass}>Wrong Notes
+slider3:0<0,1,1{Pass,Process}>Chokes
+slider4:0<0,127,1>Master Clamp Min
+slider5:127<0,127,1>Master Clamp Max
+slider6:0<-127,127,1>Master Trim
+
+@init
+
+// MIDI Constants
+NOTE_ON = 0x90;
+NOTE_OFF = 0x80;
+
+// Drum Map Identifiers
+GM = 0;
+AD = 1;
+BFD = 2;
+SD = 3;
+
+// MIDI Buffer Allocation
+midibuf = memalloc(128);
+
+@slider
+wrong_notes = slider2;
+chokes = slider3;
+master_min = slider4;
+master_max = slider5;
+master_trim = slider6;
+
+drum_map = slider1;
+
+@block
+while(midirecv(offset, msg1, msg2, msg3)) (
+    status = msg1 & 0xF0;
+    note = msg2;
+    vel = msg3;
+
+    valid = 0;
+
+    drum_map == GM ? (note >= 35 && note <= 81 ? valid = 1;);
+    drum_map == AD ? (note >= 26 && note <= 103 && note != 27 && note != 64 && note != 83 && note != 88 && note != 95 ? valid = 1;);
+    drum_map == BFD ? (note >= 24 && note <= 94 ? valid = 1;);
+    drum_map == SD ? (note >= 6 && note <= 127 ? valid = 1;);
+
+    action = 1; // default pass
+
+    valid == 0 && wrong_notes == 0 ? action = 0; // kill invalid notes
+
+    action == 1 && status == NOTE_ON ? (
+        vel += master_trim;
+        vel < master_min ? vel = master_min;
+        vel > master_max ? vel = master_max;
+        vel < 1 ? vel = 1;
+        vel > 127 ? vel = 127;
+    );
+
+    action == 1 ? midisend(offset, msg1, note, vel);
+);
