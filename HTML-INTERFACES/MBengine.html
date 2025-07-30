@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>✦ HorizonOS Shell: /Command Mode ✦</title>
+  <style>
+    body { background: #000014; color: #00ffee; font-family: monospace; padding: 2em; }
+    textarea {
+      width: 100%; height: 150px;
+      background: #111122; color: #00fff6;
+      border: 2px solid #00ffff; padding: 1em;
+    }
+    pre {
+      background: #111130; color: #cccccc;
+      padding: 1em; margin-top: 1em;
+      border-left: 4px solid #00ffff;
+    }
+    h1 { color: #ff00e1; text-shadow: 0 0 3px #ff00e1; }
+  </style>
+</head>
+<body>
+
+<h1>✦ HorizonOS Observer Shell</h1>
+<textarea id="terminal" placeholder="/export to save, /inject to export & open dir"></textarea>
+<pre id="log">[Awaiting morph command…]</pre>
+
+<script>
+let observerMemory = [];
+
+function log(msg) {
+  const out = document.getElementById("log");
+  out.innerHTML = `[${new Date().toLocaleTimeString()}] ${msg}<br>` + out.innerHTML;
+}
+
+function interpretCommand(input) {
+  if (input.startsWith("/export")) {
+    const snapshot = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>✦ HorizonOS Snapshot ✦</title>
+</head>
+<body>
+  <textarea id="compilerInput">// Write morph traces here…</textarea>
+  <pre id="outputLog">[Reloaded morph shell]</pre>
+  <script>
+    let observerMemory = ${JSON.stringify(observerMemory)};
+    function log(msg) {
+      document.getElementById("outputLog").innerText = msg;
+    }
+    window.onload = () => {
+      log("🧠 Observer memory recovered: " + observerMemory.length + " entries");
+    };
+  <\/script>
+</body>
+</html>`;
+    const blob = new Blob([snapshot], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "HorizonOS_Snapshot.html";
+    a.click();
+    log("💾 /export complete. Snapshot written.");
+  }
+
+  if (input.startsWith("/inject")) {
+    interpretCommand("/export");
+    setTimeout(() => {
+      log("📂 /inject: Simulated file open. Please locate the downloaded snapshot manually.");
+      // Cannot truly open directory via browser — placeholder behavior
+    }, 500);
+  }
+
+  if (!input.startsWith("/")) {
+    observerMemory.push(input);
+    log("✍️ Trace captured.");
+  }
+}
+
+document.getElementById("terminal").addEventListener("keydown", e => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    const val = e.target.value.trim();
+    interpretCommand(val);
+    e.target.value = "";
+  }
+});
+</script>
+
+</body>
+</html>

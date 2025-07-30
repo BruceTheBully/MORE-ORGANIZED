@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MorphLibrary System Documentation & Browser Concept</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        pre {
+            background-color: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap; /* Ensures long lines wrap */
+            word-wrap: break-word; /* Ensures long words break */
+        }
+        code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background-color: #e0e6eb;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .section-box {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .cli-code-block {
+            background-color: #282c34; /* Dark background for code */
+            color: #abb2bf; /* Light text for code */
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+        .cli-code-block pre {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            color: inherit;
+        }
+        .browser-section {
+            margin-top: 50px;
+            background-color: #e8f4f8;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px dashed #3498db;
+        }
+        #entryList, #entryDetail {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #fff;
+        }
+        .entry-item {
+            cursor: pointer;
+            padding: 8px;
+            border-bottom: 1px dashed #eee;
+        }
+        .entry-item:hover {
+            background-color: #f0f8ff;
+        }
+        .entry-item:last-child {
+            border-bottom: none;
+        }
+        .csv-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .csv-table th, .csv-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            font-size: 0.9em;
+        }
+        .csv-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>MorphLibrary System Documentation</h1>
+
+    <div class="section-box">
+        <h2>1. Python CLI for MorphLibrary Management</h2>
+        <p>This command-line interface (CLI) allows you to manage your MorphLibrary entries, which are structured into individual folders containing a <code>meta.json</code> file and various CSV files (e.g., <code>Morphtag.csv</code>, <code>Syntax.csv</code>, <code>Topology.csv</code>).</p>
+
+        <h3>Features:</h3>
+        <ul>
+            <li><strong>Add:</strong> Create new entries by providing metadata and initial CSV data.</li>
+            <li><strong>List:</strong> Display a summary of all entries in your library.</li>
+            <li><strong>Show [ID]:</strong> View the complete details, including all CSV content, for a specific entry ID.</li>
+            <li><strong>Exit:</strong> Terminate the CLI.</li>
+        </ul>
+
+        <h3>Python Code: <code>morph_cli.py</code></h3>
+        <div class="cli-code-block">
+            <pre>
+import os
+import csv
+import json
+import re
+from collections import defaultdict
+
+BASE_LIBRARY_DIR = "MorphLibrary"
+DATA_FILE_NAME = "meta.json"
+
+# Define all possible CSV sections and their headers for writing
+CSV_HEADERS = {
+    "Morphtag.csv": ["ID", "Name", "Category", "Subcategory", "Code", "Meaning"],
+    "Syntax.csv": ["ID", "Function", "ReturnType", "Input", "Visibility", "Notes"],
+    "UserInterface.csv": ["ID", "Component", "Type", "Details", "Context"],
+    "Memory.csv": ["ID", "Name", "Scope", "MemoryType", "Lifetime", "ObjectType"],
+    "Math.csv": ["ID", "Operation", "Input", "Output", "Priority", "Domain"],
+    "Structures.csv": ["ID", "Node", "Type", "Details", "Order", "Latency"],
+    "Modulation.csv": ["ID", "Source", "Target", "Curve", "Range"],
+    "Routing.csv": ["ID", "Event", "Handler", "Target", "Trigger", "Priority"],
+    "Topology.csv": ["ID", "Element", "Kind", "Path", "Address", "Module"],
+    "Presets.csv": ["ID", "Name", "Bindings", "UI", "Mutability", "Scope"],
+    "Debug.csv": ["ID", "Test", "Check", "Level", "Condition", "Result"],
+    "Concurrency.csv": ["ID", "Task", "Thread", "Queue", "Locking"],
+    "CLI.csv": ["ID", "Flag", "Description", "Required", "Action", "Target"],
+    "Build.csv": ["ID", "Tool", "Command", "Context", "Version", "Notes"]
+}
+
+# --- Core Library Management Functions ---
+
+def load_all_entries_meta():
+    """Loads metadata for all entries in the MorphLibrary."""
+    all_meta = []
+    if not os.path.exists(BASE_LIBRARY_DIR):
+        return all_meta
+
+    for entry_folder_name in os.listdir(BASE_LIBRARY_DIR):
+        entry_path = os.path.join(BASE_LIBRARY_DIR, entry_folder_name)
+        if os.path.isdir(entry_path) and entry_folder_name.startswith("Entry_"):
+            meta_file = os.path.join(entry_path, DATA_FILE_NAME)
+            if os.path.exists(meta_file):
+                try:
+                    with open(meta_file, "r", encoding='utf-8') as f:
+                        meta = json.load(f)
+                        all_meta.append(meta)
+                except json.JSONDecodeError:
+                    print(f"Warning: Could not parse {meta_file}. Skipping.")
+    return sorted(all_meta, key=lambda x: x.get('id', 0))
+
+def get_next_entry_id():
+    """Determines the next available entry ID."""
+    all_meta = load_all_entries_meta()
+    if not all_meta:
+        return 1
+    return max(m.get('id', 0) for m in all_meta) + 1
+
+def create_new_entry(title, creator, entry_type, morphstring, summary, csv_content_dict):
+    """
+    Creates a new entry folder with meta.json and all CSV files.
+    csv_content_dict should be a dictionary like:
+    { "Morphtag.csv": [["1", "Glyph", ...]], "Syntax.csv": [["1", "Func", ...]], ... }
+    """
+    next_id = get_next_entry_id()
+    folder_path = os.path.join(BASE_LIBRARY_DIR, f"Entry_{next_id:03}")
+    os.makedirs(folder_path, exist_ok=True)
+
+    # Save meta.json
+    meta = {
+        "id": next_id,
+        "title": title,
+        "creator": creator,
+        "type": entry_type,
+        "morphstring": morphstring,
+        "summary": summary
+    }
+    with open(os.path.join(folder_path, DATA_FILE_NAME), "w", encoding='utf-8') as f:
+        json.dump(meta, f, indent=2)
+
+    # Save CSV files
+    for filename, header in CSV_HEADERS.items():
+        file_path = os.path.join(folder_path, filename)
+        with open(file_path, "w", newline='', encoding='utf-8') as f:
+            writer = csv.writer(f)
+            writer.writerow(header) # Write the defined header
+            if filename in csv_content_dict:
+                writer.writerows(csv_content_dict[filename]) # Write provided rows
+
+    print(f"\n[✓] New Entry {next_id:03} '{title}' created at {folder_path}")
+    return next_id
+
+def read_entry_full_data(entry_id):
+    """Reads all data for a specific entry ID."""
+    entry_path = os.path.join(BASE_LIBRARY_DIR, f"Entry_{entry_id:03}")
+    if not os.path.isdir(entry_path):
+        return None
+
+    full_data = {}
+    meta_file = os.path.join(entry_path, DATA_FILE_NAME)
+    if os.path.exists(meta_file):
+        with open(meta_file, "r", encoding='utf-8') as f:
+            full_data['meta'] = json.load(f)
+
+    for csv_file in CSV_HEADERS.keys(): # Iterate through all known CSV files
+        file_path = os.path.join(entry_path, csv_file)
+        if os.path.exists(file_path):
+            with open(file_path, "r", newline='', encoding='utf-8') as f:
+                reader = csv.reader(f)
+                header = next(reader, None) # Read header
+                rows = list(reader)
+                full_data[csv_file] = {'header': header, 'rows': rows}
+        else:
+            full_data[csv_file] = {'header': CSV_HEADERS[csv_file], 'rows': []} # Include empty if not present
+
+    return full_data
+
+# --- CLI Commands ---
+
+def cmd_add():
+    """CLI command to add a new entry."""
+    print("\n--- Add New MorphLibrary Entry ---")
+    title = input("Title: ").strip()
+    creator = input("Author/Director/Source: ").strip()
+    entry_type = input("Type (e.g., book, movie, unicode_category, concept): ").strip().lower()
+    morph = input("Morphstring (or identifier for technical entries): ").strip()
+    summary = input("Short summary/meaning: ").strip()
+
+    csv_data_for_new_entry = {}
+    print("\n-- Populating CSV Sections (enter blank to skip, or 'N/A' for not applicable) --")
+
+    # Example: Prompt for Morptag.csv
+    print("\n[Morphtag.csv] (Format: Glyph, Category, Subcategory, Code, Meaning)")
+    while True:
+        row_str = input("   Row (or 'done'): ").strip()
+        if row_str.lower() == 'done':
+            break
+        if not row_str:
+            continue
+        try:
+            parts = [p.strip() for p in row_str.split(',')]
+            if len(parts) == len(CSV_HEADERS["Morphtag.csv"]) - 1: # User provided data without ID
+                parts.insert(0, str(get_next_entry_id()))
+            elif len(parts) != len(CSV_HEADERS["Morphtag.csv"]):
+                raise ValueError(f"Expected {len(CSV_HEADERS['Morphtag.csv'])-1} or {len(CSV_HEADERS['Morphtag.csv'])} comma-separated parts.")
+
+            if "Morphtag.csv" not in csv_data_for_new_entry:
+                csv_data_for_new_entry["Morphtag.csv"] = []
+            csv_data_for_new_entry["Morphtag.csv"].append(parts)
+        except ValueError as e:
+            print(f"Invalid format: {e}. Please try again.")
+
+    # Ensure all CSVs are present even if empty or with N/A defaults
+    for csv_name, header in CSV_HEADERS.items():
+        if csv_name not in csv_data_for_new_entry:
+            csv_data_for_new_entry[csv_name] = [[str(get_next_entry_id())] + ["N/A"] * (len(header) -1)] # Default row with N/A
+
+    create_new_entry(title, creator, entry_type, morph, summary, csv_data_for_new_entry)
+
+
+def cmd_list():
+    """CLI command to list all entries."""
+    print("\n--- MorphLibrary Entries ---")
+    entries = load_all_entries_meta()
+    if not entries:
+        print("No entries found.")
+        return
+
+    for entry in entries:
+        print(f"ID: {entry['id']:03} | Type: {entry.get('type', 'N/A').upper():<10} | Title: {entry['title']} — {entry['creator']}")
+        print(f"   Morphstring: {entry.get('morphstring', 'N/A')}")
+        print(f"   Summary: {entry.get('summary', 'N/A')}\n")
+
+def cmd_show():
+    """CLI command to show full details of a specific entry."""
+    entry_id_str = input("Enter Entry ID to show: ").strip()
+    try:
+        entry_id = int(entry_id_str)
+    except ValueError:
+        print("Invalid ID. Please enter a number.")
+        return
+
+    entry_data = read_entry_full_data(entry_id)
+    if not entry_data:
+        print(f"Entry {entry_id:03} not found.")
+        return
+
+    print(f"\n--- Details for Entry {entry_id:03} ({entry_data['meta'].get('title', 'N/A')}) ---")
+    print(f"Title: {entry_data['meta'].get('title', 'N/A')}")
+    print(f"Creator: {entry_data['meta'].get('creator', 'N/A')}")
+    print(f"Type: {entry_data['meta'].get('type', 'N/A')}")
+    print(f"Morphstring: {entry_data['meta'].get('morphstring', 'N/A')}")
+    print(f"Summary: {entry_data['meta'].get('summary', 'N/A')}\n")
+
+    for csv_file, data in entry_data.items():
+        if csv_file == 'meta':
+            continue
+        print(f"--- {csv_file} ---")
+        if data and data['header']:
+            print(", ".join(data['header']))
+            for row in data['rows']:
+                print(", ".join(row))
+        else:
+            print("No data or header for this section.")
+        print("") # Add a blank line for readability
+
+# --- Main CLI Loop ---
+
+def main_cli():
+    os.makedirs(BASE_LIBRARY_DIR, exist_ok=True) # Ensure base directory exists
+
+    print("Welcome to MorphLibrary CLI!")
+    print("Commands: add, list, show [ID], exit")
+
+    while True:
+        command = input("\n> ").strip().lower()
+        if command == "add":
+            cmd_add()
+        elif command == "list":
+            cmd_list()
+        elif command.startswith("show "):
+            # Extract ID from "show [ID]"
+            parts = command.split(' ', 1)
+            if len(parts) == 2:
+                cmd_show_id = parts[1]
+                try:
+                    # Reroute to a function that doesn't ask for input again
+                    _show_by_id(int(cmd_show_id)) # Internal helper function
+                except ValueError:
+                    print("Invalid ID. Please use 'show [ID]' with a number.")
+            else:
+                print("Invalid 'show' command. Please use 'show [ID]'.")
+        elif command == "exit":
+            print("Exiting MorphLibrary CLI. Goodbye!")
+            break
+        else:
+            print("Unknown command. Try 'add', 'list', 'show [ID]', or 'exit'.")
+
+# Internal helper function for cmd_show
+def _show_by_id(entry_id):
+    entry_data = read_entry_full_data(entry_id)
+    if not entry_data:
+        print(f"Entry {entry_id:03} not found.")
+        return
+
+    print(f"\n--- Details for Entry {entry_id:03} ({entry_data['meta'].get('title', 'N/A')}) ---")
+    print(f"Title: {entry_data['meta'].get('title', 'N/A')}")
+    print(f"Creator: {entry_data['meta'].get('creator', 'N/A')}")
+    print(f"Type: {entry_data['meta'].get('type', 'N/A')}")
+    print(f"Morphstring: {entry_data['meta'].get('morphstring', 'N/A')}")
+    print(f"Summary: {entry_data['meta'].get('summary', 'N/A')}\n")
+
+    for csv_file, data in entry_data.items():
+        if csv_file == 'meta':
+            continue
+        print(f"--- {csv_file} ---")
+        if data and data['header']:
+            print(", ".join(data['header']))
+            for row in data['rows']:
+                print(", ".join(row))
+        else:
+            print("No data or header for this section.")
+        print("") # Add a blank line for readability
+
+
+if __name__ == "__main__":
+    main_cli()
+            </pre>
+        </div>
+        <p><strong>To run this CLI:</strong></p>
+        <ol>
+            <li>Save the code above as <code>morph_cli.py</code> in a directory.</li>
+            <li>Make sure you have a `MorphLibrary` folder in the same directory, containing your `Entry_XXX` folders.</li>
+            <li>Open a terminal or command prompt in that directory.</li>
+            <li>Run the command: <code>python morph_cli.py</code></li>
+            <li>Follow the on-screen prompts.</li>
+        </ol>
+    </div>
+
+    <div class="browser-section">
+        <h2>2. Web-Based MorphLibrary Browser (Concept)</h2>
+        <p>This section outlines a conceptual HTML/CSS/JavaScript structure for Browse your MorphLibrary entries in a web browser. Note that direct local file access (reading CSVs from `file://` URLs) is restricted by browsers for security. For this to work, you'd typically:</p>
+        <ul>
+            <li><strong>Serve the files with a simple local web server:</strong> e.g., run <code>python -m http.server</code> in your `MorphLibrary`'s parent directory.</li>
+            <li><strong>Build a small backend API:</strong> A Python (Flask/Django), Node.js, or other server application that reads the files and serves them via HTTP requests.</li>
+        </ul>
+
+        <h3>Web Interface Layout: <code>index.html</code> (Conceptual)</h3>
+        <p>This HTML provides the basic structure. The JavaScript would handle fetching and rendering data.</p>
+        <pre><code>
+&lt;!-- Basic HTML Structure for the Web Browser --&gt;
+&lt;div class="container"&gt;
+    &lt;h1&gt;MorphLibrary Web Browser&lt;/h1&gt;
+
+    &lt;div id="entryList"&gt;
+        &lt;h3&gt;Available Entries:&lt;/h3&gt;
+        &lt;!-- Entries will be loaded here by JavaScript --&gt;
+        &lt;p&gt;Loading entries... (Requires a local server to function)&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div id="entryDetail"&gt;
+        &lt;h3&gt;Entry Details:&lt;/h3&gt;
+        &lt;p&gt;Select an entry from the left to view its full details.&lt;/p&gt;
+        &lt;!-- Details of selected entry will be loaded here --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        </code></pre>
+
+        <h3>Conceptual JavaScript: <code>script.js</code> (Illustrative)</h3>
+        <p>This JavaScript demonstrates the *logic* for fetching and displaying data. Actual implementation would depend on your chosen server/backend setup for serving the `meta.json` and CSV files.</p>
+        <pre><code>
+&lt;script&gt;
+    const entryListDiv = document.getElementById('entryList');
+    const entryDetailDiv = document.getElementById('entryDetail');
+    const BASE_URL = './MorphLibrary/'; // This assumes files are served from a web server!
+
+    async function loadAllEntries() {
+        try {
+            // In a real server setup, you'd have an API endpoint like /api/entries
+            // For local serving via `python -m http.server`, you'd iterate directories
+            // Here, we'll simulate with hardcoded (or pre-fetched) meta data
+            const response = await fetch('data/entries_meta.json'); // Example: a consolidated meta file
+            if (!response.ok) throw new Error('Could not load entries meta. Make sure a server is running.');
+            const entriesMeta = await response.json();
+
+            entryListDiv.innerHTML = '&lt;h3&gt;Available Entries:&lt;/h3&gt;';
+            entriesMeta.forEach(entry => {
+                const entryItem = document.createElement('div');
+                entryItem.classList.add('entry-item');
+                entryItem.innerHTML = `ID: ${entry.id.toString().padStart(3, '0')} | ${entry.type.toUpperCase()} | &lt;strong&gt;${entry.title}&lt;/strong&gt; &mdash; ${entry.creator}`;
+                entryItem.onclick = () => showEntryDetails(entry.id);
+                entryListDiv.appendChild(entryItem);
+            });
+        } catch (error) {
+            entryListDiv.innerHTML = `&lt;p style="color: red;"&gt;Error loading entries: ${error.message}. &lt;br&gt;Please ensure your MorphLibrary folder is being served by a web server (e.g., &lt;code&gt;python -m http.server&lt;/code&gt; in the parent directory).&lt;/p&gt;`;
+            console.error(error);
+        }
+    }
+
+    async function showEntryDetails(entryId) {
+        entryDetailDiv.innerHTML = '&lt;h3&gt;Entry Details:&lt;/h3&gt;&lt;p&gt;Loading...&lt;/p&gt;';
+        try {
+            const entryFolder = `${BASE_URL}Entry_${entryId.toString().padStart(3, '0')}/`;
+            const metaResponse = await fetch(`${entryFolder}meta.json`);
+            if (!metaResponse.ok) throw new Error(`Meta for Entry ${entryId} not found.`);
+            const meta = await metaResponse.json();
+
+            let detailHtml = `
+                &lt;h4&gt;${meta.title} &mdash; ${meta.creator}&lt;/h4&gt;
+                &lt;p&gt;&lt;strong&gt;Type:&lt;/strong&gt; ${meta.type.toUpperCase()}&lt;br&gt;
+                &lt;strong&gt;Morphstring:&lt;/strong&gt; ${meta.morphstring}&lt;br&gt;
+                &lt;strong&gt;Summary:&lt;/strong&gt; ${meta.summary}&lt;/p&gt;
+            `;
+
+            const csvFiles = [
+                "Morphtag.csv", "Syntax.csv", "UserInterface.csv", "Memory.csv", "Math.csv",
+                "Structures.csv", "Modulation.csv", "Routing.csv", "Topology.csv",
+                "Presets.csv", "Debug.csv", "Concurrency.csv", "CLI.csv", "Build.csv"
+            ];
+
+            for (const filename of csvFiles) {
+                try {
+                    const csvResponse = await fetch(`${entryFolder}${filename}`);
+                    if (!csvResponse.ok) {
+                        detailHtml += `&lt;h5&gt;${filename}&lt;/h5&gt;&lt;p&gt;N/A (File not found or empty)&lt;/p&gt;`;
+                        continue;
+                    }
+                    const csvText = await csvResponse.text();
+                    const rows = csvText.trim().split('\n').map(row => row.split(','));
+
+                    if (rows.length > 0) {
+                        const header = rows[0];
+                        const dataRows = rows.slice(1);
+
+                        detailHtml += `&lt;h5&gt;${filename}&lt;/h5&gt;`;
+                        detailHtml += `&lt;table class="csv-table"&gt;&lt;thead&gt;&lt;tr&gt;${header.map(h => `&lt;th&gt;${h.trim()}&lt;/th&gt;`).join('')}&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;`;
+                        dataRows.forEach(row => {
+                            detailHtml += `&lt;tr&gt;${row.map(col => `&lt;td&gt;${col.trim()}&lt;/td&gt;`).join('')}&lt;/tr&gt;`;
+                        });
+                        detailHtml += `&lt;/tbody&gt;&lt;/table&gt;`;
+                    } else {
+                        detailHtml += `&lt;h5&gt;${filename}&lt;/h5&gt;&lt;p&gt;No data in this file.&lt;/p&gt;`;
+                    }
+                } catch (csvError) {
+                    detailHtml += `&lt;h5&gt;${filename}&lt;/h5&gt;&lt;p&gt;Error loading: ${csvError.message}&lt;/p&gt;`;
+                    console.error(`Error loading ${filename} for entry ${entryId}:`, csvError);
+                }
+            }
+            entryDetailDiv.innerHTML = detailHtml;
+
+        } catch (error) {
+            entryDetailDiv.innerHTML = `&lt;p style="color: red;"&gt;Error loading details for Entry ${entryId}: ${error.message}&lt;/p&gt;`;
+            console.error(error);
+        }
+    }
+
+    // Initialize the browser
+    loadAllEntries(); // This will try to fetch, demonstrating the concept.
+&lt;/script&gt;
+        </code></pre>
+        <p><strong>To make this web concept work (for testing):</strong></p>
+        <ol>
+            <li>Save the HTML code above as <code>index.html</code> in the <strong>parent directory</strong> of your `MorphLibrary` folder.</li>
+            <li>Create an empty subfolder named `data` in the same directory as `index.html`.</li>
+            <li>**Crucially:** You need to consolidate the `meta.json` from each `Entry_XXX` folder into a single `entries_meta.json` array inside your `data` folder for the `loadAllEntries` function to work as written in this example. (A backend server would do this on the fly.)</li>
+            <li>Open a terminal in the parent directory of `MorphLibrary` and run a simple Python web server: <code>python -m http.server</code></li>
+            <li>Open your web browser and go to `http://localhost:8000/index.html` (or whatever port Python assigns).</li>
+        </ol>
+    </div>
+
+</body>
+</html>

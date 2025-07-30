@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>∴ HorizonOS — Recursive Self</title>
+  <style>
+    body {
+      background: black;
+      color: #0ff;
+      font-family: monospace;
+      padding: 1em;
+    }
+    #core, #observer {
+      width: 100%;
+      height: 200px;
+      background: #111;
+      color: #0f0;
+      border: 1px solid #0ff;
+      margin-bottom: 1em;
+      padding: 1em;
+      white-space: pre-wrap;
+      overflow-y: scroll;
+    }
+    .btn { background: #222; color: #0ff; border: 1px solid #0ff; padding: 0.5em 1em; cursor: pointer; margin: 0.5em 0; }
+  </style>
+</head>
+<body>
+
+<h1>∴ HorizonOS ⟶ Observer ⟶ /write</h1>
+
+<div id="core" contenteditable="true">
+// Type morph code or logic. Example:
+// ∴ = boot
+// ∴ᛃϘ = process
+// /write echo "Hello" => Observer: Hello
+</div>
+
+<button class="btn" onclick="interpret()">/write</button>
+
+<div id="observer">[ ∴ Observer booted ]</div>
+
+<script>
+function interpret() {
+  const core = document.getElementById("core").textContent.trim();
+  const lines = core.split('\n');
+
+  let log = [];
+
+  for (let line of lines) {
+    const trimmed = line.trim();
+
+    if (trimmed.startsWith('/write')) {
+      const match = trimmed.match(/\/write\s+(.*)/);
+      if (match) {
+        const expr = match[1];
+        try {
+          const result = eval(expr);
+          log.push(`💡 ${expr} ⟶ ${result}`);
+        } catch (e) {
+          log.push(`❌ Error in "${expr}": ${e.message}`);
+        }
+      }
+    } else if (trimmed.startsWith('∴')) {
+      log.push(`⛓ Morph command: ${trimmed}`);
+    } else if (trimmed.length > 0) {
+      log.push(`… ${trimmed}`);
+    }
+  }
+
+  document.getElementById("observer").textContent += "\n" + log.join('\n');
+}
+</script>
+
+</body>
+</html>

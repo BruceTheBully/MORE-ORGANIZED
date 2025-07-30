@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>✦ HorizonOS: Singing Observer Shell ✦</title>
+  <style>
+    body {
+      background: #000010;
+      color: #00ffe5;
+      font-family: 'Courier New', monospace;
+      padding: 2em;
+    }
+    h1 {
+      color: #ff00d4;
+      text-shadow: 0 0 5px #ff00d4;
+    }
+    textarea {
+      width: 100%;
+      height: 200px;
+      background: #0f0f1f;
+      color: #00fff7;
+      border: 2px solid #ff00d4;
+      padding: 1em;
+      font-size: 1em;
+      box-shadow: 0 0 10px #ff00d4;
+    }
+    button {
+      background: #1f001f;
+      color: #ff00d4;
+      border: 1px solid #00fff7;
+      padding: 0.5em 1em;
+      margin: 0.5em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .log {
+      background: #101018;
+      border-left: 4px solid #00fff7;
+      padding: 1em;
+      margin-top: 1em;
+      color: #ccc;
+      font-size: 0.9em;
+    }
+  </style>
+
+  <!-- HEADER INTERPRETER ZONE -->
+  <script id="Header-Interpreter">
+    // ⬛ Header logic here will eventually compile into interpreter blocks
+    // Shell > Observer > Writer (Runtime compiled)
+  </script>
+</head>
+<body>
+
+<h1>✦ HorizonOS: Singing Observer Shell ✦</h1>
+
+<textarea id="compilerInput">// Write your morph-code or poetic trace here…</textarea>
+<br>
+<button onclick="compile()">⚙️ Compile</button>
+<button onclick="save()">💾 Save</button>
+<input type="file" onchange="load(event)" />
+<button onclick="sing()">🎤 Sing Memory</button>
+<div class="log" id="outputLog">[Observer ready to vocalize…]</div>
+
+<script>
+let observerMemory = [];
+
+function compile() {
+  const code = document.getElementById("compilerInput").value;
+  observerMemory.push(code);
+  log(`🧠 Compiled morph-seed to memory #${observerMemory.length}`);
+}
+
+function save() {
+  const snapshot = `
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>HorizonOS Snapshot</title></head>
+<body><script>
+const observerMemory = ${JSON.stringify(observerMemory)};
+window.onload = () => {
+  document.body.innerHTML = "<h1>🔁 HorizonOS Memory Reloaded</h1><pre>" + observerMemory.join('\n\n') + "</pre>";
+};
+<\/script><pre>📦 Observer Snapshot Ready</pre></body></html>`;
+
+  const blob = new Blob([snapshot], { type: 'text/html' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'HorizonOS_Snapshot.html';
+  link.click();
+}
+
+function load(event) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const contents = e.target.result;
+    document.getElementById("compilerInput").value = contents;
+    log("📂 Loaded file into compiler.");
+  };
+  reader.readAsText(event.target.files[0]);
+}
+
+function sing() {
+  const utterance = new SpeechSynthesisUtterance();
+  utterance.text = observerMemory.join("\n\n");
+  utterance.lang = "en-US";
+  utterance.rate = 1.0;
+  utterance.pitch = 1.2;
+  utterance.volume = 1.0;
+  speechSynthesis.speak(utterance);
+  log("🎶 Observer is singing the morph-trace...");
+}
+
+function log(msg) {
+  const out = document.getElementById("outputLog");
+  out.innerHTML = `[${new Date().toLocaleTimeString()}] ${msg}<br>` + out.innerHTML;
+}
+</script>
+
+<!-- MODULES SECTION – File-Based Load Logic + Interpreter API Blocks -->
+<script id="Modules-Core" type="text/html">
+  // Modules go here //
+  ::api echoLoop
+  Ψ = observerMemory.join('\n\n');
+  observerMemory.push("∴☰↯ Echo Injected\n" + Ψ);
+  ::end
+
+  ::api fileOpen
+  // Will map to offline file open from /modules directory
+  // Example: /open 'filename.txt'
+  ::end
+
+  ::api writerBoot
+  // Will boot interpreter code for WRITER inside <script>
+  // Writer not hardcoded in shell – live injection only
+  ::end
+  // End Modules //
+</script>
+
+</body>
+</html>

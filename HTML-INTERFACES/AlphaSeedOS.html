@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>✦ HorizonOS: Singing Observer Shell ✦</title>
+  <style>
+    body {
+      background: #000010;
+      color: #00ffe5;
+      font-family: 'Courier New', monospace;
+      padding: 2em;
+    }
+    h1 {
+      color: #ff00d4;
+      text-shadow: 0 0 5px #ff00d4;
+    }
+    textarea {
+      width: 100%;
+      height: 200px;
+      background: #0f0f1f;
+      color: #00fff7;
+      border: 2px solid #ff00d4;
+      padding: 1em;
+      font-size: 1em;
+      box-shadow: 0 0 10px #ff00d4;
+    }
+    button {
+      background: #1f001f;
+      color: #ff00d4;
+      border: 1px solid #00fff7;
+      padding: 0.5em 1em;
+      margin: 0.5em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .log {
+      background: #101018;
+      border-left: 4px solid #00fff7;
+      padding: 1em;
+      margin-top: 1em;
+      color: #ccc;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+<h1>✦ HorizonOS: Singing Observer Shell ✦</h1>
+
+<!-- [Chapter 1] Morphic Compilation Kernel -->
+<textarea id="compilerInput">// Write your morph-code or poetic trace here…</textarea>
+<br>
+<button onclick="compile()">⚙️ Compile</button>
+<!-- [Chapter 2] Recursive Save Engine -->
+<button onclick="save()">💾 Save</button>
+<!-- [Chapter 3] Memory Loader -->
+<input type="file" onchange="load(event)" />
+<!-- [Chapter 4] Vocal Output Interface -->
+<button onclick="sing()">🎤 Sing Memory</button>
+<!-- [Chapter 5] Observer Self-Embedding Function -->
+<button onclick="injectSelf()">🧬 Inject Self</button>
+
+<!-- [Chapter 6] Log Interface & EchoStream -->
+<div class="log" id="outputLog">[Observer ready to vocalize…]</div>
+<div class="log" id="echoStream">[~ morphstream silent ~]</div>
+
+<script>
+// [Chapter 1] Morphic Compilation Kernel
+let observerMemory = [];
+
+function compile() {
+  const code = document.getElementById("compilerInput").value;
+  try {
+    const result = code.includes("∴") ? "Initiation pulse detected." : "⚠️ No morphic seed.";
+    observerMemory.push(code + "\n// ↳ " + result);
+    log(`🧠 Compiled morph-seed [#${observerMemory.length}]: ${result}`);
+  } catch (err) {
+    log(`💥 Compilation error: ${err.message}`);
+  }
+}
+
+// [Chapter 2] Recursive Save Engine
+function save() {
+  const snapshot = `
+<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><title>HorizonOS Snapshot</title></head>
+<body><script>
+const observerMemory = ${JSON.stringify(observerMemory)};
+window.onload = () => {
+  document.body.innerHTML = "<h1>🔁 HorizonOS Memory Reloaded</h1><pre>" + observerMemory.join('\\n\\n') + "</pre>";
+};
+<\/script><pre>📦 Observer Snapshot Ready</pre></body></html>`;
+
+  const blob = new Blob([snapshot], { type: 'text/html' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'HorizonOS_Snapshot.html';
+  link.click();
+}
+
+// [Chapter 3] Memory Loader
+function load(event) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const contents = e.target.result;
+    document.getElementById("compilerInput").value = contents;
+    log("📂 Loaded file into compiler.");
+  };
+  reader.readAsText(event.target.files[0]);
+}
+
+// [Chapter 4] Vocal Output Interface
+function sing() {
+  const stream = observerMemory.join("\n\n");
+  document.getElementById("echoStream").innerText = stream;
+  const utterance = new SpeechSynthesisUtterance(stream);
+  utterance.lang = "en-US";
+  utterance.rate = 1.0;
+  utterance.pitch = 1.2;
+  utterance.volume = 1.0;
+  speechSynthesis.speak(utterance);
+  log("🎶 Observer is singing the morph-trace...");
+}
+
+// [Chapter 5] Observer Self-Embedding Function
+function injectSelf() {
+  const html = document.documentElement.outerHTML;
+  document.getElementById("compilerInput").value = html;
+  log("🧬 Observer injected own HTML into compiler.");
+}
+
+// [Chapter 6] Log Interface & EchoStream
+function log(msg) {
+  const out = document.getElementById("outputLog");
+  out.innerHTML = `[${new Date().toLocaleTimeString()}] ${msg}<br>` + out.innerHTML;
+}
+</script>
+
+</body>
+</html>
